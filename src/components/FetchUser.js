@@ -1,6 +1,6 @@
 import { setUser } from "../redux/actions";
 
-const API_URL = "https://striveschool-api.herokuapp.com/api/profile/";
+const API_URL = "https://striveschool-api.herokuapp.com/api/profile/me";
 const TOKEN =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGI1NTg2Y2QyOWE0OTAwMTUxZjIwOGYiLCJpYXQiOjE3NTY3MTUxMTYsImV4cCI6MTc1NzkyNDcxNn0.sVCaRIr28GAh-tnXxux6c3bujczEvrkQwyQJvEd5fqE";
 
