@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import CustomNavbar from "./components/CustomNavbar"
 import "./components/CustomNavbar.css"
 import "bootstrap-icons/font/bootstrap-icons.css"
+import ProfileTest from "./components/Test"
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <BrowserRouter>
         <CustomNavbar />
         <Routes>
-          <Route></Route>
+          <Route path="/" element={<ProfileTest />} />
         </Routes>
       </BrowserRouter>
     </>
