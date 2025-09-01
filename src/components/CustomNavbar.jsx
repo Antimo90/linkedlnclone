@@ -4,8 +4,23 @@ import Navbar from "react-bootstrap/Navbar"
 import NavDropdown from "react-bootstrap/NavDropdown"
 import Form from "react-bootstrap/Form"
 import { Button } from "react-bootstrap"
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUsersArray } from "../redux/actions";
+import fetchOtherUsers from "../components/otherUser.js";
+import Searchbar from "./Searchbar.jsx"
+
 
 function CustomNavbar() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetchOtherUsers().then((users) => {
+      dispatch(setUsersArray(users));
+    });
+  }, [dispatch]);
+
   return (
     <Navbar expand="lg" className="navbarContainer sticky-top">
       <Container>
@@ -20,13 +35,14 @@ function CustomNavbar() {
             </Navbar.Brand>
           </div>
           <div className="d-flex align-items-center">
-            <Form.Control
+            {/* <Form.Control
               className="rounded-5"
               type="search"
               id="searchInput"
               placeholder="🔍︎ Search..."
               aria-label="Search"
-            />
+            /> */}
+            <Searchbar/>
           </div>
         </div>
         <div className="d-flex flex-column">
@@ -55,7 +71,7 @@ function CustomNavbar() {
               </Nav.Link>
               <Nav.Link className="navbarLinks" href="#">
                 <div className="d-flex flex-column text-center">
-                  <i class="bi bi-chat-left-dots-fill"></i>
+                  <i className="bi bi-chat-left-dots-fill"></i>
                   Messaggistica
                 </div>
               </Nav.Link>

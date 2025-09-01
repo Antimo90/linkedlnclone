@@ -1,4 +1,4 @@
-import SET_USERS_ARRAY from "../actions";
+import { SET_USERS_ARRAY } from "../actions";
 
 const initialState = {
   users: [],

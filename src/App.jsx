@@ -5,6 +5,7 @@ import CustomNavbar from "./components/CustomNavbar"
 import "./components/CustomNavbar.css"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import ProfileTest from "./components/Test"
+import OtherUsersTest from "./components/OtherUsersTest"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <CustomNavbar />
         <Routes>
           <Route path="/" element={<ProfileTest />} />
+          <Route path="/user/:userId" element={<OtherUsersTest />} />
         </Routes>
       </BrowserRouter>
     </>

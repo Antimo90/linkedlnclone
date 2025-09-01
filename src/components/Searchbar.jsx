@@ -1,23 +1,9 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Form } from "react-bootstrap";
 
-/*DA INSERIRE NELLA NAV
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setUsersArray } from "./reducers/otherUsersReducer";
-import { fetchUsers } from "../components/otherUser.js";
-
-const dispatch = useDispatch();
-
-  useEffect(() => {
-    fetchUsers().then((users) => {
-      dispatch(setUsersArray(users));
-    });
-  }, [dispatch]);
-*/
-
-const SearchBar = () => {
+const Searchbar = () => {
   const [query, setQuery] = useState("");
   const users = useSelector((state) => state.otherUsers.users);
   const navigate = useNavigate();
@@ -27,8 +13,8 @@ const SearchBar = () => {
 
     const filteredUser = users.find(
       (user) =>
-        user.name.toLowerCase().includes(query.toLowerCase()) ||
-        user.surname.toLowerCase().includes(query.toLowerCase())
+        user.name.toLowerCase().includes(query.trim().toLowerCase()) ||
+        user.surname.toLowerCase().includes(query.trim().toLowerCase())
     );
 
     if (filteredUser) {
@@ -39,15 +25,17 @@ const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Cerca..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
-    </form>
+  <Form onSubmit={handleSubmit}>
+  <Form.Control
+    type="search"
+    placeholder="🔍︎ Search..."
+    aria-label="Search"
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
+    className="rounded-5"
+  />
+</Form>
   );
 };
 
-export default SearchBar;
+export default Searchbar;
