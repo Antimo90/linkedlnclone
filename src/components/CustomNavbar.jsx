@@ -315,7 +315,6 @@ function CustomNavbar() {
           {/* Icone mobile */}
           <div className="d-flex d-md-none align-items-center ms-2">
             <i className="bi bi-chat-left-dots-fill fs-5 mx-1"></i>
-            <i className="bi bi-bell-fill fs-5 mx-1"></i>
           </div>
 
           {/* Navbar desktop */}
