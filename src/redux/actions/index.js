@@ -1,7 +1,15 @@
 export const SET_USER = "SET_USER";
 export const SET_USERS_ARRAY = "SET_USERS_ARRAY";
 
-//PER IL PROPRIO PROFILOO
+// AZIONI PER LE ESPERIENZE
+export const SET_EXPERIENCES = "SET_EXPERIENCES";
+export const ADD_EXPERIENCE = "ADD_EXPERIENCE";
+export const UPDATE_EXPERIENCE = "UPDATE_EXPERIENCE";
+export const DELETE_EXPERIENCE = "DELETE_EXPERIENCE";
+export const SET_EXPERIENCES_LOADING = "SET_EXPERIENCES_LOADING";
+export const SET_EXPERIENCES_ERROR = "SET_EXPERIENCES_ERROR";
+
+//PER IL PROPRIO PROFILO
 export const setUser = (userData) => ({
   type: SET_USER,
   payload: userData,
@@ -12,3 +20,152 @@ export const setUsersArray = (users) => ({
   type: SET_USERS_ARRAY,
   payload: users,
 });
+
+// AZIONI PER LE ESPERIENZE
+export const setExperiences = (experiences) => ({
+  type: SET_EXPERIENCES,
+  payload: experiences,
+});
+
+export const addExperience = (experience) => ({
+  type: ADD_EXPERIENCE,
+  payload: experience,
+});
+
+export const updateExperience = (experience) => ({
+  type: UPDATE_EXPERIENCE,
+  payload: experience,
+});
+
+export const deleteExperience = (experienceId) => ({
+  type: DELETE_EXPERIENCE,
+  payload: experienceId,
+});
+
+export const setExperiencesLoading = (loading) => ({
+  type: SET_EXPERIENCES_LOADING,
+  payload: loading,
+});
+
+export const setExperiencesError = (error) => ({
+  type: SET_EXPERIENCES_ERROR,
+  payload: error,
+});
+
+// THUNK ACTIONS PER LE CHIAMATE API
+const API_BASE_URL = "https://striveschool-api.herokuapp.com/api/profile";
+const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGI1NzcxNDE2MjdjNjAwMTVmOGM1NjQiLCJpYXQiOjE3NTY3MjI5NjQsImV4cCI6MTc1NzkzMjU2NH0.N8tIO-J30NgFtgpwTRBWoX-nLnWcJqYp9V738bTZVv8";
+
+// Fetch delle esperienze
+export const fetchExperiences = (userId) => {
+  return async (dispatch) => {
+    dispatch(setExperiencesLoading(true));
+    dispatch(setExperiencesError(null));
+    
+    try {
+      const response = await fetch(`${API_BASE_URL}/${userId}/experiences`, {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error("Errore nel caricamento delle esperienze");
+      }
+      
+      const experiences = await response.json();
+      dispatch(setExperiences(experiences));
+    } catch (error) {
+      dispatch(setExperiencesError(error.message));
+    } finally {
+      dispatch(setExperiencesLoading(false));
+    }
+  };
+};
+
+// Creazione di una nuova esperienza
+export const createExperience = (userId, experienceData) => {
+  return async (dispatch) => {
+    dispatch(setExperiencesLoading(true));
+    dispatch(setExperiencesError(null));
+    
+    try {
+      const response = await fetch(`${API_BASE_URL}/${userId}/experiences`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${TOKEN}`,
+        },
+        body: JSON.stringify(experienceData),
+      });
+      
+      if (!response.ok) {
+        throw new Error("Errore nella creazione dell'esperienza");
+      }
+      
+      const newExperience = await response.json();
+      dispatch(addExperience(newExperience));
+    } catch (error) {
+      dispatch(setExperiencesError(error.message));
+    } finally {
+      dispatch(setExperiencesLoading(false));
+    }
+  };
+};
+
+// Aggiornamento di un'esperienza
+export const editExperience = (userId, experienceId, experienceData) => {
+  return async (dispatch) => {
+    dispatch(setExperiencesLoading(true));
+    dispatch(setExperiencesError(null));
+    
+    try {
+      const response = await fetch(`${API_BASE_URL}/${userId}/experiences/${experienceId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${TOKEN}`,
+        },
+        body: JSON.stringify(experienceData),
+      });
+      
+      if (!response.ok) {
+        throw new Error("Errore nell'aggiornamento dell'esperienza");
+      }
+      
+      const updatedExperience = await response.json();
+      dispatch(updateExperience(updatedExperience));
+    } catch (error) {
+      dispatch(setExperiencesError(error.message));
+    } finally {
+      dispatch(setExperiencesLoading(false));
+    }
+  };
+};
+
+// Eliminazione di un'esperienza
+export const removeExperience = (userId, experienceId) => {
+  return async (dispatch) => {
+    dispatch(setExperiencesLoading(true));
+    dispatch(setExperiencesError(null));
+    
+    try {
+      const response = await fetch(`${API_BASE_URL}/${userId}/experiences/${experienceId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error("Errore nell'eliminazione dell'esperienza");
+      }
+      
+      dispatch(deleteExperience(experienceId));
+    } catch (error) {
+      dispatch(setExperiencesError(error.message));
+    } finally {
+      dispatch(setExperiencesLoading(false));
+    }
+  };
+};
