@@ -141,7 +141,7 @@ const SideBarDX = () => {
   ];
 
   return (
-    <aside className=" flex flex-col gap-2 me-2 text-sm">
+    <aside className=" flex flex-col gap-2 me-2 text-sm mt-4">
       {/* Lingua e URL */}
       <div className="rounded-2 p-2 bg-white">
         <div className="space-y-1">

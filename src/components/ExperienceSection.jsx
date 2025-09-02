@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import "./ExperienceSection.css";
+import { BsPencilFill } from "react-icons/bs";
 
 /**
  * Componente che riproduce la sezione "Esperienza" di LinkedIn
@@ -33,14 +34,12 @@ const ExperienceSection = () => {
               className="action-btn edit-btn"
               aria-label="Modifica sezione"
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-              >
-                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L2.939 11.21c-.058.058-.099.126-.119.2L2.04 14.292a.5.5 0 0 0 .588.588l2.883-.78c.074-.02.142-.061.2-.119l8.813-8.813zm-8.563 9.414L3.453 12.075l-.28 1.034 1.034-.28z" />
-              </svg>
+              <BsPencilFill
+                className="text-secondary  "
+                style={{
+                  cursor: "pointer",
+                }}
+              />
             </Button>
           </div>
         </div>
