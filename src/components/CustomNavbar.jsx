@@ -1,18 +1,16 @@
-import Container from "react-bootstrap/Container"
-import Nav from "react-bootstrap/Nav"
-import Navbar from "react-bootstrap/Navbar"
-import NavDropdown from "react-bootstrap/NavDropdown"
-import Form from "react-bootstrap/Form"
-import { Button } from "react-bootstrap"
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Form from "react-bootstrap/Form";
+import { Button } from "react-bootstrap";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUsersArray } from "../redux/actions";
 import fetchOtherUsers from "../components/otherUser.js";
-import Searchbar from "./Searchbar.jsx"
-
+import Searchbar from "./Searchbar.jsx";
 
 function CustomNavbar() {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,7 +20,11 @@ function CustomNavbar() {
   }, [dispatch]);
 
   return (
-    <Navbar expand="lg" className="navbarContainer sticky-top">
+    <Navbar
+      expand="lg"
+      className="navbarContainer sticky-top"
+      style={{ height: "60px;" }}
+    >
       <Container>
         <div className="d-flex flex-row">
           <div className="logoContainer d-flex align-items-center">
@@ -42,7 +44,7 @@ function CustomNavbar() {
               placeholder="🔍︎ Search..."
               aria-label="Search"
             /> */}
-            <Searchbar/>
+            <Searchbar />
           </div>
         </div>
         <div className="d-flex flex-column">
@@ -169,7 +171,10 @@ function CustomNavbar() {
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Esci</NavDropdown.Item>
               </NavDropdown>
-              <div className="navbarSeparator"></div>
+              <div
+                className="navbarSeparator"
+                style={{ height: "60px;" }}
+              ></div>
               <NavDropdown
                 drop="start"
                 id="dropdown-basic"
@@ -287,7 +292,7 @@ function CustomNavbar() {
         </div>
       </Container>
     </Navbar>
-  )
+  );
 }
 
-export default CustomNavbar
+export default CustomNavbar;
