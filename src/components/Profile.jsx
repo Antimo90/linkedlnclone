@@ -37,14 +37,6 @@ const Profile = () => {
                   roundedCircle
                   alt="Foto profilo"
                   className="border border-4 border-white mb-4"
-                  style={{
-                    position: "absolute",
-                    bottom: "-40%",
-                    left: "3%",
-                    width: "20%",
-                    objectFit: "cover",
-                    zIndex: 1,
-                  }}
                 />
               )}
             </div>

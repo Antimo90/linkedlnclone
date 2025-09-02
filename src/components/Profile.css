@@ -1,0 +1,17 @@
+#photoProf {
+  position: absolute;
+  bottom: -40%;
+  left: 3%;
+  width: 20%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+@media (max-width: 576px) {
+  #photoProf {
+    position: absolute;
+    bottom: -70%;
+    left: 4%;
+    width: 28%;
+  }
+}
