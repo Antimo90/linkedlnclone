@@ -15,7 +15,7 @@ const Profile = () => {
   }, [dispatch]);
   return (
     <>
-      <Container className="mt-4">
+      <Container className="mt-4 mb-3">
         <Row>
           <Col>
             <Card>
