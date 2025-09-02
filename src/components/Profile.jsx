@@ -1,18 +1,36 @@
-import { Container, Row, Col, Card, Image, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Image, Button, Spinner, Alert } from "react-bootstrap";
 import { BsPencilFill, BsCameraFill, BsX } from "react-icons/bs";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fetchUser from "../components/FetchUser";
+import { uploadProfileImage } from "../redux/actions";
 import imagetop from "../assets/image.png";
-
 
 const Profile = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
+
+  // Funzione per gestire il click sull'immagine del profilo
+  const handleImageClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  // Funzione per gestire il cambio del file
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (file && user._id) {
+      try {
+        await dispatch(uploadProfileImage(user._id, file));
+      } catch (error) {
+        console.error("Errore durante l'upload:", error);
+      }
+    }
+  };
   return (
     <>
       <Container className="mt-4 mb-3">
@@ -31,22 +49,67 @@ const Profile = () => {
                     opacity: 0.8,
                   }}
                 />
-                {user.image && (
-                  <Image
-                    src={user.image}
-                    roundedCircle
-                    alt="Foto profilo"
-                    className="border border-4 border-white mb-4"
+                {/* Input file nascosto per l'upload */}
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  accept="image/*"
+                  style={{ display: "none" }}
+                />
+                
+                {user.image ? (
+                  <div className="position-relative">
+                    <Image
+                      src={user.image}
+                      roundedCircle
+                      alt="Foto profilo"
+                      className="border border-4 border-white mb-4"
+                      style={{
+                        position: "absolute",
+                        bottom: "-70px",
+                        left: "30px",
+                        width: "150px",
+                        height: "150px",
+                        objectFit: "cover",
+                        zIndex: 1,
+                        cursor: "pointer",
+                      }}
+                      onClick={handleImageClick}
+                    />
+                    {/* Overlay per indicare che è cliccabile */}
+                    {user.imageUploadLoading && (
+                      <div
+                        className="d-flex align-items-center justify-content-center bg-dark bg-opacity-50 rounded-circle"
+                        style={{
+                          position: "absolute",
+                          bottom: "-70px",
+                          left: "30px",
+                          width: "150px",
+                          height: "150px",
+                          zIndex: 2,
+                        }}
+                      >
+                        <Spinner animation="border" variant="light" />
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div
+                    className="d-flex align-items-center justify-content-center bg-secondary rounded-circle border border-4 border-white mb-4"
                     style={{
                       position: "absolute",
                       bottom: "-70px",
                       left: "30px",
                       width: "150px",
                       height: "150px",
-                      objectFit: "cover",
                       zIndex: 1,
+                      cursor: "pointer",
                     }}
-                  />
+                    onClick={handleImageClick}
+                  >
+                    <BsCameraFill className="text-white" size={40} />
+                  </div>
                 )}
               </div>
               <div className="text-end mt-2 me-4">
@@ -57,6 +120,13 @@ const Profile = () => {
                   }}
                 />
               </div>
+              {/* Messaggio di errore per l'upload */}
+              {user.imageUploadError && (
+                <Alert variant="danger" className="mt-2 mx-3">
+                  <small>Errore durante l'upload dell'immagine: {user.imageUploadError}</small>
+                </Alert>
+              )}
+              
               <Card.Body className="mt-5">
                 <div className="d-flex align-items-center mb-2">
                   <Card.Title>
@@ -195,7 +265,6 @@ const Profile = () => {
             </Card>
           </Col>
         </Row>
-
       </Container>
     </>
   );
