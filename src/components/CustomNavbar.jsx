@@ -532,46 +532,6 @@ function CustomNavbar() {
         </Container>
       </Navbar>
 
-      {/* NAVBAR COMPLETA DESKTOP */}
-      {/* <Navbar expand="lg" className="navbarContainer d-none d-md-flex">
-        <Container>
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/" className="navbarLinks">
-              <div className="d-flex flex-column text-center">
-                <i className="bi bi-house-door-fill"></i>Home
-              </div>
-            </Nav.Link>
-            <Nav.Link className="navbarLinks" href="#">
-              <div className="d-flex flex-column text-center">
-                <i className="bi bi-people-fill"></i>
-                Rete
-              </div>
-            </Nav.Link>
-            <Nav.Link className="navbarLinks" href="#">
-              <div className="d-flex flex-column text-center">
-                <i className="bi bi-suitcase-lg-fill"></i>
-                Lavoro
-              </div>
-            </Nav.Link>
-            <Nav.Link className="navbarLinks" href="#">
-              <div className="d-flex flex-column text-center">
-                <i className="bi bi-chat-left-dots-fill"></i>
-                Messaggistica
-              </div>
-            </Nav.Link>
-            <Nav.Link className="navbarLinks" href="#">
-              <div className="d-flex flex-column text-center">
-                <i className="bi bi-bell-fill"></i>
-                Notifiche
-              </div>
-            </Nav.Link> */}
-
-      {/* Qui restano i tuoi dropdown */}
-      {/* ... TUTTI I DROPDOWN come li avevi già messi ... */}
-      {/* </Nav>
-        </Container>
-      </Navbar> */}
-
       {/* NAVBAR INFERIORE MOBILE */}
       <div className="mobileBottomNav d-flex d-md-none justify-content-around align-items-center">
         <div className="text-center">
