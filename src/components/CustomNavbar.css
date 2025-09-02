@@ -1,0 +1,176 @@
+.navbarContainer {
+  background-color: white;
+  border: solid 1px #e1e1e1;
+}
+
+.logoContainer {
+  height: 90px;
+}
+
+.navbarLogo {
+  max-height: 50px;
+  width: auto;
+}
+
+.navbarLinks {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* .dropdown-toggle::after {
+  display: none;
+} */
+
+.dropstart .dropdown-toggle::before {
+  display: none;
+}
+
+.bi {
+  font-size: 1.3rem;
+  color: #666666;
+}
+
+.navbarProfilePic {
+  width: 25px;
+}
+
+.profilePic {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.navbarSeparator {
+  border: solid 1px #e1e1e1;
+}
+
+.navbarPremiumLink {
+  color: #d19307;
+}
+
+.navbarCollapseButton {
+  width: 80px;
+  margin: 0 auto;
+}
+
+.dropdownProfilePic {
+  width: 100px;
+  overflow: hidden;
+}
+
+.dropdownProfilePicImg {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+}
+
+.dropdownButton1 {
+  margin: 0 10px;
+  border-radius: 50px;
+  border: solid 1px #0274b3;
+  background: none;
+  color: #0274b3;
+  font-weight: 600;
+}
+
+.dropdownButton1:active {
+  margin: 0 10px;
+  border-radius: 50px;
+  border: solid 1px #0274b3 !important;
+  background: #0274b3 !important;
+  color: white !important;
+  font-weight: 600;
+}
+
+.dropdownButton2 {
+  margin: 0 10px;
+  border-radius: 50px;
+  border: solid 1px #0274b3;
+  background: #0274b3;
+  color: white;
+  font-weight: 600;
+}
+
+.dropdownButton2:active {
+  margin: 0 10px;
+  border-radius: 50px;
+  border: solid 1px #0274b3 !important;
+  background: none !important;
+  color: #0274b3 !important;
+  font-weight: 600;
+}
+
+.dropdown-item:focus,
+.dropdown-item:active {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.dropdown3:hover {
+  background-color: none !important;
+}
+
+.dropdown3Title {
+  font-size: larger;
+}
+
+h5 {
+  color: #787878;
+  font-size: 1em;
+}
+
+.dropdown3Icons {
+  color: #0274b3 !important;
+  font-size: 1.8rem;
+}
+
+div > ul > li {
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 1.3em;
+  margin-bottom: 5px;
+}
+
+h3 {
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+h4 {
+  font-size: 1em;
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+li > p {
+  color: #787878;
+  font-size: 0.8rem;
+}
+
+.dropdownButton3 {
+  border: none !important;
+  background: none !important;
+  color: black;
+  padding: 0px;
+  margin-left: 5px;
+}
+
+.addButtonIcon {
+  font-size: 1.5rem;
+}
+.prova {
+  font-weight: 700;
+  text-decoration: none;
+  color: #787878;
+}
+
+.yourLinks {
+  text-decoration: none;
+  color: #787878;
+}
