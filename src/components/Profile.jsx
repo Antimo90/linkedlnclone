@@ -1,5 +1,5 @@
 import { Container, Row, Col, Card, Image, Button } from "react-bootstrap";
-import { BsPencilFill, BsCameraFill } from "react-icons/bs";
+import { BsPencilFill, BsCameraFill, BsX } from "react-icons/bs";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fetchUser from "../components/FetchUser";
@@ -21,7 +21,7 @@ const Profile = () => {
               <div className="position-relative">
                 <Card.Img variant="top" src={imagetop} />
                 <BsCameraFill
-                  className="position-absolute text-white bg-dark rounded-circle p-2"
+                  className="position-absolute text-primary bg-white rounded-circle p-2"
                   style={{
                     top: "1rem",
                     right: "1rem",
@@ -46,12 +46,14 @@ const Profile = () => {
                   }}
                 />
               </div>
-              <BsPencilFill
-                className="text-secondary mt-2"
-                style={{
-                  cursor: "pointer",
-                }}
-              />
+              <div className="text-end mt-2 me-4">
+                <BsPencilFill
+                  className="text-secondary mt-2"
+                  style={{
+                    cursor: "pointer",
+                  }}
+                />
+              </div>
               <Card.Body className="mt-5">
                 <div className="d-flex align-items-center mb-2">
                   <Card.Title>
@@ -59,7 +61,7 @@ const Profile = () => {
                   </Card.Title>
                   <Button
                     variant="button"
-                    className="btn  btn-sm me-2 text-primary ms-2"
+                    className="btn  btn-sm me-2 text-primary ms-2 fw-bold"
                     style={{
                       borderRadius: "20px",
                       borderStyle: "dashed",
@@ -85,6 +87,11 @@ const Profile = () => {
                     </span>{" "}
                     Aggiungi badge di verifica
                   </Button>
+                  <span className="ms-auto me-5">
+                    <a href="#" className="text-dark text-decoration-none">
+                      ISIS Facchinetti
+                    </a>
+                  </span>
                 </div>
                 <Card.Text className="mb-0">{user.bio}</Card.Text>
                 <Card.Text className="text-secondary mb-0">
@@ -99,19 +106,88 @@ const Profile = () => {
                   </a>{" "}
                 </div>
                 <div>
-                  <Button variant="primary" style={{ borderRadius: "20px" }}>
+                  <Button variant="btn btn-primary rounded-pill me-2 fw-bold">
                     Disponibile per
                   </Button>
-                  <Button variant="primary" style={{ borderRadius: "20px" }}>
+                  <Button
+                    className="rounded-pill me-2 fw-bold"
+                    style={{
+                      backgroundColor: "transparent",
+                      color: "#0d6efd",
+                      border: "1px solid #0d6efd",
+                    }}
+                  >
                     Aggiungi sezione del profilo
                   </Button>
-                  <Button variant="primary" style={{ borderRadius: "20px" }}>
+                  <Button
+                    className="rounded-pill me-2 fw-bold"
+                    style={{
+                      backgroundColor: "transparent",
+                      color: "#0d6efd",
+                      border: "1px solid #0d6efd",
+                    }}
+                  >
                     Migliora profilo
                   </Button>
-                  <Button variant="primary" style={{ borderRadius: "20px" }}>
+                  <Button
+                    className="rounded-pill me-2 fw-bold text-secondary"
+                    style={{
+                      backgroundColor: "transparent",
+                      border: "1px solid #6c757d",
+                    }}
+                  >
                     Risorse
                   </Button>
                 </div>
+                <Row className="mt-4">
+                  <Col>
+                    <Card
+                      className="h-100 "
+                      style={{ backgroundColor: "#E8F0FE" }}
+                    >
+                      <Card.Body>
+                        <div className="d-flex justify-content-between align-items-center mb-2">
+                          <h6 className="mb-0 fw-bold">
+                            Disponibile a lavorare
+                          </h6>
+                          <BsPencilFill
+                            className="text-secondary"
+                            style={{ cursor: "pointer" }}
+                          />
+                        </div>
+                        <p className="m-0">
+                          Ruoli di Sviluppatore, Web developer, Sviluppator...
+                        </p>
+                        <a href="#" className="text-decoration-none">
+                          Mostra dettagli
+                        </a>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                  <Col>
+                    <Card className="h-100 position-relative">
+                      <Card.Body>
+                        <BsX
+                          className="position-absolute fs-4 text-secondary"
+                          style={{
+                            top: "0.5rem",
+                            right: "0.5rem",
+                            cursor: "pointer",
+                          }}
+                        />
+                        <p className="mb-1">
+                          <strong>
+                            Fai sapere che stai facendo selezione{" "}
+                          </strong>{" "}
+                          e attrai candidati qualificati.
+                        </p>
+                        <a href="#" className="text-decoration-none">
+                          Inizia
+                        </a>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                </Row>
               </Card.Body>
             </Card>
           </Col>
