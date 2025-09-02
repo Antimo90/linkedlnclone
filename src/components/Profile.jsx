@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fetchUser from "../components/FetchUser";
 import imagetop from "../assets/image.png";
-import ExperienceSection from "./ExperienceSection";
+
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -195,13 +195,7 @@ const Profile = () => {
             </Card>
           </Col>
         </Row>
-        
-        {/* Sezione Esperienza */}
-        <Row className="mt-3">
-          <Col>
-            <ExperienceSection />
-          </Col>
-        </Row>
+
       </Container>
     </>
   );
