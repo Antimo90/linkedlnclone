@@ -108,6 +108,21 @@
   border: 1px solid #e0e0e0;
 }
 
+/* Logo placeholder per aziende senza immagine */
+.logo-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #f3f2ef;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: #666666;
+}
+
 /* Dettagli esperienza */
 .experience-details {
   flex: 1;
@@ -154,7 +169,66 @@
   font-weight: 400;
 }
 
-/* Competenze */
+/* Descrizione esperienza */
+.experience-description {
+  font-size: 14px;
+  color: #000000;
+  margin: 8px 0 0 0;
+  line-height: 1.43;
+  font-weight: 400;
+}
+
+/* Menu azioni per ogni esperienza */
+.experience-menu {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.experience-item {
+  position: relative;
+}
+
+.menu-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #666666;
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.menu-btn:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  border-color: #000000;
+}
+
+.menu-btn:focus {
+  box-shadow: 0 0 0 2px rgba(10, 102, 194, 0.2);
+  border-color: #0a66c2;
+}
+
+.menu-btn svg {
+  color: #666666;
+}
+
+.menu-btn:hover svg {
+  color: #000000;
+}
+
+/* Divisorio tra esperienze */
+.experience-item-divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 16px 0;
+  opacity: 1;
+}
+
+/* Competenze (mantenuto per compatibilità) */
 .experience-skills {
   display: flex;
   align-items: center;
