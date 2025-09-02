@@ -49,7 +49,7 @@ const Profile = () => {
               />
             </div>
             <Card.Body className="mt-5">
-              <div className="d-flex align-items-center mb-2">
+              <div className="d-flex align-items-center mb-2 profile-header-line">
                 <Card.Title>
                   {user.name} {user.surname}
                 </Card.Title>
@@ -62,6 +62,7 @@ const Profile = () => {
                     borderColor: "#0d6efd",
                     color: "black",
                   }}
+                  id="badge"
                 >
                   <span className="me-1">
                     <svg
@@ -81,13 +82,16 @@ const Profile = () => {
                   </span>{" "}
                   Aggiungi badge di verifica
                 </Button>
-                <span className="ms-5 me-5">
-                  <a href="#" className="text-dark text-decoration-none">
+                <span className="ms-5 me-5 schoolName">
+                  <a
+                    href="#"
+                    className="text-dark text-decoration-none schoolName"
+                  >
                     ISIS Facchinetti
                   </a>
                 </span>
+                <Card.Text className="mb-0 cardTextBio">{user.bio}</Card.Text>
               </div>
-              <Card.Text className="mb-0">{user.bio}</Card.Text>
               <Card.Text className="text-secondary mb-0">
                 {user.area} .{" "}
                 <Button variant="link" className="btn btn-link text-primary">
@@ -99,22 +103,27 @@ const Profile = () => {
                   320 collegamenti
                 </a>{" "}
               </div>
-              <div>
-                <Button variant="btn btn-primary rounded-pill me-2 fw-bold">
-                  Disponibile per
-                </Button>
+              <div className="buttonGroup">
+                <div className="toButtons">
+                  <Button
+                    variant="btn btn-primary rounded-pill me-2 fw-bold"
+                    className="btnAvailable"
+                  >
+                    Disponibile per
+                  </Button>
+                  <Button
+                    className="rounded-pill me-2 fw-bold btnAdd"
+                    style={{
+                      backgroundColor: "transparent",
+                      color: "#0d6efd",
+                      border: "1px solid #0d6efd",
+                    }}
+                  >
+                    Aggiungi sezione del profilo
+                  </Button>
+                </div>
                 <Button
-                  className="rounded-pill me-2 fw-bold"
-                  style={{
-                    backgroundColor: "transparent",
-                    color: "#0d6efd",
-                    border: "1px solid #0d6efd",
-                  }}
-                >
-                  Aggiungi sezione del profilo
-                </Button>
-                <Button
-                  className="rounded-pill me-2 fw-bold"
+                  className="rounded-pill me-2 fw-bold btnImproves"
                   style={{
                     backgroundColor: "transparent",
                     color: "#0d6efd",
@@ -124,7 +133,7 @@ const Profile = () => {
                   Migliora profilo
                 </Button>
                 <Button
-                  className="rounded-pill me-2 fw-bold text-secondary"
+                  className="rounded-pill me-2 fw-bold text-secondary btnOther"
                   style={{
                     backgroundColor: "transparent",
                     border: "1px solid #6c757d",
