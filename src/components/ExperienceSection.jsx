@@ -95,7 +95,14 @@ const ExperienceSection = () => {
                 aria-label="Aggiungi esperienza"
                 onClick={handleAddExperience}
               >
-                
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                >
+                  <path d="M8 1a.5.5 0 0 1 .5.5v6h6a.5.5 0 0 1 0 1h-6v6a.5.5 0 0 1-1 0v-6h-6a.5.5 0 0 1 0-1h6v-6A.5.5 0 0 1 8 1z" />
+                </svg>
             </Button>
             <Button
               variant="outline-secondary"

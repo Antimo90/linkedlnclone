@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import fetchUser from "../components/FetchUser";
 import imagetop from "../assets/image.png";
 
-
 const Profile = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -154,7 +153,6 @@ const Profile = () => {
                           className="text-secondary"
                           style={{ cursor: "pointer" }}
                         />
-<<<<<<< HEAD
                       </div>
                       <p className="m-0">
                         Ruoli di Sviluppatore, Web developer, Sviluppator...
@@ -191,27 +189,6 @@ const Profile = () => {
           </Card>
         </Col>
       </Row>
-=======
-                        <p className="mb-1">
-                          <strong>
-                            Fai sapere che stai facendo selezione{" "}
-                          </strong>{" "}
-                          e attrai candidati qualificati.
-                        </p>
-                        <a href="#" className="text-decoration-none">
-                          Inizia
-                        </a>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-
-      </Container>
->>>>>>> main
     </>
   );
 };
