@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchExperiences, removeExperience } from "../redux/actions";
 import ExperienceModal from "./ExperienceModal";
 import "./ExperienceSection.css";
-import { BsPencilFill } from "react-icons/bs";
 
 /**
  * Componente che riproduce la sezione "Esperienza" di LinkedIn
@@ -12,9 +11,11 @@ import { BsPencilFill } from "react-icons/bs";
  */
 const ExperienceSection = () => {
   const dispatch = useDispatch();
-  const { experiences, loading, error } = useSelector((state) => state.experiences);
+  const { experiences, loading, error } = useSelector(
+    (state) => state.experiences
+  );
   const user = useSelector((state) => state.user);
-  
+
   // State per il modal
   const [showModal, setShowModal] = useState(false);
   const [selectedExperience, setSelectedExperience] = useState(null);
@@ -67,15 +68,15 @@ const ExperienceSection = () => {
     const end = endDate ? new Date(endDate) : new Date();
     const diffTime = Math.abs(end - start);
     const diffMonths = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 30));
-    
+
     if (diffMonths < 12) {
-      return `${diffMonths} mes${diffMonths === 1 ? 'e' : 'i'}`;
+      return `${diffMonths} mes${diffMonths === 1 ? "e" : "i"}`;
     } else {
       const years = Math.floor(diffMonths / 12);
       const months = diffMonths % 12;
-      let duration = `${years} ann${years === 1 ? 'o' : 'i'}`;
+      let duration = `${years} ann${years === 1 ? "o" : "i"}`;
       if (months > 0) {
-        duration += ` ${months} mes${months === 1 ? 'e' : 'i'}`;
+        duration += ` ${months} mes${months === 1 ? "e" : "i"}`;
       }
       return duration;
     }
@@ -103,35 +104,7 @@ const ExperienceSection = () => {
                 >
                   <path d="M8 1a.5.5 0 0 1 .5.5v6h6a.5.5 0 0 1 0 1h-6v6a.5.5 0 0 1-1 0v-6h-6a.5.5 0 0 1 0-1h6v-6A.5.5 0 0 1 8 1z" />
                 </svg>
-            </Button>
-            <Button
-              variant="outline-secondary"
-              className="action-btn edit-btn"
-              aria-label="Modifica sezione"
-            >
-              <BsPencilFill
-                className="text-secondary  "
-                style={{
-                  cursor: "pointer",
-                }}
-              />
-            </Button>
-          </div>
-       
-
-        {/* Divisorio orizzontale */}
-        <hr className="experience-divider" />
-
-        {/* Contenuto principale - Esperienza lavorativa */}
-        <div className="experience-content">
-          {/* Logo e dettagli azienda */}
-          <div className="experience-item">
-            <div className="company-logo">
-              <img
-                src="/src/assets/epicodeschool_logo.jpg"
-                alt="EPICODE Institute of Technology"
-                className="logo-img"
-              />
+              </Button>
             </div>
           </div>
 
@@ -181,7 +154,12 @@ const ExperienceSection = () => {
 
                   {/* Date e durata */}
                   <p className="experience-dates">
-                    {formatDate(experience.startDate)} - {formatDate(experience.endDate)} · {calculateDuration(experience.startDate, experience.endDate)}
+                    {formatDate(experience.startDate)} -{" "}
+                    {formatDate(experience.endDate)} Â·{" "}
+                    {calculateDuration(
+                      experience.startDate,
+                      experience.endDate
+                    )}
                   </p>
 
                   {/* Localizzazione */}
@@ -191,7 +169,9 @@ const ExperienceSection = () => {
 
                   {/* Descrizione */}
                   {experience.description && (
-                    <p className="experience-description">{experience.description}</p>
+                    <p className="experience-description">
+                      {experience.description}
+                    </p>
                   )}
                 </div>
 
@@ -202,25 +182,47 @@ const ExperienceSection = () => {
                     className="action-btn menu-btn"
                     id={`dropdown-${experience._id}`}
                   >
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                    >
                       <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
                     </svg>
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => handleEditExperience(experience)}>
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" className="me-2">
+                    <Dropdown.Item
+                      onClick={() => handleEditExperience(experience)}
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        className="me-2"
+                      >
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L2.939 11.21c-.058.058-.099.126-.119.2L2.04 14.292a.5.5 0 0 0 .588.588l2.883-.78c.074-.02.142-.061.2-.119l8.813-8.813zm-8.563 9.414L3.453 12.075l-.28 1.034 1.034-.28z" />
                       </svg>
                       Modifica
                     </Dropdown.Item>
-                    <Dropdown.Item 
+                    <Dropdown.Item
                       onClick={() => handleDeleteExperience(experience._id)}
                       className="text-danger"
                     >
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" className="me-2">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        className="me-2"
+                      >
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                        <path fillRule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        <path
+                          fillRule="evenodd"
+                          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                        />
                       </svg>
                       Elimina
                     </Dropdown.Item>
@@ -245,7 +247,7 @@ const ExperienceSection = () => {
         userId={user._id}
       />
     </>
-  )
+  );
 };
 
 export default ExperienceSection;
