@@ -2,22 +2,12 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setUsersArray } from "../redux/actions";
-import fetchOtherUsers from "../components/otherUser.js";
 import Searchbar from "./Searchbar.jsx";
+import { Link } from "react-router-dom";
+
 
 function CustomNavbar() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    fetchOtherUsers().then((users) => {
-      dispatch(setUsersArray(users));
-    });
-  }, [dispatch]);
 
   return (
     <Navbar
@@ -37,13 +27,6 @@ function CustomNavbar() {
             </Navbar.Brand>
           </div>
           <div className="d-flex align-items-center">
-            {/* <Form.Control
-              className="rounded-5"
-              type="search"
-              id="searchInput"
-              placeholder="🔍︎ Search..."
-              aria-label="Search"
-            /> */}
             <Searchbar />
           </div>
         </div>
@@ -54,7 +37,7 @@ function CustomNavbar() {
           />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link className="navbarLinks" href="#">
+              <Nav.Link as={Link} to="/" className="navbarLinks">
                 <div className="d-flex flex-column text-center">
                   <i className="bi bi-house-door-fill"></i>Home
                 </div>

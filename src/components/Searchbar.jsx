@@ -1,28 +1,35 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
+import fetchOtherUsers from "../components/otherUser.js";
+import { setUsersArray } from "../redux/actions";
 
 const Searchbar = () => {
   const [query, setQuery] = useState("");
-  const users = useSelector((state) => state.otherUsers.users);
+    const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const filteredUser = users.find(
+     fetchOtherUsers().then((fetchedUsers) => {
+    dispatch(setUsersArray(fetchedUsers));
+    const input = query.trim().toLowerCase();
+
+     const filteredUser = fetchedUsers.find(
       (user) =>
-        user.name.toLowerCase().includes(query.trim().toLowerCase()) ||
-        user.surname.toLowerCase().includes(query.trim().toLowerCase())
+        user.name.toLowerCase().includes(input) ||
+        user.surname.toLowerCase().includes(input)
     );
+
 
     if (filteredUser) {
       navigate(`/user/${filteredUser._id}`);
     } else {
       alert("Utente non ancora iscritto!");
     }
-  };
+  })};
 
   return (
   <Form onSubmit={handleSubmit}>
