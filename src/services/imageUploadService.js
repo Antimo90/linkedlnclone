@@ -34,6 +34,58 @@ export const uploadProfileImage = async (userId, imageFile) => {
 };
 
 /**
+ * Upload dell'immagine di copertina del profilo (salvataggio locale)
+ * @param {string} userId - ID dell'utente
+ * @param {File} imageFile - File immagine da caricare
+ * @returns {Promise} - Promise con l'URL dell'immagine
+ */
+export const uploadCoverImage = async (userId, imageFile) => {
+  try {
+    // Converto il file in base64 per il salvataggio locale
+    const base64Image = await convertFileToBase64(imageFile);
+    
+    // Salvo l'immagine nel localStorage con chiave specifica per l'utente
+    const storageKey = `coverImage_${userId}`;
+    localStorage.setItem(storageKey, base64Image);
+    
+    console.log("Immagine di copertina salvata localmente per l'utente:", userId);
+    
+    // Ritorno un oggetto simile a quello che ritornerebbe l'API
+    return {
+      coverImage: base64Image,
+      message: "Immagine di copertina salvata con successo"
+    };
+  } catch (error) {
+    console.error("Errore durante il salvataggio dell'immagine di copertina:", error);
+    throw error;
+  }
+};
+
+/**
+ * Funzione helper per convertire un file in base64
+ * @param {File} file - File da convertire
+ * @returns {Promise<string>} - Promise con la stringa base64
+ */
+const convertFileToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+    reader.readAsDataURL(file);
+  });
+};
+
+/**
+ * Recupera l'immagine di copertina salvata localmente
+ * @param {string} userId - ID dell'utente
+ * @returns {string|null} - URL base64 dell'immagine o null se non trovata
+ */
+export const getCoverImage = (userId) => {
+  const storageKey = `coverImage_${userId}`;
+  return localStorage.getItem(storageKey);
+};
+
+/**
  * Upload dell'immagine per un'esperienza
  * @param {string} userId - ID dell'utente
  * @param {string} expId - ID dell'esperienza

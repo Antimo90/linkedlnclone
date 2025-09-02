@@ -2,7 +2,10 @@ import {
   SET_USER, 
   SET_PROFILE_IMAGE_LOADING, 
   SET_PROFILE_IMAGE_SUCCESS, 
-  SET_PROFILE_IMAGE_ERROR 
+  SET_PROFILE_IMAGE_ERROR,
+  SET_COVER_IMAGE_LOADING,
+  SET_COVER_IMAGE_SUCCESS,
+  SET_COVER_IMAGE_ERROR
 } from "../actions";
 
 const initialState = {
@@ -14,9 +17,13 @@ const initialState = {
   title: "",
   area: "",
   image: "",
-  // Stati per l'upload dell'immagine
+  coverImage: "", // Immagine di copertina
+  // Stati per l'upload dell'immagine del profilo
   imageUploadLoading: false,
   imageUploadError: null,
+  // Stati per l'upload dell'immagine di copertina
+  coverImageUploadLoading: false,
+  coverImageUploadError: null,
 };
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -48,6 +55,29 @@ const userReducer = (state = initialState, action) => {
         ...state,
         imageUploadLoading: false,
         imageUploadError: action.payload
+      };
+    
+    // Casi per l'upload dell'immagine di copertina
+    case SET_COVER_IMAGE_LOADING:
+      return {
+        ...state,
+        coverImageUploadLoading: action.payload,
+        coverImageUploadError: null
+      };
+    
+    case SET_COVER_IMAGE_SUCCESS:
+      return {
+        ...state,
+        coverImage: action.payload,
+        coverImageUploadLoading: false,
+        coverImageUploadError: null
+      };
+    
+    case SET_COVER_IMAGE_ERROR:
+      return {
+        ...state,
+        coverImageUploadLoading: false,
+        coverImageUploadError: action.payload
       };
     
     default:

@@ -14,6 +14,11 @@ export const SET_PROFILE_IMAGE_LOADING = "SET_PROFILE_IMAGE_LOADING";
 export const SET_PROFILE_IMAGE_SUCCESS = "SET_PROFILE_IMAGE_SUCCESS";
 export const SET_PROFILE_IMAGE_ERROR = "SET_PROFILE_IMAGE_ERROR";
 
+// Costanti per l'upload dell'immagine di copertina
+export const SET_COVER_IMAGE_LOADING = "SET_COVER_IMAGE_LOADING";
+export const SET_COVER_IMAGE_SUCCESS = "SET_COVER_IMAGE_SUCCESS";
+export const SET_COVER_IMAGE_ERROR = "SET_COVER_IMAGE_ERROR";
+
 //PER IL PROPRIO PROFILO
 export const setUser = (userData) => ({
   type: SET_USER,
@@ -73,6 +78,22 @@ export const setProfileImageError = (error) => ({
   payload: error,
 });
 
+// Action creators per l'upload dell'immagine di copertina
+export const setCoverImageLoading = (loading) => ({
+  type: SET_COVER_IMAGE_LOADING,
+  payload: loading,
+});
+
+export const setCoverImageSuccess = (imageUrl) => ({
+  type: SET_COVER_IMAGE_SUCCESS,
+  payload: imageUrl,
+});
+
+export const setCoverImageError = (error) => ({
+  type: SET_COVER_IMAGE_ERROR,
+  payload: error,
+});
+
 // THUNK ACTION PER L'UPLOAD DELL'IMMAGINE DEL PROFILO
 export const uploadProfileImage = (userId, imageFile) => {
   return async (dispatch) => {
@@ -104,6 +125,42 @@ export const uploadProfileImage = (userId, imageFile) => {
     } catch (error) {
       dispatch(setProfileImageError(error.message));
       dispatch(setProfileImageLoading(false));
+      throw error;
+    }
+  };
+};
+
+// THUNK ACTION PER L'UPLOAD DELL'IMMAGINE DI COPERTINA
+export const uploadCoverImage = (userId, imageFile) => {
+  return async (dispatch) => {
+    dispatch(setCoverImageLoading(true));
+    try {
+      // Importo il servizio di upload per l'immagine di copertina
+      const { uploadCoverImage: uploadCoverService } = await import('../../services/imageUploadService');
+      
+      // Eseguo l'upload dell'immagine di copertina
+      const result = await uploadCoverService(userId, imageFile);
+      
+      // Aggiorno lo stato con la nuova immagine di copertina
+      dispatch(setCoverImageSuccess(result.coverImage || result));
+      
+      // Ricarico i dati dell'utente per avere l'immagine di copertina aggiornata
+      const response = await fetch(`${API_BASE_URL}/me`, {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      });
+      
+      if (response.ok) {
+        const userData = await response.json();
+        dispatch(setUser(userData));
+      }
+      
+      dispatch(setCoverImageLoading(false));
+      return result;
+    } catch (error) {
+      dispatch(setCoverImageError(error.message));
+      dispatch(setCoverImageLoading(false));
       throw error;
     }
   };

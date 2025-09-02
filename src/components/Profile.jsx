@@ -1,26 +1,44 @@
 import { Container, Row, Col, Card, Image, Button, Spinner, Alert } from "react-bootstrap";
 import { BsPencilFill, BsCameraFill, BsX } from "react-icons/bs";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fetchUser from "../components/FetchUser";
-import { uploadProfileImage } from "../redux/actions";
+import { uploadProfileImage, uploadCoverImage } from "../redux/actions";
+import { getCoverImage } from "../services/imageUploadService";
 import imagetop from "../assets/image.png";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const fileInputRef = useRef(null);
+  const coverImageInputRef = useRef(null);
+  const [localCoverImage, setLocalCoverImage] = useState(null);
 
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
+
+  // Carica l'immagine di copertina salvata localmente quando l'utente è disponibile
+  useEffect(() => {
+    if (user._id) {
+      const savedCoverImage = getCoverImage(user._id);
+      if (savedCoverImage) {
+        setLocalCoverImage(savedCoverImage);
+      }
+    }
+  }, [user._id]);
 
   // Funzione per gestire il click sull'immagine del profilo
   const handleImageClick = () => {
     fileInputRef.current?.click();
   };
 
-  // Funzione per gestire il cambio del file
+  // Funzione per gestire il click sull'icona camera per l'immagine di copertina
+  const handleCoverImageClick = () => {
+    coverImageInputRef.current?.click();
+  };
+
+  // Funzione per gestire il cambio del file del profilo
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file && user._id) {
@@ -31,6 +49,22 @@ const Profile = () => {
       }
     }
   };
+
+  // Funzione per gestire il cambio dell'immagine di copertina
+  const handleCoverImageChange = async (event) => {
+    const file = event.target.files[0];
+    if (file && user._id) {
+      try {
+        // Utilizzo l'azione Redux per l'upload permanente (ora salva in localStorage)
+        const result = await dispatch(uploadCoverImage(user._id, file));
+        // Aggiorno lo stato locale con la nuova immagine
+        setLocalCoverImage(result.coverImage);
+        console.log('Immagine di copertina caricata e salvata localmente:', file.name);
+      } catch (error) {
+        console.error("Errore durante il salvataggio dell'immagine di copertina:", error);
+      }
+    }
+  };
   return (
     <>
       <Container className="mt-4 mb-3">
@@ -38,7 +72,17 @@ const Profile = () => {
           <Col>
             <Card>
               <div className="position-relative">
-                <Card.Img variant="top" src={imagetop} />
+                <Card.Img 
+                  variant="top" 
+                  src={localCoverImage || imagetop} 
+                  className="cover-image" 
+                  style={{
+                    width: "100%",
+                    height: "200px",
+                    objectFit: "cover",
+                    objectPosition: "center"
+                  }}
+                />
                 <BsCameraFill
                   className="position-absolute text-primary bg-white rounded-circle p-2"
                   style={{
@@ -48,12 +92,22 @@ const Profile = () => {
                     fontSize: "2.5rem",
                     opacity: 0.8,
                   }}
+                  onClick={handleCoverImageClick}
+                  title="Cambia immagine di copertina"
                 />
-                {/* Input file nascosto per l'upload */}
+                {/* Input file nascosto per l'upload del profilo */}
                 <input
                   type="file"
                   ref={fileInputRef}
                   onChange={handleFileChange}
+                  accept="image/*"
+                  style={{ display: "none" }}
+                />
+                {/* Input file nascosto per l'upload dell'immagine di copertina */}
+                <input
+                  type="file"
+                  ref={coverImageInputRef}
+                  onChange={handleCoverImageChange}
                   accept="image/*"
                   style={{ display: "none" }}
                 />
