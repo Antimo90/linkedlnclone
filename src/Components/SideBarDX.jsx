@@ -63,7 +63,7 @@ const SideBarDX = () => {
             <strong>Edison Next</strong>
           </p>
           <p className=" text-gray-600">
-            Mattia, immagina il futuro con Edison Next
+            Valerio, immagina il futuro con Edison Next
           </p>
           <p className=" text-gray-600">
             Siamo il tuo partner per la transizione energetica
@@ -84,7 +84,7 @@ const SideBarDX = () => {
             <h2 className="font-semibold fs-6 ms-2 mb-0">
               Persone che potresti conoscere
             </h2>
-            <p className=" mb-1">Dal tuo settore</p>
+            <p className="text-center mb-1">Dal tuo settore</p>
           </div>
           <div className="space-y-1 text-center">
             {people.map((person, index) => (

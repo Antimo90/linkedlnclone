@@ -89,7 +89,7 @@
                 <div className="dropdownProfilePic">
                   <img
                     className="dropdownProfilePicImg"
-                    src="./src/assets/img/Stefano.png"
+                    src="https://via.placeholder.com/40x40?text=User"
                     alt=""
                   />
                 </div>
@@ -291,6 +291,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fetchUser from "./FetchUser";
+import linkedinLogo from "../assets/img/Linkedin-logo-3.png";
 
 function CustomNavbar() {
   const navigate = useNavigate();
@@ -313,7 +314,7 @@ function CustomNavbar() {
           <Navbar.Brand href="#home" className="d-flex align-items-center">
             <img
               className="navbarLogo img-fluid"
-              src="./src/assets/img/Linkedin-logo-3.png"
+              src={linkedinLogo}
               alt="Linkedin Logo"
             />
           </Navbar.Brand>
@@ -403,7 +404,7 @@ function CustomNavbar() {
                         <div className="dropdownProfilePic">
                           <img
                             className="dropdownProfilePicImg"
-                            src={user?.image || "./src/assets/img/Stefano.png"}
+                            src={user?.image || "https://via.placeholder.com/40x40?text=User"}
                             alt="Immagine profilo utente"
                           />
                         </div>
