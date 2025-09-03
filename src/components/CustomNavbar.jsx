@@ -287,16 +287,17 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Button } from "react-bootstrap";
 import Searchbar from "./Searchbar.jsx";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CustomNavbar() {
+  const navigate = useNavigate();
   return (
     <>
       {/* NAVBAR SUPERIORE */}
       <Navbar
         expand="lg"
         className="navbarContainer sticky-top"
-        style={{ height: "60px" }}
-      >
+        style={{ height: "60px" }}>
         <Container className="d-flex justify-content-between align-items-center w-100">
           {/* Logo */}
           <Navbar.Brand href="#home" className="d-flex align-items-center">
@@ -383,12 +384,10 @@ function CustomNavbar() {
                         Tu <i className="bi-caret-down-fill"></i>
                       </span>
                     </span>
-                  }
-                >
+                  }>
                   <NavDropdown.Item
                     className=".dropdown-item"
-                    href="#action/3.1"
-                  >
+                    href="#action/3.1">
                     <div>
                       <div className="d-flex flex-row">
                         <div className="dropdownProfilePic">
@@ -404,7 +403,9 @@ function CustomNavbar() {
                         </div>
                       </div>
                       <div className="d-flex flex-row mt-3">
-                        <Button className="dropdownButton1 flex-grow-1">
+                        <Button
+                          className="dropdownButton1 flex-grow-1"
+                          onClick={() => navigate("/profile")}>
                           Visualizza <br /> Profilo
                         </Button>
                         <Button className="dropdownButton2 flex-grow-1">
@@ -427,8 +428,7 @@ function CustomNavbar() {
                         Per le Aziende <i className="bi-caret-down-fill"></i>
                       </span>
                     </span>
-                  }
-                >
+                  }>
                   <NavDropdown.Item className="dropdown3" href="#action/3.1">
                     <div className="d-flex flex-row">
                       <div className="me-3">

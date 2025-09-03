@@ -14,7 +14,7 @@ function App() {
        <BrowserRouter>
        <CustomNavbar />
                 <Routes>
-                  <Route path="/" element={<SuperContainer /> } />
+                  <Route path="/profile" element={<SuperContainer /> } />
                   <Route path="/user/:userId" element={<OtherUsersTest />} />
                 </Routes>
           <Footer />
