@@ -7,6 +7,7 @@ import "./components/CustomNavbar.css";
 import OtherUsersTest from "./components/OtherUsersTest";
 import Footer from "./components/Footer";
 import SuperContainer from "./components/SuperContainer";
+import FeedHome from "./components/FeedHome";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
                 <Routes>
                   <Route path="/profile" element={<SuperContainer /> } />
                   <Route path="/user/:userId" element={<OtherUsersTest />} />
+                  <Route path="/" element={<FeedHome/>} />
                 </Routes>
           <Footer />
       </BrowserRouter>
