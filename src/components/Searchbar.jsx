@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { Form, Modal, Button } from "react-bootstrap"
@@ -12,18 +12,16 @@ const Searchbar = () => {
   const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false)
 
+  useEffect(() => {
+    fetchOtherUsers().then((fetchedUsers) => {
+      dispatch(setUsersArray(fetchedUsers))
+    })
+  }, [dispatch])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const input = query.trim().toLowerCase()
-
-    if (users.length === 0) {
-      fetchOtherUsers().then((fetchedUsers) => {
-        dispatch(setUsersArray(fetchedUsers))
-        cercaUtente(fetchedUsers, input)
-      })
-    } else {
-      cercaUtente(users, input)
-    }
+    cercaUtente(users, input)
   }
 
   const cercaUtente = (arr, input) => {
