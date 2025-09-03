@@ -1,4 +1,13 @@
-import { Container, Row, Col, Card, Image, Button, Spinner, Alert } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Image,
+  Button,
+  Spinner,
+  Alert,
+} from "react-bootstrap";
 import { BsPencilFill, BsCameraFill, BsX } from "react-icons/bs";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +15,7 @@ import fetchUser from "../components/FetchUser";
 import { uploadProfileImage, uploadCoverImage } from "../redux/actions";
 import { getCoverImage } from "../services/imageUploadService";
 import imagetop from "../assets/image.png";
+import "./Profile.css";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -59,42 +69,51 @@ const Profile = () => {
         const result = await dispatch(uploadCoverImage(user._id, file));
         // Aggiorno lo stato locale con la nuova immagine
         setLocalCoverImage(result.coverImage);
-        console.log('Immagine di copertina caricata e salvata localmente:', file.name);
+        console.log(
+          "Immagine di copertina caricata e salvata localmente:",
+          file.name
+        );
       } catch (error) {
-        console.error("Errore durante il salvataggio dell'immagine di copertina:", error);
+        console.error(
+          "Errore durante il salvataggio dell'immagine di copertina:",
+          error
+        );
       }
     }
   };
+
   return (
     <>
-      <Container className="mt-4 mb-3">
-        <Row>
+      <Container>
+        <Row className="mt-4 mb-3">
           <Col>
             <Card>
               <div className="position-relative">
-                <Card.Img 
-                  variant="top" 
-                  src={localCoverImage || imagetop} 
-                  className="cover-image" 
+                <Card.Img
+                  variant="top"
+                  src={localCoverImage || imagetop}
+                  className="cover-image"
                   style={{
                     width: "100%",
                     height: "200px",
                     objectFit: "cover",
-                    objectPosition: "center"
+                    objectPosition: "center",
                   }}
                 />
+                {/* Icona camera per cambiare l'immagine di copertina */}
                 <BsCameraFill
                   className="position-absolute text-primary bg-white rounded-circle p-2"
                   style={{
-                    top: "1rem",
-                    right: "1rem",
+                    top: "10px",
+                    right: "10px",
                     cursor: "pointer",
-                    fontSize: "2.5rem",
-                    opacity: 0.8,
+                    fontSize: "24px",
+                    zIndex: 2,
                   }}
                   onClick={handleCoverImageClick}
                   title="Cambia immagine di copertina"
                 />
+
                 {/* Input file nascosto per l'upload del profilo */}
                 <input
                   type="file"
@@ -111,7 +130,7 @@ const Profile = () => {
                   accept="image/*"
                   style={{ display: "none" }}
                 />
-                
+
                 {user.image ? (
                   <div className="position-relative">
                     <Image
@@ -177,10 +196,13 @@ const Profile = () => {
               {/* Messaggio di errore per l'upload */}
               {user.imageUploadError && (
                 <Alert variant="danger" className="mt-2 mx-3">
-                  <small>Errore durante l'upload dell'immagine: {user.imageUploadError}</small>
+                  <small>
+                    Errore durante l'upload dell'immagine:{" "}
+                    {user.imageUploadError}
+                  </small>
                 </Alert>
               )}
-              
+
               <Card.Body className="mt-5">
                 <div className="d-flex align-items-center mb-2">
                   <Card.Title>

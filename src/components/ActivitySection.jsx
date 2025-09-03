@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { PencilSquare } from "react-bootstrap-icons";
 import "./ActivitySection.css";
+import { BsPencilFill } from "react-icons/bs";
 
 /**
  * Componente che riproduce la sezione "Attività" di LinkedIn
@@ -17,9 +18,21 @@ const ActivitySection = () => {
             <h5 className="activity-title">Attività</h5>
             <p className="follower-count">0 follower</p>
           </div>
-          <Button variant="outline-primary" className="create-post-btn">
-            <PencilSquare className="me-2" size={16} />
+
+          <Button variant="outline-primary" className="create-post-btn me-3">
             Crea un post
+          </Button>
+          <Button
+            variant="outline-secondary"
+            className="action-btn edit-btn"
+            aria-label="Modifica sezione"
+          >
+            <BsPencilFill
+              className="text-secondary  "
+              style={{
+                cursor: "pointer",
+              }}
+            />
           </Button>
         </div>
 
