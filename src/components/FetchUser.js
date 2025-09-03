@@ -2,7 +2,7 @@ import { setUser } from "../redux/actions";
 
 const API_URL = "https://striveschool-api.herokuapp.com/api/profile/me";
 const TOKEN =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGI1NTg2Y2QyOWE0OTAwMTUxZjIwOGYiLCJpYXQiOjE3NTY3MTUxMTYsImV4cCI6MTc1NzkyNDcxNn0.sVCaRIr28GAh-tnXxux6c3bujczEvrkQwyQJvEd5fqE";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGI1NzcxNDE2MjdjNjAwMTVmOGM1NjQiLCJpYXQiOjE3NTY3MjI5NjQsImV4cCI6MTc1NzkzMjU2NH0.N8tIO-J30NgFtgpwTRBWoX-nLnWcJqYp9V738bTZVv8";
 
 const fetchUser = () => {
   return (dispatch) => {
@@ -19,6 +19,7 @@ const fetchUser = () => {
       })
       .then((data) => {
         const receivedData = {
+          _id: data._id,
           name: data.name,
           surname: data.surname,
           email: data.email,
