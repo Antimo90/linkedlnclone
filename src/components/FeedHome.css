@@ -83,6 +83,17 @@
 .post-content-image {
   border-radius: 8px;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-content-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.post-content-image:focus {
+  outline: 2px solid #0a66c2;
+  outline-offset: 2px;
 }
 
 /* Stili per il bottone "Carica post precedenti" */

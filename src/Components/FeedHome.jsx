@@ -11,6 +11,7 @@ import {
 import { useDispatch } from "react-redux";
 import UserPost from "./UserPost";
 import fetchUser from "./FetchUser";
+import ImageModal from "./ImageModal";
 import "./FeedHome.css";
 
 const FeedHome = forwardRef((props, ref) => {
@@ -18,6 +19,10 @@ const FeedHome = forwardRef((props, ref) => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [num, setNum] = useState(30);
+  // Stati per il modale delle immagini
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageAlt, setSelectedImageAlt] = useState('');
 
   // Carica i dati dell'utente all'avvio del componente
   useEffect(() => {
@@ -26,6 +31,20 @@ const FeedHome = forwardRef((props, ref) => {
 
   const aumentaNum = () => {
     setNum((prev) => prev + 30);
+  };
+
+  // Funzione per aprire il modale delle immagini
+  const openImageModal = (imageSrc, username) => {
+    setSelectedImage(imageSrc);
+    setSelectedImageAlt(`Immagine del post di ${username}`);
+    setShowImageModal(true);
+  };
+
+  // Funzione per chiudere il modale
+  const closeImageModal = () => {
+    setShowImageModal(false);
+    setSelectedImage(null);
+    setSelectedImageAlt('');
   };
 
   const API_URL = "https://striveschool-api.herokuapp.com/api/posts/";
@@ -174,12 +193,23 @@ const FeedHome = forwardRef((props, ref) => {
                             fluid
                             rounded
                             className="post-content-image"
-                            alt="Immagine del post"
+                            alt={`Immagine del post di ${post.username}`}
                             style={{
                               maxHeight: "400px",
                               objectFit: "cover",
                               width: "100%",
+                              cursor: "pointer"
                             }}
+                            onClick={() => openImageModal(post.image, post.username)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                openImageModal(post.image, post.username);
+                              }
+                            }}
+                            tabIndex={0}
+                            role="button"
+                            aria-label={`Apri immagine del post di ${post.username} a schermo intero`}
                           />
                         </div>
                       )}
@@ -198,6 +228,14 @@ const FeedHome = forwardRef((props, ref) => {
           </Button>
         </Col>
       </Row>
+
+      {/* Modale per visualizzare le immagini a schermo intero */}
+      <ImageModal
+        show={showImageModal}
+        onHide={closeImageModal}
+        imageSrc={selectedImage}
+        imageAlt={selectedImageAlt}
+      />
     </Container>
   );
 });
