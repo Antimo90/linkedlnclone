@@ -1,0 +1,108 @@
+.userName {
+  font-size: large;
+  margin-top: 50px;
+}
+
+.profession {
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.location {
+  font-size: 0.75rem;
+  color: rgb(150, 150, 150);
+}
+
+.cardButton {
+  background: #f4f2ee;
+  border: 3px dotted #9eb5ca;
+  color: black;
+  width: 100%;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+
+.cardButton:hover {
+  border: 3px dotted #9eb5ca !important;
+  background: #d0d0d0 !important;
+  color: black;
+}
+
+.cardButton:active {
+  border: 3px dotted #9eb5ca !important;
+  background: #d0d0d0 !important;
+  color: black;
+}
+
+.plusButtonIcon {
+  margin-right: 7px;
+}
+
+.cardUserPic {
+  border: 2px solid white;
+  border-radius: 50%;
+  position: absolute;
+  left: 15px;
+  top: 20px;
+  width: 100px;
+}
+
+.cardLink {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 6px 0px;
+}
+
+.cardLink:hover {
+  color: black;
+  text-decoration: underline;
+  font-weight: 500;
+  margin: 6px 0px;
+}
+
+.visitorsNumber {
+  color: #0a66c2;
+}
+
+.linkedinPremium {
+  width: 18px;
+  border-radius: 3px;
+  margin-right: 7px;
+}
+
+.linkedinPremiumText {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgb(150, 150, 150);
+}
+
+.linkedinPremiumText2 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: black;
+  text-decoration: none;
+}
+
+.linkedinPremiumText2:hover {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #0a66c2;
+  text-decoration: none;
+}
+
+.userExtLink {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.userExtLink:hover {
+  color: black;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.userExtLinkI {
+  color: black;
+}
