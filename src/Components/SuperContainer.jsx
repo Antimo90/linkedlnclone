@@ -7,6 +7,7 @@ import EducationSection from "../components/EducationSection";
 import SkillsSection from "../components/SkillsSection";
 import InterestsSection from "../components/InterestsSection";
 import SideBarDX from "../components/SideBarDX";
+// import HomeSideBarDX from "../Components/HomeSideBarDX";
 import { Container, Row, Col } from "react-bootstrap";
 
 const SuperContainer = () => {
@@ -25,6 +26,7 @@ const SuperContainer = () => {
             <InterestsSection />
           </Col>
           <Col lg={3}>
+            {/* <SideBarDX /> */}
             <SideBarDX />
           </Col>
         </Row>
