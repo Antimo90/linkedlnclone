@@ -44,4 +44,9 @@
   .cardTextBio {
     order: 2;
   }
+
+  .btnAvailable {
+    width: 120px;
+    margin-right: 0;
+  }
 }
