@@ -309,11 +309,12 @@ function CustomNavbar() {
 
           {/* Searchbar mobile */}
           <div className="d-block d-md-none flex-grow-1 mx-2">
-            <input
+            {/* <input
               type="text"
               placeholder="🔍️ Search..."
               className="mobileSearch"
-            />
+            /> */}
+            <Searchbar />
           </div>
 
           {/* Icone mobile */}
