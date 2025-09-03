@@ -110,7 +110,11 @@ const SideBarDX = () => {
                   </div>
                 </div>
                 <button className="px-2 py-1 text-xs rounded-5 bg-white text-black hover:bg-blue-700">
-                  <i className="bi bi-person-plus-fill"></i> {person.button}
+                  <i
+                    className="bi bi-person-plus-fill"
+                    style={{ fontSize: "15px" }}
+                  ></i>{" "}
+                  {person.button}
                 </button>
                 <hr className="ms-3 me-3 mb-0" />
               </div>

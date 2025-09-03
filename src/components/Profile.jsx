@@ -1,43 +1,187 @@
-import { Container, Row, Col, Card, Image, Button } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Image,
+  Button,
+  Spinner,
+  Alert,
+} from "react-bootstrap";
 import { BsPencilFill, BsCameraFill, BsX } from "react-icons/bs";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fetchUser from "../components/FetchUser";
+import { uploadProfileImage, uploadCoverImage } from "../redux/actions";
+import { getCoverImage } from "../services/imageUploadService";
 import imagetop from "../assets/image.png";
 import "./Profile.css";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const fileInputRef = useRef(null);
+  const coverImageInputRef = useRef(null);
+  const [localCoverImage, setLocalCoverImage] = useState(null);
 
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
+
+  // Carica l'immagine di copertina salvata localmente quando l'utente è disponibile
+  useEffect(() => {
+    if (user._id) {
+      const savedCoverImage = getCoverImage(user._id);
+      if (savedCoverImage) {
+        setLocalCoverImage(savedCoverImage);
+      }
+    }
+  }, [user._id]);
+
+  // Funzione per gestire il click sull'immagine del profilo
+  const handleImageClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  // Funzione per gestire il click sull'icona camera per l'immagine di copertina
+  const handleCoverImageClick = () => {
+    coverImageInputRef.current?.click();
+  };
+
+  // Funzione per gestire il cambio del file del profilo
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (file && user._id) {
+      try {
+        await dispatch(uploadProfileImage(user._id, file));
+      } catch (error) {
+        console.error("Errore durante l'upload:", error);
+      }
+    }
+  };
+
+  // Funzione per gestire il cambio dell'immagine di copertina
+  const handleCoverImageChange = async (event) => {
+    const file = event.target.files[0];
+    if (file && user._id) {
+      try {
+        // Utilizzo l'azione Redux per l'upload permanente (ora salva in localStorage)
+        const result = await dispatch(uploadCoverImage(user._id, file));
+        // Aggiorno lo stato locale con la nuova immagine
+        setLocalCoverImage(result.coverImage);
+        console.log(
+          "Immagine di copertina caricata e salvata localmente:",
+          file.name
+        );
+      } catch (error) {
+        console.error(
+          "Errore durante il salvataggio dell'immagine di copertina:",
+          error
+        );
+      }
+    }
+  };
+
   return (
     <>
       <Row className="mt-4 mb-3">
         <Col>
           <Card>
             <div className="position-relative">
-              <Card.Img variant="top" src={imagetop} />
+              <Card.Img
+                variant="top"
+                src={localCoverImage || imagetop}
+                className="cover-image"
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  objectFit: "cover",
+                  objectPosition: "center",
+                }}
+              />
+              {/* Icona camera per cambiare l'immagine di copertina */}
               <BsCameraFill
                 className="position-absolute text-primary bg-white rounded-circle p-2"
                 style={{
-                  top: "1rem",
-                  right: "1rem",
+                  top: "10px",
+                  right: "10px",
                   cursor: "pointer",
-                  fontSize: "2.5rem",
-                  opacity: 0.8,
+                  fontSize: "24px",
+                  zIndex: 2,
                 }}
+                onClick={handleCoverImageClick}
+                title="Cambia immagine di copertina"
               />
-              {user.image && (
-                <Image
-                  id="photoProf"
-                  src={user.image}
-                  roundedCircle
-                  alt="Foto profilo"
-                  className="border border-4 border-white mb-4"
-                />
+
+              {/* Input file nascosto per l'upload del profilo */}
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                accept="image/*"
+                style={{ display: "none" }}
+              />
+              {/* Input file nascosto per l'upload dell'immagine di copertina */}
+              <input
+                type="file"
+                ref={coverImageInputRef}
+                onChange={handleCoverImageChange}
+                accept="image/*"
+                style={{ display: "none" }}
+              />
+
+              {user.image ? (
+                <div className="position-relative">
+                  <Image
+                    src={user.image}
+                    roundedCircle
+                    alt="Foto profilo"
+                    className="border border-4 border-white mb-4"
+                    style={{
+                      position: "absolute",
+                      bottom: "-70px",
+                      left: "30px",
+                      width: "150px",
+                      height: "150px",
+                      objectFit: "cover",
+                      zIndex: 1,
+                      cursor: "pointer",
+                    }}
+                    onClick={handleImageClick}
+                  />
+                  {/* Overlay per indicare che è cliccabile */}
+                  {user.imageUploadLoading && (
+                    <div
+                      className="d-flex align-items-center justify-content-center bg-dark bg-opacity-50 rounded-circle"
+                      style={{
+                        position: "absolute",
+                        bottom: "-70px",
+                        left: "30px",
+                        width: "150px",
+                        height: "150px",
+                        zIndex: 2,
+                      }}
+                    >
+                      <Spinner animation="border" variant="light" />
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div
+                  className="d-flex align-items-center justify-content-center bg-secondary rounded-circle border border-4 border-white mb-4"
+                  style={{
+                    position: "absolute",
+                    bottom: "-70px",
+                    left: "30px",
+                    width: "150px",
+                    height: "150px",
+                    zIndex: 1,
+                    cursor: "pointer",
+                  }}
+                  onClick={handleImageClick}
+                >
+                  <BsCameraFill className="text-white" size={40} />
+                </div>
               )}
             </div>
             <div className="text-end mt-2 me-4">
@@ -48,8 +192,17 @@ const Profile = () => {
                 }}
               />
             </div>
+            {/* Messaggio di errore per l'upload */}
+            {user.imageUploadError && (
+              <Alert variant="danger" className="mt-2 mx-3">
+                <small>
+                  Errore durante l'upload dell'immagine: {user.imageUploadError}
+                </small>
+              </Alert>
+            )}
+
             <Card.Body className="mt-5">
-              <div className="d-flex align-items-center mb-2 profile-header-line">
+              <div className="d-flex align-items-center mb-2">
                 <Card.Title>
                   {user.name} {user.surname}
                 </Card.Title>
@@ -62,7 +215,6 @@ const Profile = () => {
                     borderColor: "#0d6efd",
                     color: "black",
                   }}
-                  id="badge"
                 >
                   <span className="me-1">
                     <svg
@@ -82,16 +234,13 @@ const Profile = () => {
                   </span>{" "}
                   Aggiungi badge di verifica
                 </Button>
-                <span className="ms-5 me-5 schoolName">
-                  <a
-                    href="#"
-                    className="text-dark text-decoration-none schoolName"
-                  >
+                <span className="ms-5 me-5">
+                  <a href="#" className="text-dark text-decoration-none">
                     ISIS Facchinetti
                   </a>
                 </span>
-                <Card.Text className="mb-0 cardTextBio">{user.bio}</Card.Text>
               </div>
+              <Card.Text className="mb-0">{user.bio}</Card.Text>
               <Card.Text className="text-secondary mb-0">
                 {user.area} .{" "}
                 <Button variant="link" className="btn btn-link text-primary">
@@ -103,27 +252,22 @@ const Profile = () => {
                   320 collegamenti
                 </a>{" "}
               </div>
-              <div className="buttonGroup">
-                <div className="toButtons">
-                  <Button
-                    variant="btn btn-primary rounded-pill me-2 fw-bold"
-                    className="btnAvailable"
-                  >
-                    Disponibile per
-                  </Button>
-                  <Button
-                    className="rounded-pill me-2 fw-bold btnAdd"
-                    style={{
-                      backgroundColor: "transparent",
-                      color: "#0d6efd",
-                      border: "1px solid #0d6efd",
-                    }}
-                  >
-                    Aggiungi sezione del profilo
-                  </Button>
-                </div>
+              <div>
+                <Button variant="btn btn-primary rounded-pill me-2 fw-bold">
+                  Disponibile per
+                </Button>
                 <Button
-                  className="rounded-pill me-2 fw-bold btnImproves"
+                  className="rounded-pill me-2 fw-bold"
+                  style={{
+                    backgroundColor: "transparent",
+                    color: "#0d6efd",
+                    border: "1px solid #0d6efd",
+                  }}
+                >
+                  Aggiungi sezione del profilo
+                </Button>
+                <Button
+                  className="rounded-pill me-2 fw-bold"
                   style={{
                     backgroundColor: "transparent",
                     color: "#0d6efd",
@@ -133,7 +277,7 @@ const Profile = () => {
                   Migliora profilo
                 </Button>
                 <Button
-                  className="rounded-pill me-2 fw-bold text-secondary btnOther"
+                  className="rounded-pill me-2 fw-bold text-secondary"
                   style={{
                     backgroundColor: "transparent",
                     border: "1px solid #6c757d",
