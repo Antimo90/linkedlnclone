@@ -167,3 +167,45 @@
     transform: translateY(0);
   }
 }
+
+/* Stili per il titolo della sezione feed */
+.feed-section-title {
+  margin: 32px 0 24px 0;
+  padding: 0 16px;
+}
+
+.feed-section-title h4 {
+  color: #181818;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+/* Stili per il separatore hr */
+.feed-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #e0e0e0 20%, #e0e0e0 80%, transparent 100%);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  opacity: 0.8;
+}
+
+/* Stili responsivi per il titolo della sezione */
+@media (max-width: 768px) {
+  .feed-section-title {
+    margin: 24px 0 16px 0;
+    padding: 0 12px;
+  }
+  
+  .feed-section-title h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  
+  .feed-divider {
+    max-width: 90%;
+  }
+}

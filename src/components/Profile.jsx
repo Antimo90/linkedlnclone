@@ -238,7 +238,7 @@ const Profile = () => {
                   </Button>
                   <span className="ms-5 me-5">
                     <a href="#" className="text-dark text-decoration-none">
-                      ISIS Facchinetti
+                      EPICODE Institute of Technology
                     </a>
                   </span>
                 </div>

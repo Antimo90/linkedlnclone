@@ -86,6 +86,12 @@ const FeedHome = forwardRef((props, ref) => {
       {/* Componente per creare nuovi post */}
       <UserPost onPostCreated={refreshPosts} />
 
+      {/* Separatore e titolo per i post degli utenti */}
+      <div className="feed-section-title">
+        <h4 className="text-center mb-3">Gli ultimi post degli utenti</h4>
+        <hr className="feed-divider" />
+      </div>
+
       {/* Feed dei post esistenti */}
       {isLoading ? (
         <div className="text-center">

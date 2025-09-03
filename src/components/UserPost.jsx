@@ -286,8 +286,8 @@ const UserPost = ({ onPostCreated }) => {
                 />
 
                 {/* Barra degli strumenti */}
-                <div className="d-flex justify-content-between align-items-center pt-3 border-top">
-                  <div className="d-flex gap-3">
+                <div className="d-flex justify-content-between align-items-center pt-3 border-top user-post-toolbar">
+                  <div className="d-flex gap-3 user-post-toolbar-buttons">
                     <Button
                       variant="link"
                       className="p-0 text-decoration-none d-flex align-items-center"
@@ -313,7 +313,7 @@ const UserPost = ({ onPostCreated }) => {
                       disabled
                     >
                       <BsNewspaper className="me-2" size={20} />
-                      <span>Scrivi un articolo</span>
+                      <span>Articolo</span>
                     </Button>
                   </div>
 
@@ -322,7 +322,7 @@ const UserPost = ({ onPostCreated }) => {
                     type="submit"
                     variant="primary"
                     disabled={isLoading || !postText.trim()}
-                    className="px-4 rounded-pill"
+                    className="px-4 rounded-pill user-post-submit-btn"
                   >
                     {isLoading ? (
                       <>

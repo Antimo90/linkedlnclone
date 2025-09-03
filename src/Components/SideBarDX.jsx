@@ -36,11 +36,11 @@ const SideBarDX = () => {
             <h2 className="font-semibold fs-6">Profilo pubblico e URL</h2>
             <p
               className="text-xs text-blue-600"
-              href="https://www.linkedin.com/in/mattia-pastorini-96294b331"
+              href="https://www.linkedin.com/in/placeholder"
               target="_blank"
               rel="noopener noreferrer"
             >
-              www.linkedin.com/in/mattia-pastorini-96294b331
+              www.linkedin.com/in/placeholder
             </p>
           </div>
         </div>
