@@ -288,9 +288,19 @@ import { Button } from "react-bootstrap";
 import Searchbar from "./Searchbar.jsx";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import fetchUser from "./FetchUser";
 
 function CustomNavbar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  // Carica i dati dell'utente quando il componente viene montato
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
   return (
     <>
       {/* NAVBAR SUPERIORE */}
@@ -376,8 +386,8 @@ function CustomNavbar() {
                       <div className="navbarProfilePic">
                         <img
                           className="profilePic"
-                          src="./src/assets/img/Linkedin-logo.png"
-                          alt=""
+                          src={user?.image || "./src/assets/img/Linkedin-logo.png"}
+                          alt="Immagine profilo"
                         />
                       </div>
                       <span>
@@ -393,13 +403,13 @@ function CustomNavbar() {
                         <div className="dropdownProfilePic">
                           <img
                             className="dropdownProfilePicImg"
-                            src="./src/assets/img/Stefano.png"
-                            alt=""
+                            src={user?.image || "./src/assets/img/Stefano.png"}
+                            alt="Immagine profilo utente"
                           />
                         </div>
                         <div className="mx-2">
-                          <h2>Nome Utente</h2>
-                          <h4>Posizione Lavorativa</h4>
+                          <h2>{user?.name && user?.surname ? `${user.name} ${user.surname}` : "Nome Utente"}</h2>
+                          <h4>{user?.title || "Posizione Lavorativa"}</h4>
                         </div>
                       </div>
                       <div className="d-flex flex-row mt-3">
