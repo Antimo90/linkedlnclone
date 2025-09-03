@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import "./Profile.css";
 import imagetop from "../assets/image.png";
+import { BsPencilFill, BsCameraFill, BsX } from "react-icons/bs";
+import { Row, Col, Card, Image, Button, Spinner, Alert } from "react-bootstrap";
 
 const OtherUsersTest = () => {
   const { userId } = useParams();
