@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Container, Spinner } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Card, Container, Spinner, Button } from 'react-bootstrap';
 
 const FeedHome = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [num, setNum] = useState(30);
+
+
+ const aumentaNum = () => {
+  setNum(prev => prev + 30);
+};
 
   const API_URL = "https://striveschool-api.herokuapp.com/api/posts/"
   const TOKEN =
@@ -22,7 +28,7 @@ const FeedHome = () => {
         return response.json();
       })
       .then((data) => {
-        const arrayPost = data.reverse().slice(0, 50);
+        const arrayPost = data.reverse().slice(0, num);
         setPosts(arrayPost);
         setIsLoading(false);
       })
@@ -30,7 +36,7 @@ const FeedHome = () => {
         console.error(error);
         setIsLoading(false);
       });
-  }, []);
+  }, [num]);
 
   return (
     <Container className="mt-4">
@@ -51,6 +57,7 @@ const FeedHome = () => {
           </Card>
         ))
       )}
+      <Button type="button" onClick={() => aumentaNum()}>Pag</Button>
     </Container>
   );
 };
