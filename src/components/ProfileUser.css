@@ -39,12 +39,17 @@
 }
 
 .cardUserPic {
-  border: 2px solid white;
+  border: 3px solid white;
   border-radius: 50%;
   position: absolute;
   left: 15px;
   top: 20px;
   width: 100px;
+}
+
+.cardUserTop {
+  max-height: 65px;
+  object-fit: cover;
 }
 
 .cardLink {
@@ -105,4 +110,18 @@
 
 .userExtLinkI {
   color: black;
+}
+
+.showMoreButton {
+  text-decoration: none;
+  color: #9f9e9b;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.showMoreButtonIcon {
+  text-decoration: none;
+  color: #9f9e9b;
+  font-weight: 500;
+  font-size: 1rem;
 }

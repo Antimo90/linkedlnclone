@@ -1,30 +1,25 @@
+import { useState, useEffect } from "react"
 import { Button, Card } from "react-bootstrap"
 import imagetop from "../assets/image.png"
 import "../components/profileUser.css"
 
 function ProfileUser() {
-  return (
-    <>
-      <Card className="shadow-sm" style={{ width: "100%" }}>
-        <Card.Img variant="top" src={imagetop} />
-        <img
-          className="cardUserPic"
-          src="../src/assets/img/Stefano.png"
-          alt=""
-        />
-        <Card.Body className="mb-3">
-          <Card.Title className="userName">Nome utente</Card.Title>
-          <Card.Text>
-            <h3 className="profession">Professione</h3>
-            <p className="location">Location</p>
-          </Card.Text>
-          <Button className="cardButton text-center d-flex flex-row">
-            <i class="plusButtonIcon bi-plus-lg"></i>
-            <p className="m-0">Esperienza</p>
-          </Button>
-        </Card.Body>
-      </Card>
+  const [isMobile, setIsMobile] = useState(false)
+  const [showMore, setShowMore] = useState(false)
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    handleResize()
+    window.addEventListener("resize", handleResize)
+
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  const renderExtraCards = () => (
+    <>
       <Card className="mt-2 shadow-sm" style={{ width: "100%" }}>
         <Card.Body className="d-flex flex-column">
           <Card.Link
@@ -73,6 +68,44 @@ function ProfileUser() {
           </Card.Link>
         </Card.Body>
       </Card>
+    </>
+  )
+
+  return (
+    <>
+      <Card className="shadow-sm" style={{ width: "100%" }}>
+        <Card.Img className="cardUserTop" variant="top" src={imagetop} />
+        <img
+          className="cardUserPic"
+          src="../src/assets/img/Stefano.png"
+          alt=""
+        />
+        <Card.Body className="mb-3">
+          <Card.Title className="userName">Nome utente</Card.Title>
+          <Card.Text>
+            <h3 className="profession">Professione</h3>
+            <p className="location">Location</p>
+          </Card.Text>
+          <Button className="cardButton text-center d-flex flex-row">
+            <i className="plusButtonIcon bi-plus-lg"></i>
+            <p className="m-0">Esperienza</p>
+          </Button>
+        </Card.Body>
+      </Card>
+
+      {isMobile && !showMore && (
+        <div className="text-center my-2">
+          <Button
+            variant="link"
+            onClick={() => setShowMore(true)}
+            className="showMoreButton"
+          >
+            Vedi altro <i class="showMoreButtonIcon bi-caret-down-fill"></i>
+          </Button>
+        </div>
+      )}
+
+      {!isMobile || showMore ? renderExtraCards() : null}
     </>
   )
 }
