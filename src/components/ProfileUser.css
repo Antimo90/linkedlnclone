@@ -45,6 +45,7 @@
   left: 15px;
   top: 20px;
   width: 100px;
+  height: 100px;
 }
 
 .cardUserTop {
@@ -72,7 +73,10 @@
 
 .linkedinPremium {
   width: 18px;
-  border-radius: 3px;
+  margin-right: 7px;
+  background: linear-gradient(to right, rgb(255, 188, 43), rgb(155, 70, 1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-right: 7px;
 }
 

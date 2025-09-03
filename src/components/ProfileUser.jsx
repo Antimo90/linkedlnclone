@@ -7,6 +7,14 @@ function ProfileUser() {
   const [isMobile, setIsMobile] = useState(false)
   const [showMore, setShowMore] = useState(false)
 
+  const user = {
+    _id: "stefano001",
+    name: "Stefano Bianchi",
+    profession: "Software Engineer",
+    location: "Milano, Italia",
+    profilePic: "../assets/img/Stefano.png",
+  }
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768)
@@ -41,17 +49,13 @@ function ProfileUser() {
             Sblocca strumenti e informazioni Premium
           </Card.Text>
           <Card.Link className="linkedinPremiumText2" href="#">
-            <img
-              className="linkedinPremium"
-              src="../src/assets/img/LinkedIn-Premium-Badge.png"
-              alt=""
-            />
+            <i className="linkedinPremium bi-linkedin"></i>
             Prova Premium per 0 EUR
           </Card.Link>
         </Card.Body>
       </Card>
 
-      <Card className="mt-2 shadow-sm" style={{ width: "100%" }}>
+      <Card className="my-2 shadow-sm" style={{ width: "100%" }}>
         <Card.Body className="d-flex flex-column">
           <Card.Link className="userExtLink m-0 my-2" href="#">
             <i className="userExtLinkI me-2 bi-bookmark-fill"></i>Elementi
@@ -77,14 +81,14 @@ function ProfileUser() {
         <Card.Img className="cardUserTop" variant="top" src={imagetop} />
         <img
           className="cardUserPic"
-          src="../src/assets/img/Stefano.png"
-          alt=""
+          src={user.profilePic}
+          alt={`${user.name} profile`}
         />
         <Card.Body className="mb-3">
-          <Card.Title className="userName">Nome utente</Card.Title>
+          <Card.Title className="userName">{user.name}</Card.Title>
           <Card.Text>
-            <h3 className="profession">Professione</h3>
-            <p className="location">Location</p>
+            <h3 className="profession">{user.profession}</h3>
+            <p className="location">{user.location}</p>
           </Card.Text>
           <Button className="cardButton text-center d-flex flex-row">
             <i className="plusButtonIcon bi-plus-lg"></i>
@@ -100,7 +104,7 @@ function ProfileUser() {
             onClick={() => setShowMore(true)}
             className="showMoreButton"
           >
-            Vedi altro <i class="showMoreButtonIcon bi-caret-down-fill"></i>
+            Vedi altro <i className="showMoreButtonIcon bi-caret-down-fill"></i>
           </Button>
         </div>
       )}
