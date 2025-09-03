@@ -286,6 +286,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Button } from "react-bootstrap";
 import Searchbar from "./Searchbar.jsx";
+
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -308,7 +309,8 @@ function CustomNavbar() {
       <Navbar
         expand="lg"
         className="navbarContainer sticky-top"
-        style={{ height: "60px" }}>
+        style={{ height: "60px" }}
+      >
         <Container className="d-flex justify-content-between align-items-center w-100">
           {/* Logo */}
           <Navbar.Brand href="#home" className="d-flex align-items-center">
@@ -336,10 +338,10 @@ function CustomNavbar() {
 
           {/* Navbar desktop */}
           <div className="d-none d-md-flex w-100 justify-content-between align-items-center">
-            {/* Sinistra: Logo + Searchbar desktop */}
+            {/* Sinistra: Logo + Searchbars desktop */}
             <div className="d-flex align-items-center">
               <Navbar.Brand href="#home"></Navbar.Brand>
-              <div className="ms-3" style={{ width: "280px" }}>
+              <div className="ms-3">
                 <Searchbar />
               </div>
             </div>
@@ -359,7 +361,7 @@ function CustomNavbar() {
                     Rete
                   </div>
                 </Nav.Link>
-                <Nav.Link className="navbarLinks" href="#">
+                <Nav.Link as={Link} to="/jobs" className="navbarLinks">
                   <div className="d-flex flex-column text-center">
                     <i className="bi bi-suitcase-lg-fill"></i>
                     Lavoro
@@ -387,7 +389,9 @@ function CustomNavbar() {
                       <div className="navbarProfilePic">
                         <img
                           className="profilePic"
-                          src={user?.image || "./src/assets/img/Linkedin-logo.png"}
+                          src={
+                            user?.image || "./src/assets/img/Linkedin-logo.png"
+                          }
                           alt="Immagine profilo"
                         />
                       </div>
@@ -395,28 +399,38 @@ function CustomNavbar() {
                         Tu <i className="bi-caret-down-fill"></i>
                       </span>
                     </span>
-                  }>
+                  }
+                >
                   <NavDropdown.Item
                     className=".dropdown-item"
-                    href="#action/3.1">
+                    href="#action/3.1"
+                  >
                     <div>
                       <div className="d-flex flex-row">
                         <div className="dropdownProfilePic">
                           <img
                             className="dropdownProfilePicImg"
-                            src={user?.image || "https://via.placeholder.com/40x40?text=User"}
+                            src={
+                              user?.image ||
+                              "https://via.placeholder.com/40x40?text=User"
+                            }
                             alt="Immagine profilo utente"
                           />
                         </div>
                         <div className="mx-2">
-                          <h2>{user?.name && user?.surname ? `${user.name} ${user.surname}` : "Nome Utente"}</h2>
+                          <h2>
+                            {user?.name && user?.surname
+                              ? `${user.name} ${user.surname}`
+                              : "Nome Utente"}
+                          </h2>
                           <h4>{user?.title || "Posizione Lavorativa"}</h4>
                         </div>
                       </div>
                       <div className="d-flex flex-row mt-3">
                         <Button
                           className="dropdownButton1 flex-grow-1"
-                          onClick={() => navigate("/profile")}>
+                          onClick={() => navigate("/profile")}
+                        >
                           Visualizza <br /> Profilo
                         </Button>
                         <Button className="dropdownButton2 flex-grow-1">
@@ -439,7 +453,8 @@ function CustomNavbar() {
                         Per le Aziende <i className="bi-caret-down-fill"></i>
                       </span>
                     </span>
-                  }>
+                  }
+                >
                   <NavDropdown.Item className="dropdown3" href="#action/3.1">
                     <div className="d-flex flex-row">
                       <div className="me-3">
