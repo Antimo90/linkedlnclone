@@ -25,7 +25,7 @@ const SideBarDX = () => {
     <aside className=" flex flex-col gap-2 me-2 text-sm w-100">
       {/* Lingua e URL */}
       <div
-        className="sideBarDXBorderShadow rounded-2 p-2 bg-white shadow-sm"
+        className="sideBarDXBorderShadow rounded-2 p-3 bg-white shadow-sm"
         style={{ border: "#f3f2ef" }}
       >
         <div className="space-y-1">
@@ -49,7 +49,7 @@ const SideBarDX = () => {
 
       {/* Annuncio sponsorizzato */}
       <div
-        className="sideBarDXBorderShadow rounded-2 p-2 mb-2 mt-2 bg-white border shadow-sm"
+        className="sideBarDXBorderShadow rounded-2 p-3 mb-2 mt-2 bg-white border shadow-sm"
         style={{ border: "#f3f2ef" }}
       >
         <h2 className="font-semibold fs-6 mb-1">Promosso</h2>

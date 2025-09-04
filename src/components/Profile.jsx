@@ -7,86 +7,86 @@ import {
   Button,
   Spinner,
   Alert,
-} from "react-bootstrap";
-import { BsPencilFill, BsCameraFill, BsX } from "react-icons/bs";
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import fetchUser from "../components/FetchUser";
-import { uploadProfileImage, uploadCoverImage } from "../redux/actions";
-import { getCoverImage } from "../services/imageUploadService";
-import imagetop from "../assets/image.png";
-import "./Profile.css";
+} from "react-bootstrap"
+import { BsPencilFill, BsCameraFill, BsX } from "react-icons/bs"
+import { useEffect, useRef, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import fetchUser from "../components/FetchUser"
+import { uploadProfileImage, uploadCoverImage } from "../redux/actions"
+import { getCoverImage } from "../services/imageUploadService"
+import imagetop from "../assets/image.png"
+import "./Profile.css"
 
 const Profile = () => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const fileInputRef = useRef(null);
-  const coverImageInputRef = useRef(null);
-  const [localCoverImage, setLocalCoverImage] = useState(null);
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
+  const fileInputRef = useRef(null)
+  const coverImageInputRef = useRef(null)
+  const [localCoverImage, setLocalCoverImage] = useState(null)
 
   useEffect(() => {
-    dispatch(fetchUser());
-  }, [dispatch]);
+    dispatch(fetchUser())
+  }, [dispatch])
 
   // Carica l'immagine di copertina salvata localmente quando l'utente è disponibile
   useEffect(() => {
     if (user._id) {
-      const savedCoverImage = getCoverImage(user._id);
+      const savedCoverImage = getCoverImage(user._id)
       if (savedCoverImage) {
-        setLocalCoverImage(savedCoverImage);
+        setLocalCoverImage(savedCoverImage)
       }
     }
-  }, [user._id]);
+  }, [user._id])
 
   // Funzione per gestire il click sull'immagine del profilo
   const handleImageClick = () => {
-    fileInputRef.current?.click();
-  };
+    fileInputRef.current?.click()
+  }
 
   // Funzione per gestire il click sull'icona camera per l'immagine di copertina
   const handleCoverImageClick = () => {
-    coverImageInputRef.current?.click();
-  };
+    coverImageInputRef.current?.click()
+  }
 
   // Funzione per gestire il cambio del file del profilo
   const handleFileChange = async (event) => {
-    const file = event.target.files[0];
+    const file = event.target.files[0]
     if (file && user._id) {
       try {
-        await dispatch(uploadProfileImage(user._id, file));
+        await dispatch(uploadProfileImage(user._id, file))
       } catch (error) {
-        console.error("Errore durante l'upload:", error);
+        console.error("Errore durante l'upload:", error)
       }
     }
-  };
+  }
 
   // Funzione per gestire il cambio dell'immagine di copertina
   const handleCoverImageChange = async (event) => {
-    const file = event.target.files[0];
+    const file = event.target.files[0]
     if (file && user._id) {
       try {
         // Utilizzo l'azione Redux per l'upload permanente (ora salva in localStorage)
-        const result = await dispatch(uploadCoverImage(user._id, file));
+        const result = await dispatch(uploadCoverImage(user._id, file))
         // Aggiorno lo stato locale con la nuova immagine
-        setLocalCoverImage(result.coverImage);
+        setLocalCoverImage(result.coverImage)
         console.log(
           "Immagine di copertina caricata e salvata localmente:",
           file.name
-        );
+        )
       } catch (error) {
         console.error(
           "Errore durante il salvataggio dell'immagine di copertina:",
           error
-        );
+        )
       }
     }
-  };
+  }
 
   return (
     <>
       <Container>
-        <Row className="mt-4 mb-3">
-          <Col>
+        <Row className="mt-2 mb-3">
+          <Col className="p-0">
             <Card>
               <div className="position-relative">
                 <Card.Img
@@ -210,7 +210,7 @@ const Profile = () => {
                   </Card.Title>
                   <Button
                     variant="button"
-                    className="btn  btn-sm me-5 text-primary ms-2 fw-bold"
+                    className="btn btn-sm me-5 text-primary ms-2 fw-bold d-flex flex-row text-center"
                     style={{
                       borderRadius: "20px",
                       borderStyle: "dashed",
@@ -218,7 +218,7 @@ const Profile = () => {
                       color: "black",
                     }}
                   >
-                    <span className="me-1">
+                    <span className="me-1 m-auto">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -242,6 +242,8 @@ const Profile = () => {
                     </a>
                   </span>
                 </div>
+
+                <Card.Text className="mb-0">{user.title}</Card.Text>
                 <Card.Text className="mb-0">{user.bio}</Card.Text>
                 <Card.Text className="text-secondary mb-0">
                   {user.area} .{" "}
@@ -255,11 +257,11 @@ const Profile = () => {
                   </a>{" "}
                 </div>
                 <div>
-                  <Button variant="btn btn-primary rounded-pill me-2 fw-bold">
+                  <Button variant="btn btn-primary rounded-pill fw-bold ms-0 m-2">
                     Disponibile per
                   </Button>
                   <Button
-                    className="rounded-pill me-2 fw-bold"
+                    className="rounded-pill fw-bold ms-0 m-2"
                     style={{
                       backgroundColor: "transparent",
                       color: "#0d6efd",
@@ -269,7 +271,7 @@ const Profile = () => {
                     Aggiungi sezione del profilo
                   </Button>
                   <Button
-                    className="rounded-pill me-2 fw-bold"
+                    className="rounded-pill fw-bold ms-0 m-2"
                     style={{
                       backgroundColor: "transparent",
                       color: "#0d6efd",
@@ -279,7 +281,7 @@ const Profile = () => {
                     Migliora profilo
                   </Button>
                   <Button
-                    className="rounded-pill me-2 fw-bold text-secondary"
+                    className="rounded-pill fw-bold text-secondary ms-0 m-2"
                     style={{
                       backgroundColor: "transparent",
                       border: "1px solid #6c757d",
@@ -343,7 +345,7 @@ const Profile = () => {
         </Row>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

@@ -323,11 +323,6 @@ function CustomNavbar() {
 
           {/* Searchbar mobile */}
           <div className="d-block d-md-none flex-grow-1 mx-2">
-            {/* <input
-              type="text"
-              placeholder="🔍️ Search..."
-              className="mobileSearch"
-            /> */}
             <Searchbar />
           </div>
 
@@ -340,15 +335,14 @@ function CustomNavbar() {
           <div className="d-none d-md-flex w-100 justify-content-between align-items-center">
             {/* Sinistra: Logo + Searchbars desktop */}
             <div className="d-flex align-items-center">
-              <Navbar.Brand href="#home"></Navbar.Brand>
-              <div className="ms-3">
+              <div>
                 <Searchbar />
               </div>
             </div>
 
             {/* Centro: Nav items con icone e testo sotto */}
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto d-flex flex-row align-items-center">
+              <Nav className="ms-auto d-flex flex-row align-items-center">
                 <Nav.Link as={Link} to="/" className="navbarLinks">
                   <div className="d-flex flex-column text-center">
                     <i className="bi bi-house-door-fill"></i>
@@ -553,7 +547,7 @@ function CustomNavbar() {
                 {/* Link Premium */}
                 <div className="navbarLinks d-flex flex-column align-items-center ms-3">
                   <a className="navbarPremiumLink text-center" href="">
-                    Prova Premium per 0 EUR
+                    Prova Premium per 0 <br /> EUR
                   </a>
                 </div>
               </Nav>
