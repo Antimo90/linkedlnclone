@@ -1,4 +1,5 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css"
+import "../components/SideBarDX.css"
 
 const SideBarDX = () => {
   const people = [
@@ -18,13 +19,13 @@ const SideBarDX = () => {
       role: "Software Developer",
       button: "Collegati",
     },
-  ];
+  ]
 
   return (
-    <aside className=" flex flex-col gap-2 me-2 text-sm mt-4">
+    <aside className=" flex flex-col gap-2 me-2 text-sm w-100">
       {/* Lingua e URL */}
       <div
-        className="rounded-2 p-2 bg-white border "
+        className="sideBarDXBorderShadow rounded-2 p-2 bg-white shadow-sm"
         style={{ border: "#f3f2ef" }}
       >
         <div className="space-y-1">
@@ -35,7 +36,7 @@ const SideBarDX = () => {
           <div>
             <h2 className="font-semibold fs-6">Profilo pubblico e URL</h2>
             <p
-              className="text-xs text-blue-600"
+              className="truncate text-xs text-blue-600"
               href="https://www.linkedin.com/in/placeholder"
               target="_blank"
               rel="noopener noreferrer"
@@ -48,7 +49,7 @@ const SideBarDX = () => {
 
       {/* Annuncio sponsorizzato */}
       <div
-        className="rounded-2 p-2 mb-2 mt-2 bg-white border"
+        className="sideBarDXBorderShadow rounded-2 p-2 mb-2 mt-2 bg-white border shadow-sm"
         style={{ border: "#f3f2ef" }}
       >
         <h2 className="font-semibold fs-6 mb-1">Promosso</h2>
@@ -76,7 +77,7 @@ const SideBarDX = () => {
 
       {/* Persone che potresti conoscere */}
       <div
-        className="rounded-2 mb-2 mt-2 bg-white border"
+        className="sideBarDXBorderShadow rounded-2 mb-2 mt-2 bg-white border shadow-sm"
         style={{ border: "#f3f2ef" }}
       >
         <div className="space-y-2">
@@ -129,7 +130,7 @@ const SideBarDX = () => {
         </div>
       </div>
     </aside>
-  );
-};
+  )
+}
 
-export default SideBarDX;
+export default SideBarDX

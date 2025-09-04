@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useSelector } from "react-redux"
 import { Button, Card } from "react-bootstrap"
 import imagetop from "../assets/image.png"
 import "../components/profileUser.css"
@@ -6,14 +7,7 @@ import "../components/profileUser.css"
 function ProfileUser() {
   const [isMobile, setIsMobile] = useState(false)
   const [showMore, setShowMore] = useState(false)
-
-  const user = {
-    _id: "stefano001",
-    name: "Stefano Bianchi",
-    profession: "Software Engineer",
-    location: "Milano, Italia",
-    profilePic: "../assets/img/Stefano.png",
-  }
+  const user = useSelector((state) => state.user)
 
   useEffect(() => {
     const handleResize = () => {
@@ -79,20 +73,24 @@ function ProfileUser() {
     <>
       <Card className="shadow-sm" style={{ width: "100%" }}>
         <Card.Img className="cardUserTop" variant="top" src={imagetop} />
-        <img
-          className="cardUserPic"
-          src={user.profilePic}
-          alt={`${user.name} profile`}
-        />
+        <div className="specialCardUserPic">
+          <img
+            className="cardUserPic"
+            src={user?.image}
+            alt={`${user.name} profile`}
+          />
+        </div>
         <Card.Body className="mb-3">
-          <Card.Title className="userName">{user.name}</Card.Title>
+          <Card.Title className="userName">
+            {user.name} {user.surname}
+          </Card.Title>
           <Card.Text>
-            <h3 className="profession">{user.profession}</h3>
-            <p className="location">{user.location}</p>
+            <h3 className="profession">{user.title}</h3>
+            <p className="location">{user.area}</p>
           </Card.Text>
           <Button className="cardButton text-center d-flex flex-row">
-            <i className="plusButtonIcon bi-plus-lg"></i>
-            <p className="m-0">Esperienza</p>
+            <i className="bi-plus-lg"></i>
+            <p className="truncate m-0">Esperienza</p>
           </Button>
         </Card.Body>
       </Card>
@@ -104,7 +102,7 @@ function ProfileUser() {
             onClick={() => setShowMore(true)}
             className="showMoreButton"
           >
-            Vedi altro <i className="showMoreButtonIcon bi-caret-down-fill"></i>
+            Vedi altro <i className="bi-caret-down-fill"></i>
           </Button>
         </div>
       )}

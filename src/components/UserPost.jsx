@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef } from "react"
 import {
   Container,
   Row,
@@ -9,89 +9,89 @@ import {
   Alert,
   Spinner,
   Image,
-} from "react-bootstrap";
+} from "react-bootstrap"
 import {
   BsImage,
   BsEmojiSmile,
   BsCalendarEvent,
   BsNewspaper,
-} from "react-icons/bs";
-import { useSelector } from "react-redux";
-import axios from "axios";
-import "./UserPost.css";
+} from "react-icons/bs"
+import { useSelector } from "react-redux"
+import axios from "axios"
+import "./UserPost.css"
 
 const UserPost = ({ onPostCreated }) => {
   // Stati per gestire il form e le operazioni
-  const [postText, setPostText] = useState("");
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [error, setError] = useState("");
-  const [validationError, setValidationError] = useState("");
+  const [postText, setPostText] = useState("")
+  const [selectedImage, setSelectedImage] = useState(null)
+  const [imagePreview, setImagePreview] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
+  const [error, setError] = useState("")
+  const [validationError, setValidationError] = useState("")
 
   // Riferimento per l'input file
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef(null)
 
   // Ottieni i dati dell'utente dal Redux store
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user)
 
   // Token JWT per l'autenticazione (dovrebbe essere ottenuto dal tuo sistema di auth)
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGI1NzcxNDE2MjdjNjAwMTVmOGM1NjQiLCJpYXQiOjE3NTY3MjI5NjQsImV4cCI6MTc1NzkzMjU2NH0.N8tIO-J30NgFtgpwTRBWoX-nLnWcJqYp9V738bTZVv8";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGI1NzcxNDE2MjdjNjAwMTVmOGM1NjQiLCJpYXQiOjE3NTY3MjI5NjQsImV4cCI6MTc1NzkzMjU2NH0.N8tIO-J30NgFtgpwTRBWoX-nLnWcJqYp9V738bTZVv8"
 
   // Funzione per gestire il click sull'input file
   const handleImageClick = () => {
-    fileInputRef.current?.click();
-  };
+    fileInputRef.current?.click()
+  }
 
   // Funzione per gestire la selezione dell'immagine
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files[0]
     if (file) {
       // Validazione del tipo di file
       if (!file.type.startsWith("image/")) {
-        setError("Per favore seleziona un file immagine valido.");
-        return;
+        setError("Per favore seleziona un file immagine valido.")
+        return
       }
       // Validazione della dimensione del file (max 5MB)
       if (file.size > 5 * 1024 * 1024) {
-        setError("L'immagine deve essere inferiore a 5MB.");
-        return;
+        setError("L'immagine deve essere inferiore a 5MB.")
+        return
       }
-      setSelectedImage(file);
-      setError("");
+      setSelectedImage(file)
+      setError("")
     }
-  };
+  }
 
   // Funzione per rimuovere l'immagine selezionata
   const removeImage = () => {
-    setSelectedImage(null);
+    setSelectedImage(null)
     if (fileInputRef.current) {
-      fileInputRef.current.value = "";
+      fileInputRef.current.value = ""
     }
-  };
+  }
 
   // Funzione per gestire l'invio del form
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     // Validazione del testo
     if (!postText.trim()) {
-      setValidationError("Il contenuto del post è obbligatorio.");
-      return;
+      setValidationError("Il contenuto del post è obbligatorio.")
+      return
     }
 
-    setIsLoading(true);
-    setError("");
-    setValidationError("");
-    setShowSuccess(false);
+    setIsLoading(true)
+    setError("")
+    setValidationError("")
+    setShowSuccess(false)
 
     try {
       // Creazione del post
       const postData = {
         text: postText.trim(),
-      };
+      }
 
       const response = await axios.post(
         "https://striveschool-api.herokuapp.com/api/posts/",
@@ -102,12 +102,12 @@ const UserPost = ({ onPostCreated }) => {
             "Content-Type": "application/json",
           },
         }
-      );
+      )
 
       // Se c'è un'immagine, la carichiamo separatamente
       if (selectedImage && response.data._id) {
-        const formData = new FormData();
-        formData.append("post", selectedImage);
+        const formData = new FormData()
+        formData.append("post", selectedImage)
 
         await axios.post(
           `https://striveschool-api.herokuapp.com/api/posts/${response.data._id}`,
@@ -118,47 +118,47 @@ const UserPost = ({ onPostCreated }) => {
               "Content-Type": "multipart/form-data",
             },
           }
-        );
+        )
       }
 
       // Reset del form dopo il successo
-      setPostText("");
-      setSelectedImage(null);
+      setPostText("")
+      setSelectedImage(null)
       if (fileInputRef.current) {
-        fileInputRef.current.value = "";
+        fileInputRef.current.value = ""
       }
-      setShowSuccess(true);
+      setShowSuccess(true)
 
       // Aggiorna il feed dei post
       if (onPostCreated) {
-        onPostCreated();
+        onPostCreated()
       }
 
       // Nascondere il messaggio di successo dopo 3 secondi
       setTimeout(() => {
-        setShowSuccess(false);
-      }, 3000);
+        setShowSuccess(false)
+      }, 3000)
     } catch (error) {
-      console.error("Errore durante la creazione del post:", error);
+      console.error("Errore durante la creazione del post:", error)
       if (error.response?.status === 401) {
         setError(
           "Token di autenticazione non valido. Effettua nuovamente il login."
-        );
+        )
       } else if (error.response?.status === 400) {
-        setError("Dati del post non validi. Controlla il contenuto e riprova.");
+        setError("Dati del post non validi. Controlla il contenuto e riprova.")
       } else {
-        setError("Errore durante la creazione del post. Riprova più tardi.");
+        setError("Errore durante la creazione del post. Riprova più tardi.")
       }
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
-    <Container className="mt-3 mb-4">
+    <Container className="mb-4">
       <Row className="justify-content-center">
-        <Col xs={12} md={8} lg={6}>
-          <Card className="shadow-sm border-0">
+        <Col className="p-0">
+          <Card className="shadow-sm border-1">
             <Card.Body className="p-4">
               {/* Header del componente */}
               <div className="d-flex align-items-center mb-3">
@@ -173,8 +173,8 @@ const UserPost = ({ onPostCreated }) => {
                       alt={`Immagine profilo di ${user?.name || "Utente"}`}
                       onError={(e) => {
                         // Nasconde l'immagine se non carica e mostra il fallback
-                        e.target.style.display = "none";
-                        e.target.nextElementSibling.style.display = "flex";
+                        e.target.style.display = "none"
+                        e.target.nextElementSibling.style.display = "flex"
                       }}
                       style={{
                         objectFit: "cover",
@@ -346,7 +346,7 @@ const UserPost = ({ onPostCreated }) => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default UserPost;
+export default UserPost

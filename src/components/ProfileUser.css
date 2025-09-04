@@ -14,9 +14,9 @@
 }
 
 .cardButton {
-  background: #f4f2ee;
-  border: 3px dotted #9eb5ca;
-  color: black;
+  background: #f4f2ee !important;
+  border: 3px dotted #9eb5ca !important;
+  color: black !important;
   width: 100%;
   padding-bottom: 3px;
   padding-top: 3px;
@@ -25,16 +25,23 @@
 .cardButton:hover {
   border: 3px dotted #9eb5ca !important;
   background: #d0d0d0 !important;
-  color: black;
+  color: black !important;
 }
 
 .cardButton:active {
   border: 3px dotted #9eb5ca !important;
   background: #d0d0d0 !important;
-  color: black;
+  color: black !important;
 }
 
-.plusButtonIcon {
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bi-plus-lg::before {
+  color: black !important;
   margin-right: 7px;
 }
 
@@ -48,9 +55,14 @@
   height: 100px;
 }
 
+.specialCardUserPic {
+  margin-bottom: 20px;
+}
+
 .cardUserTop {
   max-height: 65px;
   object-fit: cover;
+  position: relative;
 }
 
 .cardLink {
@@ -123,7 +135,7 @@
   font-size: 0.9rem;
 }
 
-.showMoreButtonIcon {
+.bi-caret-down-fill::before {
   text-decoration: none;
   color: #9f9e9b;
   font-weight: 500;

@@ -280,29 +280,29 @@
 
 // export default CustomNavbar;
 
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { Button } from "react-bootstrap";
-import Searchbar from "./Searchbar.jsx";
+import Container from "react-bootstrap/Container"
+import Nav from "react-bootstrap/Nav"
+import Navbar from "react-bootstrap/Navbar"
+import NavDropdown from "react-bootstrap/NavDropdown"
+import { Button } from "react-bootstrap"
+import Searchbar from "./Searchbar.jsx"
 
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import fetchUser from "./FetchUser";
-import linkedinLogo from "../assets/img/Linkedin-logo-3.png";
+import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import fetchUser from "./FetchUser"
+import linkedinLogo from "../assets/img/Linkedin-logo-3.png"
 
 function CustomNavbar() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
 
   // Carica i dati dell'utente quando il componente viene montato
   useEffect(() => {
-    dispatch(fetchUser());
-  }, [dispatch]);
+    dispatch(fetchUser())
+  }, [dispatch])
   return (
     <>
       {/* NAVBAR SUPERIORE */}
@@ -313,7 +313,7 @@ function CustomNavbar() {
       >
         <Container className="d-flex justify-content-between align-items-center w-100">
           {/* Logo */}
-          <Navbar.Brand href="#home" className="d-flex align-items-center">
+          <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
             <img
               className="navbarLogo img-fluid"
               src={linkedinLogo}
@@ -586,7 +586,7 @@ function CustomNavbar() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default CustomNavbar;
+export default CustomNavbar
