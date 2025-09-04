@@ -144,7 +144,7 @@ const SideBarDX = () => {
           <img
             src="https://media.licdn.com/media/AAYABATPAAgAAQAAAAAAAKwYrfHUPkoBQGmwnaG71Ps_5Q.png"
             alt="Sponsor"
-            className="img-fluid"
+            className="img-fluid w-100 shadow-sm border-1"
             style={{
               width: "300px",
               height: "250px",

@@ -313,61 +313,75 @@ function CustomNavbar() {
       >
         <Container className="d-flex justify-content-between align-items-center w-100">
           {/* Logo */}
-          <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-            <img
-              className="navbarLogo img-fluid"
-              src={linkedinLogo}
-              alt="Linkedin Logo"
-            />
-          </Navbar.Brand>
+          <div className="d-flex flex-row flex-grow-1">
+            <Navbar.Brand
+              as={Link}
+              to="/"
+              className="d-flex align-items-center"
+            >
+              <img
+                className="navbarLogo"
+                src={linkedinLogo}
+                alt="Linkedin Logo"
+              />
+            </Navbar.Brand>
 
-          {/* Searchbar mobile */}
-          <div className="d-block d-md-none flex-grow-1 mx-2">
-            <Searchbar />
-          </div>
+            {/* Searchbar mobile */}
+            <div className="d-block d-md-none flex-grow-1 mx-2">
+              <Searchbar />
+            </div>
 
-          {/* Icone mobile */}
-          <div className="d-flex d-md-none align-items-center ms-2">
-            <i className="bi bi-chat-left-dots-fill fs-5 mx-1"></i>
-          </div>
+            {/* Icone mobile */}
+            <div className="d-flex d-md-none align-items-center ms-2">
+              <i className="bi bi-chat-left-dots-fill fs-5 mx-1"></i>
+            </div>
 
-          {/* Navbar desktop */}
-          <div className="d-none d-md-flex w-100 justify-content-between align-items-center">
-            {/* Sinistra: Logo + Searchbars desktop */}
-            <div className="d-flex align-items-center">
-              <div>
-                <Searchbar />
+            {/* Navbar desktop */}
+            <div className="d-none d-md-flex w-100 justify-content-between align-items-center">
+              {/* Sinistra: Logo + Searchbars desktop */}
+              <div className="d-flex align-items-center">
+                <div className="">
+                  <Searchbar />
+                </div>
               </div>
             </div>
 
             {/* Centro: Nav items con icone e testo sotto */}
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ms-auto d-flex flex-row align-items-center">
-                <Nav.Link as={Link} to="/" className="navbarLinks">
+                <Nav.Link
+                  as={Link}
+                  to="/"
+                  className="navbarLinksHighlight navbarLinks"
+                >
                   <div className="d-flex flex-column text-center">
                     <i className="bi bi-house-door-fill"></i>
                     Home
                   </div>
                 </Nav.Link>
-                <Nav.Link className="navbarLinks" href="#">
+                <Nav.Link className="navbarLinksHighlight navbarLinks" href="#">
                   <div className="d-flex flex-column text-center">
                     <i className="bi bi-people-fill"></i>
                     Rete
                   </div>
                 </Nav.Link>
-                <Nav.Link as={Link} to="/jobs" className="navbarLinks">
+                <Nav.Link
+                  as={Link}
+                  to="/jobs"
+                  className="navbarLinksHighlight navbarLinks"
+                >
                   <div className="d-flex flex-column text-center">
                     <i className="bi bi-suitcase-lg-fill"></i>
                     Lavoro
                   </div>
                 </Nav.Link>
-                <Nav.Link className="navbarLinks" href="#">
+                <Nav.Link className="navbarLinksHighlight navbarLinks" href="#">
                   <div className="d-flex flex-column text-center">
                     <i className="bi bi-chat-left-dots-fill"></i>
                     Messaggistica
                   </div>
                 </Nav.Link>
-                <Nav.Link className="navbarLinks" href="#">
+                <Nav.Link className="navbarLinksHighlight navbarLinks" href="#">
                   <div className="d-flex flex-column text-center">
                     <i className="bi bi-bell-fill"></i>
                     Notifiche
@@ -376,6 +390,7 @@ function CustomNavbar() {
 
                 {/* Dropdown utente */}
                 <NavDropdown
+                  className="navbarLinksHighlight"
                   drop="start"
                   id="dropdown-user"
                   title={
@@ -438,6 +453,7 @@ function CustomNavbar() {
 
                 {/* Dropdown Aziende */}
                 <NavDropdown
+                  className="navbarLinksHighlight"
                   drop="start"
                   id="dropdown-business"
                   title={
@@ -545,11 +561,13 @@ function CustomNavbar() {
                 </NavDropdown>
 
                 {/* Link Premium */}
-                <div className="navbarLinks d-flex flex-column align-items-center ms-3">
-                  <a className="navbarPremiumLink text-center" href="">
-                    Prova Premium per 0 <br /> EUR
-                  </a>
-                </div>
+                <Nav.Link>
+                  <div className="navbarLinks d-flex flex-column align-items-center">
+                    <a className="navbarPremiumLink text-center" href="#">
+                      Prova Premium per 0 <br /> EUR
+                    </a>
+                  </div>
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </div>

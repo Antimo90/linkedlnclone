@@ -13,7 +13,7 @@ const SuperContainer = () => {
     <>
       <Container className="mt-4 flex-grow-1">
         <Row>
-          <Col lg={9} className="mx-auto">
+          <Col lg={12} className="mx-auto">
             <Profile />
             <RecommendedSection />
             <AnalyticsCard />
