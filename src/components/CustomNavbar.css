@@ -1,10 +1,17 @@
 .navbarContainer {
   background-color: white;
   border: solid 1px #e1e1e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
 }
 
 .logoContainer {
   height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbarLogo {
@@ -15,6 +22,10 @@
 .navbarLinks {
   margin-left: 5px;
   margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 /* .dropdown-toggle::after {
@@ -28,17 +39,44 @@
 .bi {
   font-size: 1.3rem;
   color: #666666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbarProfilePic {
-  width: 25px;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .profilePic {
-  width: 32px;
-  height: 32px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.profilePic:hover {
+  transform: scale(1.1);
+}
+
+/* Stili responsivi per l'immagine del profilo nella navbar */
+@media (max-width: 768px) {
+  .navbarProfilePic {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbarProfilePic {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .navbarSeparator {
@@ -55,34 +93,82 @@
 }
 
 .dropdownProfilePic {
-  width: 100px;
+  width: 80px;
+  height: 80px;
   overflow: hidden;
+  flex-shrink: 0; /* Impedisce al contenitore di ridursi */
 }
 
 .dropdownProfilePicImg {
   object-fit: cover;
   width: 100%;
   height: 100%;
-
   border-radius: 50%;
+  transition: transform 0.2s ease; /* Aggiunge una transizione fluida */
+}
+
+.dropdownProfilePicImg:hover {
+  transform: scale(1.05); /* Leggero effetto zoom al hover */
+}
+
+/* Stili responsivi per l'immagine del dropdown */
+@media (max-width: 768px) {
+  .dropdownProfilePic {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dropdownProfilePic {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 .dropdownButton1 {
-  margin: 0 10px;
-  border-radius: 50px;
+  margin: 0 5px;
+  padding: 6px 12px;
+  border-radius: 20px;
   border: solid 1px #0274b3;
-  background: none;
-  color: #0274b3;
+  background: #0274b3;
+  color: #FFFFFF !important;
   font-weight: 600;
+  font-size: 0.85rem;
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.dropdownButton1:hover {
+  margin: 0 5px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: solid 1px #0274b3 !important;
+  background: #0274b3 !important;
+  color: #FFFFFF !important;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .dropdownButton1:active {
-  margin: 0 10px;
-  border-radius: 50px;
+  margin: 0 5px;
+  padding: 6px 12px;
+  border-radius: 20px;
   border: solid 1px #0274b3 !important;
   background: #0274b3 !important;
-  color: white !important;
+  color: #FFFFFF !important;
   font-weight: 600;
+  font-size: 0.85rem;
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .dropdownButton2 {
@@ -128,13 +214,50 @@ h5 {
   font-size: 1.8rem;
 }
 
+/* Centraggio per il contenitore Bootstrap della navbar */
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Centraggio per gli elementi di navigazione */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Centraggio per i link della navbar */
+.navbar-nav .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 div > ul > li {
   font-weight: 500;
 }
 
+/* Stili per il contenuto del dropdown utente */
+.dropdown-item .d-flex.flex-row {
+  align-items: center;
+  gap: 12px;
+}
+
+.dropdown-item .mx-2 {
+  flex: 1;
+  min-width: 0; /* Permette al testo di essere troncato se necessario */
+}
+
 h2 {
-  font-size: 1.3em;
-  margin-bottom: 5px;
+  font-size: 1.2em;
+  margin-bottom: 4px;
+  font-weight: 600;
+  line-height: 1.3;
+  word-wrap: break-word;
 }
 
 h3 {
@@ -143,9 +266,32 @@ h3 {
 }
 
 h4 {
-  font-size: 1em;
+  font-size: 0.9em;
   margin-bottom: 5px;
   font-weight: 400;
+  color: #666666;
+  line-height: 1.2;
+}
+
+/* Stili responsivi per il testo del dropdown */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.1em;
+  }
+
+  h4 {
+    font-size: 0.85em;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1em;
+  }
+
+  h4 {
+    font-size: 0.8em;
+  }
 }
 
 li > p {
@@ -175,8 +321,6 @@ li > p {
   color: #787878;
 }
 
-
-
 /*Modifiche per mobile/tablet*/
 /* Top Navbar */
 .navbarContainer {
@@ -187,7 +331,6 @@ li > p {
 .navbarLogo {
   height: 30px;
 }
-
 
 /* Searchbar mobile */
 .mobileSearch {

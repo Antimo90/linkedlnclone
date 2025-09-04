@@ -1,0 +1,303 @@
+/* Stili per il componente UserPost */
+
+.user-post-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.user-post-container:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Stili per la textarea del post */
+.user-post-textarea {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  resize: none;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  padding: 0;
+}
+
+.user-post-textarea:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.user-post-textarea::placeholder {
+  color: #0a66c2;
+  font-weight: 400;
+}
+
+/* Stili per i pulsanti della toolbar - colore uniforme */
+.user-post-toolbar-btn {
+  color: #0a66c2 !important;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.user-post-toolbar-btn:hover:not(:disabled) {
+  background-color: #f3f2ef;
+  color: #0a66c2 !important;
+}
+
+.user-post-toolbar-btn:disabled {
+  color: #0a66c2 !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Uniforma il colore delle icone */
+.user-post-toolbar-btn svg {
+  color: inherit;
+}
+
+/* Uniforma il colore del testo nei pulsanti */
+.user-post-toolbar-btn span {
+  color: inherit;
+}
+
+/* Stili per i pulsanti Bootstrap .btn-link - colore uniforme */
+.user-post .btn-link {
+  color: #0a66c2 !important;
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  border: none;
+  background: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.user-post .btn-link:hover:not(:disabled) {
+  color: #0a66c2 !important;
+  text-decoration: none;
+  background-color: #f3f2ef;
+}
+
+.user-post .btn-link:disabled {
+  color: #0a66c2 !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Uniforma il colore delle icone nei pulsanti Bootstrap */
+.user-post .btn-link svg {
+  color: inherit;
+}
+
+/* Uniforma il colore del testo nei pulsanti Bootstrap */
+.user-post .btn-link span {
+  color: inherit;
+}
+
+/* Stili per il pulsante di pubblicazione */
+.user-post-submit-btn {
+  background-color: #0a66c2;
+  border: none;
+  font-weight: 600;
+  padding: 8px 24px;
+  transition: background-color 0.2s ease;
+}
+
+.user-post-submit-btn:hover:not(:disabled) {
+  background-color: #004182;
+}
+
+.user-post-submit-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Stili per l'anteprima dell'immagine */
+.user-post-image-preview {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.user-post-image-name {
+  font-size: 0.9rem;
+  color: #495057;
+  max-width: 200px;
+}
+
+/* Stili per gli alert */
+.user-post-alert {
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+/* Stili per il profilo utente */
+.user-post-profile-img {
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-post-profile-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.user-post-username {
+  color: #000000;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.user-post-subtitle {
+  color: #666666;
+  font-size: 12px;
+}
+
+/* Stili responsive */
+@media (max-width: 768px) {
+  .user-post-container {
+    margin: 0 10px;
+  }
+
+  .user-post-toolbar {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+
+  .user-post-toolbar-buttons {
+    justify-content: space-around;
+    order: 2;
+  }
+
+  .user-post-toolbar-btn {
+    font-size: 0.85rem;
+    padding: 6px 8px;
+  }
+
+  .user-post-submit-btn {
+    width: auto;
+    min-width: 120px;
+    order: 1;
+    margin-bottom: 10px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 576px) {
+  .user-post-textarea {
+    font-size: 1rem;
+  }
+
+  .user-post-toolbar-btn span {
+    display: none;
+  }
+
+  .user-post-image-name {
+    max-width: 150px;
+  }
+
+  .user-post-submit-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(10, 102, 194, 0.25);
+    min-width: 100px;
+  }
+
+  .user-post-toolbar {
+    gap: 20px;
+  }
+
+  .user-post-toolbar-buttons {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Animazioni */
+.user-post-fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stili per il loading spinner */
+.user-post-loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Stili per la barra di separazione */
+.user-post-divider {
+  border-top: 1px solid #e9ecef;
+  margin-top: 16px;
+  padding-top: 16px;
+}
+
+/* Stili per le icone */
+.user-post-icon {
+  color: #666666;
+  transition: color 0.2s ease;
+}
+
+.user-post-toolbar-btn:hover .user-post-icon {
+  color: #0a66c2;
+}
+
+/* Stili per il focus accessibility */
+.user-post-toolbar-btn:focus,
+.user-post-submit-btn:focus {
+  outline: 2px solid #0a66c2;
+  outline-offset: 2px;
+}
+
+/* Stili per il dark mode (se necessario) */
+@media (prefers-color-scheme: dark) {
+  .user-post-container {
+    background-color: #1b1f23;
+    color: #ffffff;
+  }
+
+  .user-post-textarea {
+    background-color: transparent;
+    color: #ffffff;
+  }
+
+  .user-post-textarea::placeholder {
+    color: #8b949e;
+  }
+
+  .user-post-toolbar-btn {
+    color: #8b949e;
+  }
+
+  .user-post-toolbar-btn:hover:not(:disabled) {
+    background-color: #21262d;
+    color: #58a6ff;
+  }
+
+  .user-post-image-preview {
+    background-color: #21262d;
+    border-color: #30363d;
+  }
+}

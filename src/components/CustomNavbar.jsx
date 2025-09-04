@@ -89,7 +89,7 @@
                 <div className="dropdownProfilePic">
                   <img
                     className="dropdownProfilePicImg"
-                    src="./src/assets/img/Stefano.png"
+                    src="https://via.placeholder.com/40x40?text=User"
                     alt=""
                   />
                 </div>
@@ -286,9 +286,23 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Button } from "react-bootstrap";
 import Searchbar from "./Searchbar.jsx";
+
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import fetchUser from "./FetchUser";
+import linkedinLogo from "../assets/img/Linkedin-logo-3.png";
 
 function CustomNavbar() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  // Carica i dati dell'utente quando il componente viene montato
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
   return (
     <>
       {/* NAVBAR SUPERIORE */}
@@ -302,7 +316,7 @@ function CustomNavbar() {
           <Navbar.Brand href="#home" className="d-flex align-items-center">
             <img
               className="navbarLogo img-fluid"
-              src="./src/assets/img/Linkedin-logo-3.png"
+              src={linkedinLogo}
               alt="Linkedin Logo"
             />
           </Navbar.Brand>
@@ -324,10 +338,10 @@ function CustomNavbar() {
 
           {/* Navbar desktop */}
           <div className="d-none d-md-flex w-100 justify-content-between align-items-center">
-            {/* Sinistra: Logo + Searchbar desktop */}
+            {/* Sinistra: Logo + Searchbars desktop */}
             <div className="d-flex align-items-center">
               <Navbar.Brand href="#home"></Navbar.Brand>
-              <div className="ms-3" style={{ width: "280px" }}>
+              <div className="ms-3">
                 <Searchbar />
               </div>
             </div>
@@ -347,7 +361,7 @@ function CustomNavbar() {
                     Rete
                   </div>
                 </Nav.Link>
-                <Nav.Link className="navbarLinks" href="#">
+                <Nav.Link as={Link} to="/jobs" className="navbarLinks">
                   <div className="d-flex flex-column text-center">
                     <i className="bi bi-suitcase-lg-fill"></i>
                     Lavoro
@@ -375,8 +389,10 @@ function CustomNavbar() {
                       <div className="navbarProfilePic">
                         <img
                           className="profilePic"
-                          src="./src/assets/img/Linkedin-logo.png"
-                          alt=""
+                          src={
+                            user?.image || "./src/assets/img/Linkedin-logo.png"
+                          }
+                          alt="Immagine profilo"
                         />
                       </div>
                       <span>
@@ -394,17 +410,27 @@ function CustomNavbar() {
                         <div className="dropdownProfilePic">
                           <img
                             className="dropdownProfilePicImg"
-                            src="./src/assets/img/Stefano.png"
-                            alt=""
+                            src={
+                              user?.image ||
+                              "https://via.placeholder.com/40x40?text=User"
+                            }
+                            alt="Immagine profilo utente"
                           />
                         </div>
                         <div className="mx-2">
-                          <h2>Nome Utente</h2>
-                          <h4>Posizione Lavorativa</h4>
+                          <h2>
+                            {user?.name && user?.surname
+                              ? `${user.name} ${user.surname}`
+                              : "Nome Utente"}
+                          </h2>
+                          <h4>{user?.title || "Posizione Lavorativa"}</h4>
                         </div>
                       </div>
                       <div className="d-flex flex-row mt-3">
-                        <Button className="dropdownButton1 flex-grow-1">
+                        <Button
+                          className="dropdownButton1 flex-grow-1"
+                          onClick={() => navigate("/profile")}
+                        >
                           Visualizza <br /> Profilo
                         </Button>
                         <Button className="dropdownButton2 flex-grow-1">
