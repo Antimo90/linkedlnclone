@@ -94,11 +94,11 @@ const Profile = () => {
               <BsCameraFill
                 className="position-absolute text-primary bg-white rounded-circle p-2"
                 style={{
-                  top: "10px",
-                  right: "10px",
+                  top: "1rem",
+                  right: "1rem",
                   cursor: "pointer",
-                  fontSize: "24px",
-                  zIndex: 2,
+                  fontSize: "2rem",
+                  opacity: 0.8,
                 }}
                 onClick={handleCoverImageClick}
                 title="Cambia immagine di copertina"
