@@ -1,14 +1,14 @@
-import Profile from "../components/Profile"
-import RecommendedSection from "../components/RecommendedSection"
-import AnalyticsCard from "../components/AnalyticsCard"
-import ActivitySection from "../components/ActivitySection"
-import ExperienceSection from "../components/ExperienceSection"
-import EducationSection from "../components/EducationSection"
-import SkillsSection from "../components/SkillsSection"
-import InterestsSection from "../components/InterestsSection"
-import SideBarDX from "../components/SideBarDX"
-import ProfileUser from "../components/ProfileUser"
-import { Container, Row, Col } from "react-bootstrap"
+import Profile from "../components/Profile";
+import RecommendedSection from "../components/RecommendedSection";
+import AnalyticsCard from "../components/AnalyticsCard";
+import ActivitySection from "../components/ActivitySection";
+import ExperienceSection from "../components/ExperienceSection";
+import EducationSection from "../components/EducationSection";
+import SkillsSection from "../components/SkillsSection";
+import InterestsSection from "../components/InterestsSection";
+import SideBarDX from "../components/SideBarDX";
+import ProfileUser from "../components/ProfileUser";
+import { Container, Row, Col } from "react-bootstrap";
 
 const SuperContainer = () => {
   return (
@@ -26,12 +26,13 @@ const SuperContainer = () => {
             <InterestsSection />
           </Col>
           <Col lg={3}>
+            {/* <SideBarDX /> */}
             <SideBarDX />
             <ProfileUser />
           </Col>
         </Row>
       </Container>
     </>
-  )
-}
-export default SuperContainer
+  );
+};
+export default SuperContainer;

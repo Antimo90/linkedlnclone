@@ -29,11 +29,21 @@ const SideBarDX = () => {
       >
         <div className="space-y-1">
           <div>
-            <h2 className="font-semibold fs-6">Lingua del profilo</h2>
+            <h2 className="d-flex justify-content-between font-semibold fs-6">
+              Lingua del profilo
+              <a href="">
+                <i className="bi bi-pen-fill" style={{ fontSize: "18px" }}></i>
+              </a>
+            </h2>
             <p className="text-xs text-gray-600">Italiano</p>
           </div>
           <div>
-            <h2 className="font-semibold fs-6">Profilo pubblico e URL</h2>
+            <h2 className="d-flex justify-content-between font-semibold fs-6">
+              Profilo pubblico e URL
+              <a href="">
+                <i className="bi bi-pen-fill" style={{ fontSize: "18px" }}></i>
+              </a>
+            </h2>
             <p
               className="text-xs text-blue-600"
               href="https://www.linkedin.com/in/placeholder"
@@ -127,6 +137,21 @@ const SideBarDX = () => {
             Mostra tutto
           </button>
         </div>
+      </div>
+      <div>
+        <a>
+          <img
+            src="https://media.licdn.com/media/AAYABATPAAgAAQAAAAAAAKwYrfHUPkoBQGmwnaG71Ps_5Q.png"
+            alt="Sponsor"
+            className="img-fluid"
+            style={{
+              width: "300px",
+              height: "250px",
+              cursor: "pointer",
+              borderRadius: "6px",
+            }}
+          />
+        </a>
       </div>
     </aside>
   );
