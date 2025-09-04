@@ -1,0 +1,82 @@
+
+/* Contenitore principale del widget */
+.messaging-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;           
+  height: 500px;          
+  background-color: #fff; 
+  border-radius: 12px;    
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+  font-family: Arial, sans-serif;
+}
+
+/* Header del widget */
+.messaging-widget-header {
+  background-color: #0073b1; 
+  padding: 12px;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Area dei messaggi con scrollbar personalizzata */
+.messaging-widget-messages {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  scrollbar-width: thin;           
+  scrollbar-color: #0073b1 #e0e0e0; 
+}
+
+/* Chrome, Edge, Safari */
+.messaging-widget-messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messaging-widget-messages::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 4px;
+}
+
+.messaging-widget-messages::-webkit-scrollbar-thumb {
+  background-color: #0073b1;
+  border-radius: 4px;
+  border: 2px solid #e0e0e0;
+}
+
+/* Footer del widget */
+.messaging-widget-footer {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  display: flex;
+  gap: 8px;
+}
+
+.messaging-widget-footer input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.messaging-widget-footer button {
+  padding: 8px 12px;
+  background-color: #0073b1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Media query: nasconde il widget su mobile */
+@media (max-width: 768px) {
+  .messaging-widget {
+    display: none;
+  }
+}
