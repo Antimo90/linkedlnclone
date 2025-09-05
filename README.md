@@ -1,292 +1,237 @@
-# Guida al Caricamento delle Immagini
+# 🔗 LinkedIn Clone
 
-Questa guida fornisce informazioni complete su come gestire il caricamento e l'utilizzo delle immagini nel progetto LinkedIn Clone.
+Un clone completo di LinkedIn sviluppato con React, che replica le principali funzionalità del social network professionale più famoso al mondo.
 
-## 📋 Indice
+## 🌟 Panoramica del Progetto
 
-1. [Formati di Immagine Supportati](#formati-di-immagine-supportati)
-2. [Dimensioni Consigliate](#dimensioni-consigliate)
-3. [Sintassi Markdown](#sintassi-markdown)
-4. [Organizzazione delle Immagini](#organizzazione-delle-immagini)
-5. [Best Practices per l'Ottimizzazione](#best-practices-per-lottimizzazione)
-6. [Gestione dei Percorsi Relativi](#gestione-dei-percorsi-relativi)
-7. [Limitazioni e Considerazioni](#limitazioni-e-considerazioni)
+Questo progetto è una replica fedele di LinkedIn che include tutte le funzionalità principali della piattaforma originale: gestione del profilo utente, feed dei post, sistema di commenti, ricerca lavoro, e molto altro. L'applicazione è stata sviluppata utilizzando tecnologie moderne e best practices per garantire un'esperienza utente fluida e professionale.
 
-## 🖼️ Formati di Immagine Supportati
+## ✨ Funzionalità Principali
 
-Il progetto supporta i seguenti formati di immagine:
+### 🏠 **Home Feed**
+- **Feed dinamico** con caricamento dei post in tempo reale
+- **Creazione post** con supporto per testo e immagini
+- **Sistema di commenti** completo con rating (stelle)
+- **Visualizzazione immagini** a schermo intero con modal
+- **Caricamento progressivo** dei post (paginazione)
+- **Profili utente** integrati in ogni post
 
-### Formati Principali
-- **JPEG/JPG** - Ideale per fotografie e immagini con molti colori
-- **PNG** - Perfetto per immagini con trasparenza e grafica
-- **GIF** - Supportato per immagini animate (uso limitato)
-- **WebP** - Formato moderno con ottima compressione
-- **SVG** - Formato vettoriale per icone e grafica scalabile
+### 👤 **Gestione Profilo**
+- **Profilo personale** completamente personalizzabile
+- **Visualizzazione profili** di altri utenti
+- **Immagine profilo** e copertina personalizzabili
+- **Sezioni profilo**: Esperienza, Formazione, Competenze, Interessi
+- **Analytics del profilo** con statistiche di visualizzazione
+- **Modifica in tempo reale** delle informazioni personali
 
-### Raccomandazioni per Formato
+### 💼 **Sezione Lavoro (Jobs)**
+- **Ricerca offerte di lavoro** per parola chiave
+- **Filtri avanzati** per azienda e posizione
+- **Visualizzazione dettagliata** delle offerte
+- **Interfaccia intuitiva** per la navigazione delle opportunità
+- **Integrazione con API esterne** per offerte reali
+
+### 💬 **Sistema di Commenti**
+- **Commenti con rating** (sistema a stelle)
+- **Modifica e eliminazione** commenti (solo per l'autore)
+- **Visualizzazione identità autore** con nome e foto profilo
+- **Interfaccia responsive** e user-friendly
+- **Conferme di eliminazione** per prevenire errori
+
+### 🔍 **Navigazione e Ricerca**
+- **Navbar responsive** con tutte le sezioni principali
+- **Barra di ricerca** integrata
+- **Menu dropdown** per profilo utente e aziende
+- **Routing dinamico** tra le diverse sezioni
+- **Widget messaggi** sempre accessibile
+
+### 📱 **Design Responsive**
+- **Layout adattivo** per desktop, tablet e mobile
+- **Interfaccia moderna** ispirata al design originale di LinkedIn
+- **Animazioni fluide** e transizioni eleganti
+- **Accessibilità** ottimizzata per screen reader
+- **Performance ottimizzate** per tutti i dispositivi
+
+## 🛠️ Tecnologie Utilizzate
+
+### **Frontend Framework**
+- **React 19.1.1** - Libreria principale per l'interfaccia utente
+- **React Router DOM 7.8.2** - Gestione del routing e navigazione
+- **React Bootstrap 2.10.10** - Componenti UI responsive
+- **Bootstrap 5.3.8** - Framework CSS per il design
+
+### **State Management**
+- **Redux Toolkit 2.8.2** - Gestione dello stato globale dell'applicazione
+- **React Redux 9.2.0** - Integrazione React-Redux
+
+### **HTTP Client & API**
+- **Axios 1.11.0** - Client HTTP per chiamate API
+- **Strive School API** - Backend per gestione utenti, post e commenti
+
+### **Styling & Icons**
+- **Bootstrap Icons 1.13.1** - Set completo di icone
+- **React Icons 5.5.0** - Libreria di icone React
+- **CSS personalizzato** - Stili custom per componenti specifici
+
+### **Build Tools**
+- **Vite 7.1.2** - Build tool veloce e moderno
+- **ESLint 9.33.0** - Linting del codice JavaScript/React
+- **SWC** - Compilatore veloce per React
+
+## 📁 Struttura del Progetto
+
 ```
-📸 Foto profilo: JPEG/PNG
-🎨 Icone: SVG
-🖼️ Immagini contenuto: JPEG/WebP
-✨ Loghi: PNG/SVG
-```
-
-## 📏 Dimensioni Consigliate
-
-### Immagini Profilo
-- **Dimensione ottimale**: 400x400px
-- **Dimensione minima**: 200x200px
-- **Dimensione massima**: 800x800px
-- **Rapporto**: 1:1 (quadrato)
-
-### Immagini Post
-- **Larghezza ottimale**: 1200px
-- **Altezza massima**: 630px
-- **Rapporto consigliato**: 16:9 o 4:3
-
-### Immagini Copertina
-- **Dimensione ottimale**: 1584x396px
-- **Rapporto**: 4:1
-
-## 📝 Sintassi Markdown
-
-### Sintassi Base
-```markdown
-![Testo alternativo](percorso/immagine.jpg)
-```
-
-### Con Titolo
-```markdown
-![Testo alternativo](percorso/immagine.jpg "Titolo dell'immagine")
-```
-
-### Immagine Collegata
-```markdown
-[![Testo alternativo](percorso/immagine.jpg)](https://link-destinazione.com)
-```
-
-### Con Dimensioni HTML
-```html
-<img src="percorso/immagine.jpg" alt="Testo alternativo" width="300" height="200">
-```
-
-## 📁 Organizzazione delle Immagini
-
-### Struttura Cartelle Consigliata
-```
-src/
-├── assets/
-│   ├── images/
-│   │   ├── profiles/          # Immagini profilo
-│   │   ├── posts/             # Immagini dei post
-│   │   ├── icons/             # Icone e simboli
-│   │   ├── backgrounds/       # Sfondi e copertine
-│   │   └── ui/                # Elementi interfaccia
-│   └── img/                   # Immagini temporanee/test
-```
-
-### Convenzioni di Nomenclatura
-```
-✅ CORRETTO:
-- profile-john-doe.jpg
-- post-2024-01-15.png
-- icon-linkedin.svg
-- bg-header-main.jpg
-
-❌ EVITARE:
-- IMG_001.jpg
-- image (1).png
-- foto profilo.jpg (spazi)
-- IMMAGINE.JPG (tutto maiuscolo)
-```
-
-## ⚡ Best Practices per l'Ottimizzazione
-
-### 1. Compressione
-- **JPEG**: Qualità 80-85% per un buon compromesso
-- **PNG**: Utilizzare strumenti come TinyPNG
-- **WebP**: Preferire quando possibile per dimensioni ridotte
-
-### 2. Strumenti di Ottimizzazione
-```bash
-# Installazione ImageOptim (macOS)
-brew install imageoptim-cli
-
-# Compressione batch
-imageoptim --directory ./src/assets/images/
+linkedlnclone/
+├── public/                     # File statici
+│   ├── linkedin-favicon.png    # Favicon del sito
+│   └── vite.svg               # Logo Vite
+├── src/
+│   ├── Components/            # Componenti React
+│   │   ├── CustomNavbar.jsx   # Barra di navigazione principale
+│   │   ├── FeedHome.jsx       # Feed principale dei post
+│   │   ├── UserPost.jsx       # Componente per creare post
+│   │   ├── Commento.jsx       # Sistema di commenti
+│   │   ├── Profile.jsx        # Profilo utente principale
+│   │   ├── UserProfile.jsx    # Profilo utente generico
+│   │   ├── Jobs.jsx           # Sezione lavoro
+│   │   ├── Searchbar.jsx      # Barra di ricerca
+│   │   ├── ImageModal.jsx     # Modal per immagini
+│   │   ├── WidgetMessaggi.jsx # Widget messaggi
+│   │   └── [Altri componenti] # Sezioni aggiuntive
+│   ├── assets/                # Risorse statiche
+│   │   ├── img/              # Immagini del progetto
+│   │   └── [Altri asset]     # Loghi, icone, ecc.
+│   ├── redux/                # Gestione stato Redux
+│   │   ├── actions/          # Azioni Redux
+│   │   ├── reducers/         # Reducers Redux
+│   │   └── store/            # Configurazione store
+│   ├── services/             # Servizi e utilities
+│   ├── App.jsx               # Componente principale
+│   └── main.jsx              # Entry point dell'applicazione
+├── package.json              # Dipendenze e script
+├── vite.config.js           # Configurazione Vite
+└── README.md                # Documentazione del progetto
 ```
 
-### 3. Lazy Loading
-```jsx
-// Implementazione React
-<img 
-  src="placeholder.jpg" 
-  data-src="immagine-reale.jpg" 
-  loading="lazy" 
-  alt="Descrizione"
-/>
-```
+## 🚀 Come Iniziare
 
-### 4. Responsive Images
-```html
-<picture>
-  <source media="(max-width: 768px)" srcset="mobile.jpg">
-  <source media="(max-width: 1024px)" srcset="tablet.jpg">
-  <img src="desktop.jpg" alt="Immagine responsive">
-</picture>
-```
+### **Prerequisiti**
+- Node.js (versione 18 o superiore)
+- npm o yarn
+- Git
 
-## 🔗 Gestione dei Percorsi Relativi
+### **Installazione**
 
-### In React/Vite
-```jsx
-// ✅ CORRETTO - Import esplicito
-import profileImage from '../assets/images/profiles/user.jpg';
+1. **Clona il repository**
+   ```bash
+   git clone [url-repository]
+   cd linkedlnclone
+   ```
 
-// ✅ CORRETTO - Percorso pubblico
-<img src="/images/profile.jpg" alt="Profilo" />
+2. **Installa le dipendenze**
+   ```bash
+   npm install
+   ```
 
-// ❌ EVITARE - Percorso relativo diretto
-<img src="../images/profile.jpg" alt="Profilo" />
-```
+3. **Avvia il server di sviluppo**
+   ```bash
+   npm run dev
+   ```
 
-### Percorsi Assoluti vs Relativi
-```javascript
-// Percorso assoluto (dalla root pubblica)
-const imagePath = '/assets/images/profile.jpg';
+4. **Apri l'applicazione**
+   - Vai su `http://localhost:5173/`
+   - L'applicazione si ricaricherà automaticamente ad ogni modifica
 
-// Percorso relativo (dal componente corrente)
-const imagePath = './images/profile.jpg';
+### **Script Disponibili**
 
-// Import dinamico
-const imagePath = new URL('../assets/profile.jpg', import.meta.url).href;
-```
+- `npm run dev` - Avvia il server di sviluppo
+- `npm run build` - Crea la build di produzione
+- `npm run preview` - Anteprima della build di produzione
+- `npm run lint` - Esegue il linting del codice
 
-### Configurazione Vite
-```javascript
-// vite.config.js
-export default {
-  resolve: {
-    alias: {
-      '@images': path.resolve(__dirname, 'src/assets/images'),
-    },
-  },
-};
+## 🎯 Funzionalità Dettagliate
 
-// Utilizzo
-import profileImg from '@images/profiles/user.jpg';
-```
+### **Sistema di Autenticazione**
+- Integrazione con API Strive School per l'autenticazione
+- Gestione token JWT per le sessioni utente
+- Protezione delle route private
 
-## ⚠️ Limitazioni e Considerazioni
+### **Gestione Post**
+- Creazione post con testo e immagini
+- Upload immagini con preview
+- Validazione form completa
+- Feedback visivo per operazioni async
 
-### Limitazioni Tecniche
-- **Dimensione massima file**: 5MB per immagine
-- **Formati non supportati**: TIFF, BMP, ICO
-- **Limite upload simultanei**: 10 immagini
+### **Sistema Commenti Avanzato**
+- Commenti con sistema di rating (1-5 stelle)
+- Modifica inline dei commenti
+- Eliminazione con conferma
+- Visualizzazione autore con foto profilo
+- Placeholder personalizzati per utenti senza foto
 
-### Considerazioni Performance
-```javascript
-// ❌ EVITARE - Caricamento di immagini grandi
-const largeImage = 'ultra-hd-image-50mb.jpg';
+### **Ricerca Lavoro**
+- Integrazione con API esterne per offerte reali
+- Filtri multipli (parola chiave, azienda, posizione)
+- Interfaccia pulita e professionale
+- Paginazione dei risultati
 
-// ✅ PREFERIRE - Immagini ottimizzate
-const optimizedImage = 'compressed-image-500kb.webp';
-```
+## 🎨 Design e UX
 
-### Accessibilità
-```jsx
-// ✅ SEMPRE includere alt text descrittivo
-<img 
-  src="profile.jpg" 
-  alt="Foto profilo di Mario Rossi, sviluppatore frontend"
-/>
+### **Principi di Design**
+- **Coerenza visiva** con il design originale di LinkedIn
+- **Responsive design** per tutti i dispositivi
+- **Accessibilità** seguendo le linee guida WCAG
+- **Performance** ottimizzate con lazy loading
 
-// ✅ Per immagini decorative
-<img src="decoration.jpg" alt="" role="presentation" />
-```
+### **Palette Colori**
+- **Primario**: #0a66c2 (Blu LinkedIn)
+- **Secondario**: #ffffff (Bianco)
+- **Accenti**: #5a5a5a (Grigio testo)
+- **Errori**: #d32f2f (Rosso)
+- **Successo**: #2e7d32 (Verde)
 
-### SEO e Meta Tags
-```html
-<!-- Open Graph per social media -->
-<meta property="og:image" content="https://sito.com/images/preview.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+## 🔧 Configurazione API
 
-<!-- Twitter Cards -->
-<meta name="twitter:image" content="https://sito.com/images/preview.jpg">
-```
+L'applicazione utilizza le API di Strive School per:
+- Gestione utenti e profili
+- CRUD operazioni sui post
+- Sistema di commenti
+- Upload immagini
 
-### Sicurezza
-```javascript
-// ✅ Validazione lato client
-const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
-const maxSize = 5 * 1024 * 1024; // 5MB
+Per configurare le API, assicurati di avere un token valido nelle variabili d'ambiente.
 
-function validateImage(file) {
-  if (!allowedTypes.includes(file.type)) {
-    throw new Error('Formato file non supportato');
-  }
-  if (file.size > maxSize) {
-    throw new Error('File troppo grande');
-  }
-}
-```
+## 📱 Responsive Design
 
-## 🚀 Implementazione nel Progetto
+L'applicazione è completamente responsive e ottimizzata per:
+- **Desktop** (1200px+): Layout completo con sidebar
+- **Tablet** (768px-1199px): Layout adattato con menu collassabile
+- **Mobile** (< 768px): Layout mobile-first con navigazione ottimizzata
 
-### Upload Immagine Profilo
-```jsx
-// Componente per upload immagine
-const ProfileImageUpload = () => {
-  const handleImageUpload = async (file) => {
-    const formData = new FormData();
-    formData.append('profile', file);
-    
-    try {
-      const response = await uploadProfileImage(userId, file);
-      // Aggiorna stato dell'applicazione
-    } catch (error) {
-      console.error('Errore upload:', error);
-    }
-  };
-  
-  return (
-    <input 
-      type="file" 
-      accept="image/*" 
-      onChange={(e) => handleImageUpload(e.target.files[0])}
-    />
-  );
-};
-```
+## 🚀 Performance
 
-### API Endpoint
-```javascript
-// Servizio upload immagini
-export const uploadProfileImage = async (userId, imageFile) => {
-  const formData = new FormData();
-  formData.append('profile', imageFile);
-  
-  const response = await fetch(`/api/profile/${userId}/picture`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-    },
-    body: formData,
-  });
-  
-  return response.json();
-};
-```
+### **Ottimizzazioni Implementate**
+- **Code splitting** con React.lazy
+- **Lazy loading** delle immagini
+- **Memoization** dei componenti pesanti
+- **Bundle optimization** con Vite
+- **Caching** delle chiamate API
+
+## 🤝 Contribuire al Progetto
+
+1. Fork del repository
+2. Crea un branch per la tua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit delle modifiche (`git commit -m 'Add some AmazingFeature'`)
+4. Push del branch (`git push origin feature/AmazingFeature`)
+5. Apri una Pull Request
+
+## 📄 Licenza
+
+Questo progetto è stato sviluppato per scopi educativi come parte del corso Epicode.
+
+## 👨‍💻 Sviluppatore
+
+Progetto sviluppato con ❤️ utilizzando le migliori pratiche di sviluppo React e un'attenzione particolare all'esperienza utente e alle performance.
 
 ---
 
-## 📞 Supporto
-
-Per domande o problemi relativi al caricamento delle immagini:
-- Controlla la console del browser per errori
-- Verifica le dimensioni e il formato del file
-- Assicurati che i percorsi siano corretti
-- Consulta la documentazione dell'API
-
-**Ultimo aggiornamento**: Gennaio 2025
+**LinkedIn Clone** - Un progetto che dimostra competenze avanzate nello sviluppo di applicazioni web moderne con React, Redux, e tecnologie all'avanguardia.
