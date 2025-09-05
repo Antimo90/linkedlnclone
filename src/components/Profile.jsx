@@ -273,8 +273,11 @@ const Profile = () => {
                 <Card.Text className="mb-0">{user.title}</Card.Text>
                 <Card.Text className="mb-0">{user.bio}</Card.Text>
                 <Card.Text className="text-secondary mb-0">
-                  {user.area} .{" "}
-                  <Button variant="link" className="btn btn-link text-primary">
+                  {user.area} ·{" "}
+                  <Button
+                    variant="link"
+                    className="btn btn-link text-primary p-0"
+                  >
                     Informazioni di contatto
                   </Button>
                 </Card.Text>
