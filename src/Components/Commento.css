@@ -3,15 +3,29 @@
 }
 
 .comment-card {
-  border: 1px solid #e1e5e9;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+  transition: box-shadow 0.2s ease;
+}
+
+.comment-card:hover {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.12);
 }
 
 .comment-item {
   padding-bottom: 1rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #e1e5e9;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s ease;
+}
+
+.comment-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 6px;
+  margin: 0 -8px 1rem -8px;
+  padding: 8px 8px 1rem 8px;
 }
 
 .comment-item:last-child {
@@ -27,11 +41,29 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: #0a66c2;
+  background: linear-gradient(135deg, #0a66c2 0%, #004182 100%);
   color: white;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 14px;
   flex-shrink: 0;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.user-placeholder:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+/* Stili per le immagini profilo nei commenti */
+.comment-profile-img {
+  cursor: pointer;
+}
+
+.comment-profile-img:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08) !important;
 }
 
 .comment-author {

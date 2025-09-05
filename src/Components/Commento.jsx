@@ -18,7 +18,7 @@ const [isLoading, setIsLoading] = useState(false)
 
   const user = useSelector((state) => state.user)
 
-  const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGJhYWFjMjkxMjgyMTAwMTU0NGRiNDIiLCJpYXQiOjE3NTcwNjc0NzcsImV4cCI6MTc1ODI3NzA3N30.b6S32jWuKg0ikR0Yd2yLPB6KvkLZyq5bfER-VX93btw"
+  const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGI1NzcxNDE2MjdjNjAwMTVmOGM1NjQiLCJpYXQiOjE3NTY3MjI5NjQsImV4cCI6MTc1NzkzMjU2NH0.N8tIO-J30NgFtgpwTRBWoX-nLnWcJqYp9V738bTZVv8"
   const API_URL = "https://striveschool-api.herokuapp.com/api/comments/"
 
   useEffect(() => {
@@ -117,7 +117,20 @@ const fetchComments = () => {
             {/* FORM */}
             <Form onSubmit={postComm} className="comment-form mb-4 d-flex align-items-start">
               {user?.image ? (
-                <Image src={user.image} roundedCircle width={32} height={32} className="me-3" />
+                <Image 
+                  src={user.image} 
+                  roundedCircle 
+                  width={32} 
+                  height={32} 
+                  className="me-3 comment-profile-img" 
+                  alt={`Immagine profilo di ${user?.name || "Utente"}`}
+                  style={{
+                    objectFit: "cover",
+                    border: "2px solid #ffffff",
+                    boxShadow: "0 1px 3px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05)",
+                    transition: "all 0.2s ease"
+                  }}
+                />
               ) : (
                 <span className="user-placeholder me-3">
                   {user?.name ? user.name[0].toUpperCase() : "U"}
@@ -163,7 +176,20 @@ const fetchComments = () => {
               comments.map((c) => (
                 <article key={c._id} className="comment-item d-flex align-items-start">
                   {c.author?.image ? (
-                    <Image src={c.author.image} roundedCircle width={32} height={32} className="me-3" />
+                    <Image 
+                      src={c.author.image} 
+                      roundedCircle 
+                      width={32} 
+                      height={32} 
+                      className="me-3 comment-profile-img" 
+                      alt={`Immagine profilo di ${c.author?.name || "Utente"}`}
+                      style={{
+                        objectFit: "cover",
+                        border: "2px solid #ffffff",
+                        boxShadow: "0 1px 3px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05)",
+                        transition: "all 0.2s ease"
+                      }}
+                    />
                   ) : (
                     <span className="user-placeholder me-3">
                       {c.author?.name ? c.author.name[0].toUpperCase() : "U"}

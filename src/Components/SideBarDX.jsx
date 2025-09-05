@@ -99,8 +99,8 @@ const SideBarDX = () => {
           </div>
           <div className="space-y-1 text-center">
             {people.map((person, index) => (
-              <div key={index} className="flex items-center justify-between">
-                <div className="d-flex">
+              <div key={index} className="person-container">
+                <div className="person-info">
                   <img
                     src="./src/foto.jpg"
                     alt=""
@@ -109,9 +109,9 @@ const SideBarDX = () => {
                       height: "50px",
                       objectFit: "cover",
                     }}
-                    className="rounded-5 ms-3 me-2 mt-2"
+                    className="rounded-5 me-3"
                   />
-                  <div className="text-start mt-2">
+                  <div className="text-start">
                     <p className="text-xs mb-0">
                       <strong>{person.name}</strong>
                     </p>
@@ -120,14 +120,37 @@ const SideBarDX = () => {
                     </p>
                   </div>
                 </div>
-                <button className="px-2 py-1 text-xs rounded-5 bg-white text-black hover:bg-blue-700">
-                  <i
-                    className="bi bi-person-plus-fill"
-                    style={{ fontSize: "15px" }}
-                  ></i>{" "}
-                  {person.button}
-                </button>
-                <hr className="ms-3 me-3 mb-0" />
+                <div className="button-container">
+                  <button 
+                  className="px-3 py-2 text-sm rounded-pill bg-white text-black border border-1 connect-btn"
+                  style={{
+                    borderColor: "#0a66c2",
+                    color: "#0a66c2",
+                    fontWeight: "600",
+                    fontSize: "14px",
+                    transition: "all 0.2s ease",
+                    minWidth: "90px",
+                    height: "32px"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "rgba(10, 102, 194, 0.08)";
+                    e.target.style.borderColor = "#004182";
+                    e.target.style.color = "#004182";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "white";
+                    e.target.style.borderColor = "#0a66c2";
+                    e.target.style.color = "#0a66c2";
+                  }}
+                >
+                     <i
+                       className="bi bi-person-plus-fill me-1"
+                       style={{ fontSize: "12px" }}
+                     ></i>
+                     {person.button}
+                   </button>
+                 </div>
+                 <hr className="ms-3 me-3 mb-0" />
               </div>
             ))}
           </div>
