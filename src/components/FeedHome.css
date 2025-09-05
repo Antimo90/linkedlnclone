@@ -1,0 +1,222 @@
+/* Stili per il componente FeedHome - Feed dei post */
+
+/* Stili per le card dei post */
+.post-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+  margin-bottom: 16px;
+}
+
+/* Stili per il corpo della card */
+.post-card .card-body {
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+/* Stili per il container principale del post */
+.post-card .d-flex.align-items-start {
+  gap: 12px;
+  align-items: flex-start;
+}
+
+/* Stili per l'immagine del profilo nei post */
+.post-profile-img {
+  cursor: pointer;
+}
+
+/* Stili per il contenuto del post */
+.post-content {
+  flex: 1;
+}
+
+.post-username {
+  color: #181818;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.post-timestamp {
+  color: #5a5a5a;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* Stili per il contenitore delle informazioni utente */
+.post-card .d-flex.align-items-center.mb-2 {
+  margin-bottom: 8px !important;
+  gap: 8px;
+}
+
+/* Stili per migliorare la leggibilità */
+.post-card .me-2 {
+  margin-right: 8px !important;
+}
+
+.post-text {
+  color: #181818;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 4px;
+  word-wrap: break-word;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Stili per il contenitore flessibile del contenuto */
+.post-card .flex-grow-1.post-content {
+  min-width: 0; /* Previene overflow del testo */
+}
+
+/* Stili per il contenitore dell'immagine profilo */
+.post-card .me-3.flex-shrink-0 {
+  margin-right: 12px !important;
+  position: relative;
+}
+
+/* Stili per l'immagine del contenuto del post */
+.post-content-image {
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-content-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.post-content-image:focus {
+  outline: 2px solid #0a66c2;
+  outline-offset: 2px;
+}
+
+/* Stili per il bottone "Carica post precedenti" */
+.load-more-btn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Stili per il layout responsive */
+@media (max-width: 768px) {
+  .post-profile-img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .post-username {
+    font-size: 13px;
+  }
+
+  .post-timestamp {
+    font-size: 11px;
+  }
+
+  .post-text {
+    font-size: 13px;
+  }
+}
+
+/* Stili per il dark mode (se necessario) */
+@media (prefers-color-scheme: dark) {
+  .post-card {
+    background-color: #ffffff;
+    border-color: #e0e0e0;
+  }
+
+  .post-card .card-body {
+    background-color: #ffffff;
+  }
+
+  .post-username {
+    color: #181818;
+  }
+
+  .post-text {
+    color: #181818;
+  }
+
+  .post-timestamp {
+    color: #5a5a5a;
+  }
+}
+
+/* Stili per l'accessibilità e focus */
+.post-card .post-username:focus {
+  outline: 2px solid #0a66c2;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.post-card .post-profile-img:focus {
+  outline: 2px solid #0a66c2;
+  outline-offset: 2px;
+}
+
+/* Animazioni per il caricamento */
+.post-loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.post-fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stili per il titolo della sezione feed */
+.feed-section-title {
+  margin: 32px 0 24px 0;
+  padding: 0 16px;
+}
+
+.feed-section-title h4 {
+  color: #181818;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+/* Stili per il separatore hr */
+.feed-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #e0e0e0 20%, #e0e0e0 80%, transparent 100%);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  opacity: 0.8;
+}
+
+/* Stili responsivi per il titolo della sezione */
+@media (max-width: 768px) {
+  .feed-section-title {
+    margin: 24px 0 16px 0;
+    padding: 0 12px;
+  }
+  
+  .feed-section-title h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  
+  .feed-divider {
+    max-width: 90%;
+  }
+}

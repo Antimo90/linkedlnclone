@@ -1,8 +1,8 @@
-import { setUser } from "../redux/actions";
+import { setUser } from "../redux/actions"
 
-const API_URL = "https://striveschool-api.herokuapp.com/api/profile/me";
+const API_URL = "https://striveschool-api.herokuapp.com/api/profile/me"
 const TOKEN =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGI1NzcxNDE2MjdjNjAwMTVmOGM1NjQiLCJpYXQiOjE3NTY3MjI5NjQsImV4cCI6MTc1NzkzMjU2NH0.N8tIO-J30NgFtgpwTRBWoX-nLnWcJqYp9V738bTZVv8";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGI1NzcxNDE2MjdjNjAwMTVmOGM1NjQiLCJpYXQiOjE3NTY3MjI5NjQsImV4cCI6MTc1NzkzMjU2NH0.N8tIO-J30NgFtgpwTRBWoX-nLnWcJqYp9V738bTZVv8"
 
 const fetchUser = () => {
   return (dispatch) => {
@@ -13,9 +13,9 @@ const fetchUser = () => {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Errore nel caricamento del profilo...");
+          throw new Error("Errore nel caricamento del profilo...")
         }
-        return response.json();
+        return response.json()
       })
       .then((data) => {
         const receivedData = {
@@ -28,12 +28,12 @@ const fetchUser = () => {
           title: data.title,
           area: data.area,
           image: data.image,
-        };
-        dispatch(setUser(receivedData));
+        }
+        dispatch(setUser(receivedData))
       })
       .catch((error) => {
-        console.error("Errore:", error);
-      });
-  };
-};
-export default fetchUser;
+        console.error("Errore:", error)
+      })
+  }
+}
+export default fetchUser

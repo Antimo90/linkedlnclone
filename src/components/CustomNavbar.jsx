@@ -89,7 +89,7 @@
                 <div className="dropdownProfilePic">
                   <img
                     className="dropdownProfilePicImg"
-                    src="./src/assets/img/Stefano.png"
+                    src="https://via.placeholder.com/40x40?text=User"
                     alt=""
                   />
                 </div>
@@ -280,87 +280,108 @@
 
 // export default CustomNavbar;
 
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { Button } from "react-bootstrap";
-import Searchbar from "./Searchbar.jsx";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import Container from "react-bootstrap/Container"
+import Nav from "react-bootstrap/Nav"
+import Navbar from "react-bootstrap/Navbar"
+import NavDropdown from "react-bootstrap/NavDropdown"
+import { Button } from "react-bootstrap"
+import Searchbar from "./Searchbar.jsx"
+
+import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import fetchUser from "./FetchUser"
+import linkedinLogo from "../assets/img/Linkedin-logo-3.png"
 
 function CustomNavbar() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
+
+  // Carica i dati dell'utente quando il componente viene montato
+  useEffect(() => {
+    dispatch(fetchUser())
+  }, [dispatch])
   return (
     <>
       {/* NAVBAR SUPERIORE */}
       <Navbar
         expand="lg"
         className="navbarContainer sticky-top"
-        style={{ height: "60px" }}>
+        style={{ height: "60px" }}
+      >
         <Container className="d-flex justify-content-between align-items-center w-100">
           {/* Logo */}
-          <Navbar.Brand href="#home" className="d-flex align-items-center">
-            <img
-              className="navbarLogo img-fluid"
-              src="./src/assets/img/Linkedin-logo-3.png"
-              alt="Linkedin Logo"
-            />
-          </Navbar.Brand>
+          <div className="d-flex flex-row flex-grow-1">
+            <Navbar.Brand
+              as={Link}
+              to="/"
+              className="d-flex align-items-center"
+            >
+              <img
+                className="navbarLogo"
+                src={linkedinLogo}
+                alt="Linkedin Logo"
+              />
+            </Navbar.Brand>
 
-          {/* Searchbar mobile */}
-          <div className="d-block d-md-none flex-grow-1 mx-2">
-            {/* <input
-              type="text"
-              placeholder="🔍️ Search..."
-              className="mobileSearch"
-            /> */}
-            <Searchbar />
-          </div>
+            {/* Searchbar mobile */}
+            <div className="d-block d-md-none flex-grow-1 mx-2">
+              <Searchbar />
+            </div>
 
-          {/* Icone mobile */}
-          <div className="d-flex d-md-none align-items-center ms-2">
-            <i className="bi bi-chat-left-dots-fill fs-5 mx-1"></i>
-          </div>
+            {/* Icone mobile */}
+            <div className="d-flex d-md-none align-items-center ms-2">
+              <i className="bi bi-chat-left-dots-fill fs-5 mx-1"></i>
+            </div>
 
-          {/* Navbar desktop */}
-          <div className="d-none d-md-flex w-100 justify-content-between align-items-center">
-            {/* Sinistra: Logo + Searchbar desktop */}
-            <div className="d-flex align-items-center">
-              <Navbar.Brand href="#home"></Navbar.Brand>
-              <div className="ms-3" style={{ width: "280px" }}>
-                <Searchbar />
+            {/* Navbar desktop */}
+            <div className="d-none d-md-flex w-100 justify-content-between align-items-center">
+              {/* Sinistra: Logo + Searchbars desktop */}
+              <div className="d-flex align-items-center">
+                <div className="">
+                  <Searchbar />
+                </div>
               </div>
             </div>
 
             {/* Centro: Nav items con icone e testo sotto */}
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto d-flex flex-row align-items-center">
-                <Nav.Link as={Link} to="/" className="navbarLinks">
+              <Nav className="ms-auto d-flex flex-row align-items-center">
+                <Nav.Link
+                  as={Link}
+                  to="/"
+                  className="navbarLinksHighlight navbarLinks"
+                >
                   <div className="d-flex flex-column text-center">
                     <i className="bi bi-house-door-fill"></i>
                     Home
                   </div>
                 </Nav.Link>
-                <Nav.Link className="navbarLinks" href="#">
+                <Nav.Link className="navbarLinksHighlight navbarLinks" href="#">
                   <div className="d-flex flex-column text-center">
                     <i className="bi bi-people-fill"></i>
                     Rete
                   </div>
                 </Nav.Link>
-                <Nav.Link className="navbarLinks" href="#">
+                <Nav.Link
+                  as={Link}
+                  to="/jobs"
+                  className="navbarLinksHighlight navbarLinks"
+                >
                   <div className="d-flex flex-column text-center">
                     <i className="bi bi-suitcase-lg-fill"></i>
                     Lavoro
                   </div>
                 </Nav.Link>
-                <Nav.Link className="navbarLinks" href="#">
+                <Nav.Link className="navbarLinksHighlight navbarLinks" href="#">
                   <div className="d-flex flex-column text-center">
                     <i className="bi bi-chat-left-dots-fill"></i>
                     Messaggistica
                   </div>
                 </Nav.Link>
-                <Nav.Link className="navbarLinks" href="#">
+                <Nav.Link className="navbarLinksHighlight navbarLinks" href="#">
                   <div className="d-flex flex-column text-center">
                     <i className="bi bi-bell-fill"></i>
                     Notifiche
@@ -369,6 +390,7 @@ function CustomNavbar() {
 
                 {/* Dropdown utente */}
                 <NavDropdown
+                  className="navbarLinksHighlight"
                   drop="start"
                   id="dropdown-user"
                   title={
@@ -376,36 +398,48 @@ function CustomNavbar() {
                       <div className="navbarProfilePic">
                         <img
                           className="profilePic"
-                          src="./src/assets/img/Linkedin-logo.png"
-                          alt=""
+                          src={
+                            user?.image || "./src/assets/img/Linkedin-logo.png"
+                          }
+                          alt="Immagine profilo"
                         />
                       </div>
                       <span>
                         Tu <i className="bi-caret-down-fill"></i>
                       </span>
                     </span>
-                  }>
+                  }
+                >
                   <NavDropdown.Item
                     className=".dropdown-item"
-                    href="#action/3.1">
+                    href="#action/3.1"
+                  >
                     <div>
                       <div className="d-flex flex-row">
                         <div className="dropdownProfilePic">
                           <img
                             className="dropdownProfilePicImg"
-                            src="./src/assets/img/Stefano.png"
-                            alt=""
+                            src={
+                              user?.image ||
+                              "https://via.placeholder.com/40x40?text=User"
+                            }
+                            alt="Immagine profilo utente"
                           />
                         </div>
                         <div className="mx-2">
-                          <h2>Nome Utente</h2>
-                          <h4>Posizione Lavorativa</h4>
+                          <h2>
+                            {user?.name && user?.surname
+                              ? `${user.name} ${user.surname}`
+                              : "Nome Utente"}
+                          </h2>
+                          <h4>{user?.title || "Posizione Lavorativa"}</h4>
                         </div>
                       </div>
                       <div className="d-flex flex-row mt-3">
                         <Button
                           className="dropdownButton1 flex-grow-1"
-                          onClick={() => navigate("/profile")}>
+                          onClick={() => navigate("/profile")}
+                        >
                           Visualizza <br /> Profilo
                         </Button>
                         <Button className="dropdownButton2 flex-grow-1">
@@ -419,6 +453,7 @@ function CustomNavbar() {
 
                 {/* Dropdown Aziende */}
                 <NavDropdown
+                  className="navbarLinksHighlight"
                   drop="start"
                   id="dropdown-business"
                   title={
@@ -428,7 +463,8 @@ function CustomNavbar() {
                         Per le Aziende <i className="bi-caret-down-fill"></i>
                       </span>
                     </span>
-                  }>
+                  }
+                >
                   <NavDropdown.Item className="dropdown3" href="#action/3.1">
                     <div className="d-flex flex-row">
                       <div className="me-3">
@@ -525,11 +561,13 @@ function CustomNavbar() {
                 </NavDropdown>
 
                 {/* Link Premium */}
-                <div className="navbarLinks d-flex flex-column align-items-center ms-3">
-                  <a className="navbarPremiumLink text-center" href="">
-                    Prova Premium per 0 EUR
-                  </a>
-                </div>
+                <Nav.Link>
+                  <div className="navbarLinks d-flex flex-column align-items-center">
+                    <a className="navbarPremiumLink text-center" href="#">
+                      Prova Premium per 0 <br /> EUR
+                    </a>
+                  </div>
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </div>
@@ -560,7 +598,7 @@ function CustomNavbar() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default CustomNavbar;
+export default CustomNavbar

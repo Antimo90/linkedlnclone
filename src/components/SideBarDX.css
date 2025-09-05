@@ -1,0 +1,9 @@
+.sideBarDXBorderShadow {
+  border: solid 1px #d2d2d2 !important;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

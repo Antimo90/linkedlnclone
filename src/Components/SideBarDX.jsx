@@ -1,4 +1,5 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css"
+import "../components/SideBarDX.css"
 
 const SideBarDX = () => {
   const people = [
@@ -18,29 +19,39 @@ const SideBarDX = () => {
       role: "Software Developer",
       button: "Collegati",
     },
-  ];
+  ]
 
   return (
-    <aside className=" flex flex-col gap-2 me-2 text-sm mt-4">
+    <aside className=" flex flex-col gap-2 me-2 text-sm w-100">
       {/* Lingua e URL */}
       <div
-        className="rounded-2 p-2 bg-white border "
+        className="sideBarDXBorderShadow rounded-2 p-3 bg-white shadow-sm"
         style={{ border: "#f3f2ef" }}
       >
         <div className="space-y-1">
           <div>
-            <h2 className="font-semibold fs-6">Lingua del profilo</h2>
+            <h2 className="d-flex justify-content-between font-semibold fs-6">
+              Lingua del profilo
+              <a href="">
+                <i className="bi bi-pen-fill" style={{ fontSize: "18px" }}></i>
+              </a>
+            </h2>
             <p className="text-xs text-gray-600">Italiano</p>
           </div>
           <div>
-            <h2 className="font-semibold fs-6">Profilo pubblico e URL</h2>
+            <h2 className="d-flex justify-content-between font-semibold fs-6">
+              Profilo pubblico e URL
+              <a href="">
+                <i className="bi bi-pen-fill" style={{ fontSize: "18px" }}></i>
+              </a>
+            </h2>
             <p
-              className="text-xs text-blue-600"
-              href="https://www.linkedin.com/in/mattia-pastorini-96294b331"
+              className="truncate text-xs text-blue-600"
+              href="https://www.linkedin.com/in/placeholder"
               target="_blank"
               rel="noopener noreferrer"
             >
-              www.linkedin.com/in/mattia-pastorini-96294b331
+              www.linkedin.com/in/placeholder
             </p>
           </div>
         </div>
@@ -48,7 +59,7 @@ const SideBarDX = () => {
 
       {/* Annuncio sponsorizzato */}
       <div
-        className="rounded-2 p-2 mb-2 mt-2 bg-white border"
+        className="sideBarDXBorderShadow rounded-2 p-3 mb-2 mt-2 bg-white border shadow-sm"
         style={{ border: "#f3f2ef" }}
       >
         <h2 className="font-semibold fs-6 mb-1">Promosso</h2>
@@ -63,7 +74,7 @@ const SideBarDX = () => {
             <strong>Edison Next</strong>
           </p>
           <p className=" text-gray-600">
-            Mattia, immagina il futuro con Edison Next
+            Valerio, immagina il futuro con Edison Next
           </p>
           <p className=" text-gray-600">
             Siamo il tuo partner per la transizione energetica
@@ -76,7 +87,7 @@ const SideBarDX = () => {
 
       {/* Persone che potresti conoscere */}
       <div
-        className="rounded-2 mb-2 mt-2 bg-white border"
+        className="sideBarDXBorderShadow rounded-2 mb-2 mt-2 bg-white border shadow-sm"
         style={{ border: "#f3f2ef" }}
       >
         <div className="space-y-2">
@@ -84,7 +95,7 @@ const SideBarDX = () => {
             <h2 className="font-semibold fs-6 ms-2 mb-0">
               Persone che potresti conoscere
             </h2>
-            <p className=" mb-1">Dal tuo settore</p>
+            <p className="text-center mb-1">Dal tuo settore</p>
           </div>
           <div className="space-y-1 text-center">
             {people.map((person, index) => (
@@ -128,8 +139,23 @@ const SideBarDX = () => {
           </button>
         </div>
       </div>
+      <div>
+        <a>
+          <img
+            src="https://media.licdn.com/media/AAYABATPAAgAAQAAAAAAAKwYrfHUPkoBQGmwnaG71Ps_5Q.png"
+            alt="Sponsor"
+            className="img-fluid w-100 shadow-sm border-1"
+            style={{
+              width: "300px",
+              height: "250px",
+              cursor: "pointer",
+              borderRadius: "6px",
+            }}
+          />
+        </a>
+      </div>
     </aside>
-  );
-};
+  )
+}
 
-export default SideBarDX;
+export default SideBarDX
