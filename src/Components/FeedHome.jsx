@@ -15,6 +15,7 @@ import ImageModal from "./ImageModal"
 import ProfileUser from "../components/ProfileUser"
 import SideBarDX from "../components/SideBarDX"
 import "./FeedHome.css"
+import Commento from "./Commento"
 
 const FeedHome = forwardRef((props, ref) => {
   const dispatch = useDispatch()
@@ -223,6 +224,7 @@ const FeedHome = forwardRef((props, ref) => {
                               />
                             </div>
                           )}
+                          <Commento postId={post._id} />
                         </div>
                       </div>
                     </Card.Body>
