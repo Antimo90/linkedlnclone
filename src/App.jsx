@@ -37,7 +37,7 @@ import CustomNavbar from "./components/CustomNavbar";
 import "./components/CustomNavbar.css";
 import OtherUsersTest from "./components/OtherUsersTest";
 import Footer from "./components/Footer";
-import SuperContainer from "./Components/SuperContainer";
+import SuperContainer from "./components/SuperContainer";
 import FeedHome from "./components/FeedHome";
 import Jobs from "./components/Jobs";
 import WidgetMessaggi from "./Components/WidgetMessaggi";

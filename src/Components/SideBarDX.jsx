@@ -1,5 +1,5 @@
-import "bootstrap/dist/css/bootstrap.min.css"
-import "../components/SideBarDX.css"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../components/SideBarDX.css";
 
 const SideBarDX = () => {
   const people = [
@@ -19,7 +19,7 @@ const SideBarDX = () => {
       role: "Software Developer",
       button: "Collegati",
     },
-  ]
+  ];
 
   return (
     <aside className=" flex flex-col gap-2 me-2 text-sm w-100">
@@ -155,7 +155,7 @@ const SideBarDX = () => {
         </a>
       </div>
     </aside>
-  )
-}
+  );
+};
 
-export default SideBarDX
+export default SideBarDX;
