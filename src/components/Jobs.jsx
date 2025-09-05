@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -15,7 +15,7 @@ import "./Jobs.css";
 
 const Jobs = () => {
   // Hook per gestire i parametri URL
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   // Stati per gestire i dati e i filtri
   const [jobs, setJobs] = useState([]);
@@ -31,6 +31,7 @@ const Jobs = () => {
   // URL base dell'API
   const API_BASE_URL = "https://strive-benchmark.herokuapp.com/api/jobs";
 
+  const [numb, setNumb] = useState(21);
   // Funzione per recuperare i lavori dall'API
   const fetchJobs = async (queryParams = "") => {
     try {
@@ -45,7 +46,7 @@ const Jobs = () => {
       }
 
       const data = await response.json();
-      setJobs(data.data || []);
+      setJobs(data.data.slice(0, numb) || []);
     } catch (err) {
       setError(err.message);
       setJobs([]);
@@ -63,7 +64,8 @@ const Jobs = () => {
     } else {
       fetchJobs();
     }
-  }, [searchParams]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, numb]);
 
   // Gestione della ricerca per query
   const handleSearch = (e) => {
@@ -114,6 +116,10 @@ const Jobs = () => {
       month: "long",
       day: "numeric",
     });
+  };
+
+  const addJobs = () => {
+    setNumb((prev) => prev + 21);
   };
 
   return (
@@ -246,7 +252,7 @@ const Jobs = () => {
               ) : (
                 <Row>
                   {jobs.map((job) => (
-                    <Col key={job._id} lg={6} className="mb-4">
+                    <Col key={job._id} xs={12} lg={4} className="mb-4">
                       <Card className="job-card h-100 shadow-sm">
                         <Card.Header className="d-flex justify-content-between align-items-start">
                           <div>
@@ -318,14 +324,14 @@ const Jobs = () => {
                           )}
                         </Card.Body>
 
-                        <Card.Footer className="bg-transparent">
+                        <Card.Footer className="bg-transparent text-center">
                           {job.url && (
                             <Button
                               variant="primary"
                               href={job.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="w-100"
+                              className="w-50"
                             >
                               <i className="bi bi-box-arrow-up-right me-2"></i>
                               Visualizza Annuncio
@@ -335,6 +341,17 @@ const Jobs = () => {
                       </Card>
                     </Col>
                   ))}
+                  <Row className="justify-content-center">
+                    <Col className="text-center">
+                      <Button
+                        type="button"
+                        className="load-more-btn"
+                        onClick={() => addJobs()}
+                      >
+                        Carica altri lavori
+                      </Button>
+                    </Col>
+                  </Row>
                 </Row>
               )}
             </>

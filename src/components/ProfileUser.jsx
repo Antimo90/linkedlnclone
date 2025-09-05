@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react"
-import { useSelector } from "react-redux"
-import { Button, Card } from "react-bootstrap"
-import imagetop from "../assets/image.png"
-import "../components/profileUser.css"
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Button, Card } from "react-bootstrap";
+import imagetop from "../assets/image.png";
+import "../components/profileUser.css";
 
 function ProfileUser() {
-  const [isMobile, setIsMobile] = useState(false)
-  const [showMore, setShowMore] = useState(false)
-  const user = useSelector((state) => state.user)
+  const [isMobile, setIsMobile] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
+      setIsMobile(window.innerWidth <= 768);
+    };
 
-    handleResize()
-    window.addEventListener("resize", handleResize)
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const renderExtraCards = () => (
     <>
@@ -67,12 +67,16 @@ function ProfileUser() {
         </Card.Body>
       </Card>
     </>
-  )
+  );
 
   return (
     <>
       <Card className="shadow-sm" style={{ width: "100%" }}>
-        <Card.Img className="cardUserTop" variant="top" src={imagetop} />
+        <Card.Img
+          className="cardUserTop"
+          variant="top"
+          src={imagetop || null}
+        />
         <div className="specialCardUserPic">
           <img
             className="cardUserPic"
@@ -84,10 +88,10 @@ function ProfileUser() {
           <Card.Title className="userName">
             {user.name} {user.surname}
           </Card.Title>
-          <Card.Text>
-            <h3 className="profession">{user.title}</h3>
+          <div>
+            <p className="profession">{user.title}</p>
             <p className="location">{user.area}</p>
-          </Card.Text>
+          </div>
           <Button className="cardButton text-center d-flex flex-row">
             <i className="bi-plus-lg"></i>
             <p className="truncate m-0">Esperienza</p>
@@ -109,7 +113,7 @@ function ProfileUser() {
 
       {!isMobile || showMore ? renderExtraCards() : null}
     </>
-  )
+  );
 }
 
-export default ProfileUser
+export default ProfileUser;

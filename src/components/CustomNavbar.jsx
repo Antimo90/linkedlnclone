@@ -280,29 +280,29 @@
 
 // export default CustomNavbar;
 
-import Container from "react-bootstrap/Container"
-import Nav from "react-bootstrap/Nav"
-import Navbar from "react-bootstrap/Navbar"
-import NavDropdown from "react-bootstrap/NavDropdown"
-import { Button } from "react-bootstrap"
-import Searchbar from "./Searchbar.jsx"
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { Button } from "react-bootstrap";
+import Searchbar from "./Searchbar.jsx";
 
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import fetchUser from "./FetchUser"
-import linkedinLogo from "../assets/img/Linkedin-logo-3.png"
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import fetchUser from "./FetchUser";
+import linkedinLogo from "../assets/img/Linkedin-logo-3.png";
 
 function CustomNavbar() {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const user = useSelector((state) => state.user)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   // Carica i dati dell'utente quando il componente viene montato
   useEffect(() => {
-    dispatch(fetchUser())
-  }, [dispatch])
+    dispatch(fetchUser());
+  }, [dispatch]);
   return (
     <>
       {/* NAVBAR SUPERIORE */}
@@ -561,13 +561,13 @@ function CustomNavbar() {
                 </NavDropdown>
 
                 {/* Link Premium */}
-                <Nav.Link>
+                <Nav.Item>
                   <div className="navbarLinks d-flex flex-column align-items-center">
                     <a className="navbarPremiumLink text-center" href="#">
                       Prova Premium per 0 <br /> EUR
                     </a>
                   </div>
-                </Nav.Link>
+                </Nav.Item>
               </Nav>
             </Navbar.Collapse>
           </div>
@@ -598,7 +598,7 @@ function CustomNavbar() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default CustomNavbar
+export default CustomNavbar;
