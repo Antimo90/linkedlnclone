@@ -10,12 +10,7 @@ import {
   Spinner,
   Image,
 } from "react-bootstrap"
-import {
-  BsImage,
-  BsEmojiSmile,
-  BsCalendarEvent,
-  BsNewspaper,
-} from "react-icons/bs"
+import { BsImage, BsCalendarEvent, BsNewspaper } from "react-icons/bs"
 import { useSelector } from "react-redux"
 import axios from "axios"
 import "./UserPost.css"
@@ -24,7 +19,6 @@ const UserPost = ({ onPostCreated }) => {
   // Stati per gestire il form e le operazioni
   const [postText, setPostText] = useState("")
   const [selectedImage, setSelectedImage] = useState(null)
-  const [imagePreview, setImagePreview] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [error, setError] = useState("")
@@ -155,7 +149,7 @@ const UserPost = ({ onPostCreated }) => {
   }
 
   return (
-    <Container className="mb-4">
+    <Container className="mb-4 mt-2">
       <Row className="justify-content-center">
         <Col className="p-0">
           <Card className="shadow-sm border-1">
