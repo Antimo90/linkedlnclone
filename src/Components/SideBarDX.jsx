@@ -22,7 +22,7 @@ const SideBarDX = () => {
   ];
 
   return (
-    <aside className=" flex flex-col gap-2 me-2 text-sm w-100">
+    <aside className=" flex flex-col gap-2 me-2 text-sm w-100 mt-2">
       {/* Lingua e URL */}
       <div
         className="sideBarDXBorderShadow rounded-2 p-3 bg-white shadow-sm"
@@ -95,11 +95,11 @@ const SideBarDX = () => {
             <h2 className="font-semibold fs-6 ms-2 mb-0">
               Persone che potresti conoscere
             </h2>
-            <p className="text-center mb-1">Dal tuo settore</p>
+            <p className="text-center mb-2">Dal tuo settore</p>
           </div>
           <div className="space-y-1 text-center">
             {people.map((person, index) => (
-              <div key={index} className="person-container">
+              <div key={index} className="px-3 d-flex flex-column">
                 <div className="person-info">
                   <img
                     src="./src/foto.jpg"
@@ -121,36 +121,37 @@ const SideBarDX = () => {
                   </div>
                 </div>
                 <div className="button-container">
-                  <button 
-                  className="px-3 py-2 text-sm rounded-pill bg-white text-black border border-1 connect-btn"
-                  style={{
-                    borderColor: "#0a66c2",
-                    color: "#0a66c2",
-                    fontWeight: "600",
-                    fontSize: "14px",
-                    transition: "all 0.2s ease",
-                    minWidth: "90px",
-                    height: "32px"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = "rgba(10, 102, 194, 0.08)";
-                    e.target.style.borderColor = "#004182";
-                    e.target.style.color = "#004182";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = "white";
-                    e.target.style.borderColor = "#0a66c2";
-                    e.target.style.color = "#0a66c2";
-                  }}
-                >
-                     <i
-                       className="bi bi-person-plus-fill me-1"
-                       style={{ fontSize: "12px" }}
-                     ></i>
-                     {person.button}
-                   </button>
-                 </div>
-                 <hr className="ms-3 me-3 mb-0" />
+                  <button
+                    className="px-3 py-2 text-sm rounded-pill bg-white text-black border border-1 connect-btn"
+                    style={{
+                      borderColor: "#0a66c2",
+                      color: "#0a66c2",
+                      fontWeight: "600",
+                      fontSize: "14px",
+                      transition: "all 0.2s ease",
+                      minWidth: "90px",
+                      height: "32px",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor =
+                        "rgba(10, 102, 194, 0.08)";
+                      e.target.style.borderColor = "#004182";
+                      e.target.style.color = "#004182";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = "white";
+                      e.target.style.borderColor = "#0a66c2";
+                      e.target.style.color = "#0a66c2";
+                    }}
+                  >
+                    <i
+                      className="bi bi-person-plus-fill me-1"
+                      style={{ fontSize: "12px" }}
+                    ></i>
+                    {person.button}
+                  </button>
+                </div>
+                <hr className="mx-3  my-3" />
               </div>
             ))}
           </div>

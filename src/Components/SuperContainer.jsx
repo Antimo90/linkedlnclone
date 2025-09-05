@@ -7,13 +7,14 @@ import EducationSection from "../components/EducationSection";
 import SkillsSection from "../components/SkillsSection";
 import InterestsSection from "../components/InterestsSection";
 import { Container, Row, Col } from "react-bootstrap";
+import SideBarDX from "./SideBarDX";
 
 const SuperContainer = () => {
   return (
     <>
       <Container className="mt-4 flex-grow-1">
         <Row>
-          <Col lg={12} className="mx-auto">
+          <Col md={12} lg={9} className="mx-auto">
             <Profile />
             <RecommendedSection />
             <AnalyticsCard />
@@ -22,6 +23,9 @@ const SuperContainer = () => {
             <EducationSection />
             <SkillsSection />
             <InterestsSection />
+          </Col>
+          <Col className="d-none d-lg-block" lg={3}>
+            <SideBarDX />
           </Col>
         </Row>
       </Container>
