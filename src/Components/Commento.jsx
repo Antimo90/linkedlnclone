@@ -11,6 +11,7 @@ import {
 import { BsChat, BsPencil, BsTrash, BsThreeDotsVertical } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import "./Commento.css";
+import pphoto from "../assets/profilo-vuoto.png"
 
 const Commento = ({ postId }) => {
   const [comments, setComments] = useState([]);
@@ -201,14 +202,14 @@ const Commento = ({ postId }) => {
                   key={c._id}
                   className="comment-item d-flex align-items-start"
                 >
-                  {c.author?.image ? (
+                  {c.author ? (
                     <Image
-                      src={c.author.image}
+                      src={pphoto}
                       roundedCircle
                       width={32}
                       height={32}
                       className="me-3 comment-profile-img"
-                      alt={`Immagine profilo di ${c.author?.name || "Utente"}`}
+                      alt={`Immagine profilo di ${c.author || "Utente"}`}
                       style={{
                         objectFit: "cover",
                         border: "2px solid #ffffff",
@@ -219,7 +220,7 @@ const Commento = ({ postId }) => {
                     />
                   ) : (
                     <span className="user-placeholder me-3">
-                      {c.author?.name ? c.author.name[0].toUpperCase() : "U"}
+                      {c.author ? c.author.toUpperCase() : ""}
                     </span>
                   )}
 
