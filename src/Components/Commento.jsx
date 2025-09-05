@@ -14,6 +14,7 @@ import "./Commento.css";
 import pphoto from "../assets/profilo-vuoto.png"
 
 const Commento = ({ postId }) => {
+    const users = useSelector((state) => state.otherUsers.users);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [newRating, setNewRating] = useState("5");
@@ -26,6 +27,7 @@ const Commento = ({ postId }) => {
 
   const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODcwYzQ3MDc4Y2RkZjAwMTU1ZDY3YTUiLCJpYXQiOjE3NTcwNzc4NDAsImV4cCI6MTc1ODI4NzQ0MH0.KkA5QQK_EI-ewR4mqmdB-kfZgFCGyCrgtFh3yMKdT5s"
   const API_URL = "https://striveschool-api.herokuapp.com/api/comments/"
+  const uuu = users.find(user => user.email )
 
   useEffect(() => {
     if (showComments && postId) fetchComments();
@@ -204,7 +206,7 @@ const Commento = ({ postId }) => {
                 >
                   {c.author ? (
                     <Image
-                      src={pphoto}
+                      src={uuu?.image || pphoto}
                       roundedCircle
                       width={32}
                       height={32}
