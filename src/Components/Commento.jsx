@@ -4,6 +4,7 @@ import {
 } from "react-bootstrap"
 import { BsChat, BsPencil, BsTrash, BsThreeDotsVertical } from "react-icons/bs"
 import { useSelector } from "react-redux"
+import "./Commento.css"
 
 
 const Commento = ({ postId }) => {
@@ -26,7 +27,7 @@ const [isLoading, setIsLoading] = useState(false)
 
 const fetchComments = () => {
   setIsLoading(true)
-  fetch(`${API_URL}`, { headers: { Authorization: `Bearer ${TOKEN}` } })
+  fetch(`${API_URL}?populate=author`, { headers: { Authorization: `Bearer ${TOKEN}` } })
     .then(res => {
       if (!res.ok) throw new Error("Errore nel caricamento")
       return res.json()
@@ -100,13 +101,13 @@ const fetchComments = () => {
     <section className="comment-section mt-3">
       <Button
         variant="link"
-        className="p-0 d-flex align-items-center"
+        className="comment-toggle-btn p-0 d-flex align-items-center"
         onClick={() => setShowComments(!showComments)}
       >
         <BsChat className="me-2" size={16} />
         <span>{showComments ? "Nascondi" : "Mostra"} commenti</span>
         {comments.length > 0 && (
-          <span className="badge bg-secondary ms-2">{comments.length}</span>
+          <span className="badge comment-count-badge ms-2">{comments.length}</span>
         )}
       </Button>
 
@@ -114,7 +115,7 @@ const fetchComments = () => {
         <Card className="comment-card mt-3">
           <Card.Body className="p-3">
             {/* FORM */}
-            <Form onSubmit={postComm} className="mb-4 d-flex align-items-start">
+            <Form onSubmit={postComm} className="comment-form mb-4 d-flex align-items-start">
               {user?.image ? (
                 <Image src={user.image} roundedCircle width={32} height={32} className="me-3" />
               ) : (
@@ -137,7 +138,7 @@ const fetchComments = () => {
                     size="sm"
                     value={newRating}
                     onChange={(e) => setNewRating(e.target.value)}
-                    style={{ width: "auto" }}
+                    className="comment-rating-select"
                   >
                     {[1, 2, 3, 4, 5].map((n) => (
                       <option key={n} value={n}>{n} ★</option>
@@ -160,7 +161,7 @@ const fetchComments = () => {
               <div className="text-center py-3"><Spinner animation="border" /></div>
             ) : comments.length ? (
               comments.map((c) => (
-                <article key={c._id} className="comment-item mb-3 pb-3 border-bottom d-flex align-items-start">
+                <article key={c._id} className="comment-item d-flex align-items-start">
                   {c.author?.image ? (
                     <Image src={c.author.image} roundedCircle width={32} height={32} className="me-3" />
                   ) : (
@@ -170,11 +171,14 @@ const fetchComments = () => {
                   )}
 
                   <div className="flex-grow-1">
-                    <header className="d-flex justify-content-between">
-                      <strong>{c.author?.name || "Utente"}</strong>
+                    <header className="d-flex justify-content-between align-items-start">
+                      <div>
+                        <span className="comment-author">{c.author?.name || "Utente"}</span>
+                        <span className="comment-rating">★ {c.rate}</span>
+                      </div>
                       {c.author?._id === user?._id && (
                         <Dropdown>
-                          <Dropdown.Toggle variant="link" size="sm" className="p-0">
+                          <Dropdown.Toggle variant="link" size="sm" className="comment-dropdown-toggle comment-actions">
                             <BsThreeDotsVertical />
                           </Dropdown.Toggle>
                           <Dropdown.Menu>
@@ -200,37 +204,47 @@ const fetchComments = () => {
                     </header>
 
                     {editing?.id === c._id ? (
-                      <>
+                      <div className="comment-edit-form">
                         <Form.Control
                           as="textarea"
                           rows={2}
                           value={editing.text}
                           onChange={(e) => setEditing({ ...editing, text: e.target.value })}
-                          className="mt-2"
+                          className="mb-2"
                         />
-                        <div className="d-flex justify-content-between align-items-center mt-2">
+                        <div className="d-flex justify-content-between align-items-center comment-edit-actions">
                           <Form.Select
                             size="sm"
                             value={editing.rate}
                             onChange={(e) => setEditing({ ...editing, rate: e.target.value })}
-                            style={{ width: "auto" }}
+                            className="comment-rating-select"
                           >
                             {[1, 2, 3, 4, 5].map((n) => (
-                              <option key={n} value={n}>{n}</option>
+                              <option key={n} value={n}>{n} ★</option>
                             ))}
                           </Form.Select>
-                          <Button
-                            variant="primary"
-                            size="sm"
-                            onClick={() => modComm(c._id)}
-                            disabled={ !editing.text.trim()}
-                          >
-                            {isLoading ? <Spinner as="span" size="sm" /> : "Salva"}
-                          </Button>
+                          <div>
+                            <Button
+                              variant="outline-secondary"
+                              size="sm"
+                              onClick={() => setEditing(null)}
+                              className="me-2"
+                            >
+                              Annulla
+                            </Button>
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              onClick={() => modComm(c._id)}
+                              disabled={ !editing.text.trim()}
+                            >
+                              {isLoading ? <Spinner as="span" size="sm" /> : "Salva"}
+                            </Button>
+                          </div>
                         </div>
-                      </>
+                      </div>
                     ) : (
-                      <p className="mt-2 mb-0">{c.comment}</p>
+                      <p className="comment-text">{c.comment}</p>
                     )}
                   </div>
                 </article>
