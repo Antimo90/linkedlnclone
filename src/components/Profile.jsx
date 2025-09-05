@@ -7,80 +7,80 @@ import {
   Button,
   Spinner,
   Alert,
-} from "react-bootstrap";
-import { BsPencilFill, BsCameraFill, BsX } from "react-icons/bs";
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import fetchUser from "../components/FetchUser";
-import { uploadProfileImage, uploadCoverImage } from "../redux/actions";
-import { getCoverImage } from "../services/imageUploadService";
-import imagetop from "../assets/image.png";
-import "./Profile.css";
+} from "react-bootstrap"
+import { BsPencilFill, BsCameraFill, BsX } from "react-icons/bs"
+import { useEffect, useRef, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import fetchUser from "../components/FetchUser"
+import { uploadProfileImage, uploadCoverImage } from "../redux/actions"
+import { getCoverImage } from "../services/imageUploadService"
+import imagetop from "../assets/image.png"
+import "./Profile.css"
 
 const Profile = () => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const fileInputRef = useRef(null);
-  const coverImageInputRef = useRef(null);
-  const [localCoverImage, setLocalCoverImage] = useState(null);
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
+  const fileInputRef = useRef(null)
+  const coverImageInputRef = useRef(null)
+  const [localCoverImage, setLocalCoverImage] = useState(null)
 
   useEffect(() => {
-    dispatch(fetchUser());
-  }, [dispatch]);
+    dispatch(fetchUser())
+  }, [dispatch])
 
   // Carica l'immagine di copertina salvata localmente quando l'utente è disponibile
   useEffect(() => {
     if (user._id) {
-      const savedCoverImage = getCoverImage(user._id);
+      const savedCoverImage = getCoverImage(user._id)
       if (savedCoverImage) {
-        setLocalCoverImage(savedCoverImage);
+        setLocalCoverImage(savedCoverImage)
       }
     }
-  }, [user._id]);
+  }, [user._id])
 
   // Funzione per gestire il click sull'immagine del profilo
   const handleImageClick = () => {
-    fileInputRef.current?.click();
-  };
+    fileInputRef.current?.click()
+  }
 
   // Funzione per gestire il click sull'icona camera per l'immagine di copertina
   const handleCoverImageClick = () => {
-    coverImageInputRef.current?.click();
-  };
+    coverImageInputRef.current?.click()
+  }
 
   // Funzione per gestire il cambio del file del profilo
   const handleFileChange = async (event) => {
-    const file = event.target.files[0];
+    const file = event.target.files[0]
     if (file && user._id) {
       try {
-        await dispatch(uploadProfileImage(user._id, file));
+        await dispatch(uploadProfileImage(user._id, file))
       } catch (error) {
-        console.error("Errore durante l'upload:", error);
+        console.error("Errore durante l'upload:", error)
       }
     }
-  };
+  }
 
   // Funzione per gestire il cambio dell'immagine di copertina
   const handleCoverImageChange = async (event) => {
-    const file = event.target.files[0];
+    const file = event.target.files[0]
     if (file && user._id) {
       try {
         // Utilizzo l'azione Redux per l'upload permanente (ora salva in localStorage)
-        const result = await dispatch(uploadCoverImage(user._id, file));
+        const result = await dispatch(uploadCoverImage(user._id, file))
         // Aggiorno lo stato locale con la nuova immagine
-        setLocalCoverImage(result.coverImage);
+        setLocalCoverImage(result.coverImage)
         console.log(
           "Immagine di copertina caricata e salvata localmente:",
           file.name
-        );
+        )
       } catch (error) {
         console.error(
           "Errore durante il salvataggio dell'immagine di copertina:",
           error
-        );
+        )
       }
     }
-  };
+  }
 
   return (
     <>
@@ -204,18 +204,24 @@ const Profile = () => {
               )}
 
               <Card.Body className="mt-5">
-                <div className="d-flex align-items-center mb-2">
-                  <Card.Title>
+                <div className="d-flex flex-column flex-sm-row align-items-md-center mb-2 align-item">
+                  <Card.Title className="my-auto">
                     {user.name} {user.surname}
                   </Card.Title>
                   <Button
                     variant="button"
-                    className="badgeButton btn btn-sm me-5 text-primary ms-2 fw-bold d-flex flex-row text-center m-auto"
+                    className="badgeButton btn btn-sm me-5 text-primary ms-0 ms-md-2 my-2 my-md-0 fw-bold d-flex flex-row text-center"
                     style={{
+                      padding: "0px 10px",
+                      width: "250px",
+                      height: "34px",
                       borderRadius: "20px",
                       borderStyle: "dashed",
                       borderColor: "#0d6efd",
                       color: "black",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
                     }}
                   >
                     <span className="me-1 m-auto">
@@ -234,12 +240,33 @@ const Profile = () => {
                         <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911z" />
                       </svg>
                     </span>{" "}
-                    <p className="m-auto">Aggiungi badge di verifica</p>
+                    <p
+                      className="m-auto"
+                      style={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      Aggiungi badge di verifica
+                    </p>
                   </Button>
-                  <span className="ms-5 me-5">
-                    <a href="#" className="text-dark text-decoration-none">
-                      EPICODE Institute of Technology
-                    </a>
+                  <span className="spanBadge ms-0 ms-md-5 me-md-5 my-2 my-md-0">
+                    <div className="d-flex flex-row">
+                      <div className="logoContainer shadow-sm m-auto">
+                        <img
+                          className="logoImage"
+                          src="src/assets/epicodeschool_logo.jpg"
+                          alt="Logo"
+                        />
+                      </div>
+                      <a
+                        href="#"
+                        className="text-dark text-decoration-none ms-2 my-auto"
+                      >
+                        EPICODE Institute of Technology
+                      </a>
+                    </div>
                   </span>
                 </div>
 
@@ -252,7 +279,10 @@ const Profile = () => {
                   </Button>
                 </Card.Text>
                 <div>
-                  <a href="#" className="btn btn-link text-decoration-none">
+                  <a
+                    href="#"
+                    className="btn btn-link text-decoration-none p-0 mb-4"
+                  >
                     320 collegamenti
                   </a>{" "}
                 </div>
@@ -345,7 +375,7 @@ const Profile = () => {
         </Row>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

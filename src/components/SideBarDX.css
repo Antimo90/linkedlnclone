@@ -7,3 +7,95 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* Stili per il button Collegati */
+.connect-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background-color: white;
+  border: 1px solid #0a66c2;
+  color: #0a66c2;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 16px;
+  transition: all 0.2s ease;
+  min-width: 90px;
+  height: 32px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.connect-btn:hover {
+  background-color: rgba(10, 102, 194, 0.08);
+  border-color: #004182;
+  color: #004182;
+}
+
+.connect-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(10, 102, 194, 0.2);
+  border-color: #0a66c2;
+}
+
+.connect-btn:active {
+  background-color: rgba(10, 102, 194, 0.12);
+  transform: translateY(1px);
+}
+
+/* Stili per il contenitore delle persone */
+.person-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.person-container:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.person-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+}
+
+/* Responsive design per il button */
+@media (max-width: 768px) {
+  .connect-btn {
+    font-size: 13px;
+    padding: 5px 10px;
+    min-width: 80px;
+    height: 30px;
+  }
+  
+  .person-container {
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .connect-btn {
+    font-size: 12px;
+    padding: 4px 8px;
+    min-width: 75px;
+    height: 28px;
+  }
+  
+  .person-container {
+    padding: 4px 8px;
+  }
+}
