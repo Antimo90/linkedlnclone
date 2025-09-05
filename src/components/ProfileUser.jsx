@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Button, Card } from "react-bootstrap";
 import imagetop from "../assets/image.png";
+import imagempty from "../assets/profilo-vuoto.png";
 import "../components/profileUser.css";
 
 function ProfileUser() {
@@ -80,7 +81,7 @@ function ProfileUser() {
         <div className="specialCardUserPic">
           <img
             className="cardUserPic"
-            src={user?.image}
+            src={user.image || imagempty}
             alt={`${user.name} profile`}
           />
         </div>
