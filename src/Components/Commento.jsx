@@ -29,7 +29,6 @@ const Commento = ({ postId }) => {
 
   useEffect(() => {
     if (showComments && postId) fetchComments();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showComments, postId]);
 
   const fetchComments = () => {
