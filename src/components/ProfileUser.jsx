@@ -1,25 +1,25 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Button, Card } from "react-bootstrap";
-import imagetop from "../assets/image.png";
-import imagempty from "../assets/profilo-vuoto.png";
-import "../components/profileUser.css";
+import { useState, useEffect } from "react"
+import { useSelector } from "react-redux"
+import { Button, Card } from "react-bootstrap"
+import imagetop from "../assets/image.png"
+import imagempty from "../assets/profilo-vuoto.png"
+import "../components/profileUser.css"
 
 function ProfileUser() {
-  const [isMobile, setIsMobile] = useState(false);
-  const [showMore, setShowMore] = useState(false);
-  const user = useSelector((state) => state.user);
+  const [isMobile, setIsMobile] = useState(false)
+  const [showMore, setShowMore] = useState(false)
+  const user = useSelector((state) => state.user)
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+      setIsMobile(window.innerWidth <= 768)
+    }
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    handleResize()
+    window.addEventListener("resize", handleResize)
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   const renderExtraCards = () => (
     <>
@@ -68,11 +68,11 @@ function ProfileUser() {
         </Card.Body>
       </Card>
     </>
-  );
+  )
 
   return (
     <>
-      <Card className="shadow-sm" style={{ width: "100%" }}>
+      <Card className="shadow-sm mt-2" style={{ width: "100%" }}>
         <Card.Img
           className="cardUserTop"
           variant="top"
@@ -114,7 +114,7 @@ function ProfileUser() {
 
       {!isMobile || showMore ? renderExtraCards() : null}
     </>
-  );
+  )
 }
 
-export default ProfileUser;
+export default ProfileUser
