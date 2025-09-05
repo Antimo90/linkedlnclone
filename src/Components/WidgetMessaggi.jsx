@@ -43,9 +43,27 @@ export default function MessagingWidget() {
       >
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
-            style={{ width: "30px", height: "30px", borderRadius: "50%" }}
+            style={{ 
+              width: "30px", 
+              height: "30px", 
+              borderRadius: "50%",
+              border: "2px solid white",
+              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06)",
+              objectFit: "cover",
+              objectPosition: "center",
+              transition: "all 0.2s ease",
+              cursor: "pointer"
+            }}
             src="https://epicode-testapi-bucket.s3.eu-south-1.amazonaws.com/1757071622276-20250809_213510.jpg"
             alt="Profilo"
+            onMouseEnter={(e) => {
+              e.target.style.transform = "scale(1.05)";
+              e.target.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = "scale(1)";
+              e.target.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06)";
+            }}
           />
           <h6 style={{ margin: "0 0 0 8px", fontSize: "13px" }}>
             Messaggistica
