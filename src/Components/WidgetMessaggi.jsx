@@ -44,7 +44,7 @@ export default function MessagingWidget() {
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
             style={{ width: "30px", height: "30px", borderRadius: "50%" }}
-            src="https://epicode-testapi-bucket.s3.eu-south-1.amazonaws.com/1756971673963-catzillawall.png"
+            src="https://epicode-testapi-bucket.s3.eu-south-1.amazonaws.com/1757071622276-20250809_213510.jpg"
             alt="Profilo"
           />
           <h6 style={{ margin: "0 0 0 8px", fontSize: "13px" }}>
