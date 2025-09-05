@@ -18,7 +18,7 @@ const [isLoading, setIsLoading] = useState(false)
 
   const user = useSelector((state) => state.user)
 
-  const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGI1NzcxNDE2MjdjNjAwMTVmOGM1NjQiLCJpYXQiOjE3NTY3MjI5NjQsImV4cCI6MTc1NzkzMjU2NH0.N8tIO-J30NgFtgpwTRBWoX-nLnWcJqYp9V738bTZVv8"
+  const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODcwYzQ3MDc4Y2RkZjAwMTU1ZDY3YTUiLCJpYXQiOjE3NTcwNzc4NDAsImV4cCI6MTc1ODI4NzQ0MH0.KkA5QQK_EI-ewR4mqmdB-kfZgFCGyCrgtFh3yMKdT5s"
   const API_URL = "https://striveschool-api.herokuapp.com/api/comments/"
 
   useEffect(() => {
@@ -199,10 +199,10 @@ const fetchComments = () => {
                   <div className="flex-grow-1">
                     <header className="d-flex justify-content-between align-items-start">
                       <div>
-                        <span className="comment-author">{c.author?.name || "Utente"}</span>
+                        <span className="comment-author">{c.author || "Utente"}</span>
                         <span className="comment-rating">★ {c.rate}</span>
                       </div>
-                      {c.author?._id === user?._id && (
+                      {c.author === user.email && (
                         <Dropdown>
                           <Dropdown.Toggle variant="link" size="sm" className="comment-dropdown-toggle comment-actions">
                             <BsThreeDotsVertical />
